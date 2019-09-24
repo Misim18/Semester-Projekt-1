@@ -1,6 +1,8 @@
 # Group log:
 
-Templates:
+Scroll down till you see the dotted line containing the text "Document starts here".
+
+### Templates:
 
 ## Uge xx
 
