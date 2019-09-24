@@ -65,9 +65,21 @@ Efter vejleder: Resultater af Brainstorm.
 
 **Dagsorden:** Præsentation af spil-idé
 
-Spørgsmål: ”Er det tilladt at lave en applikation frem for et spil? - erfaringer med dette?”
+Præsentation af spil-idé. (Tænk over hvilken fase vi er i, burde vi have et spil nu?)
+
+Spørgsmål: ”Er det tilladt at lave en applikation frem for et spil? - erfaringer med dette?” 
 
 Spørgsmål: ”Hvor meget skal vi tænke statistik indover projektet?”
+
+- Godt i eksempelvis analysen. "Efter behov" samme gælder COS.
+
+Spørgsmål: ” Må vi ændre koden i World of zuul?”
+
+- Forsøg at "blive i frameworket" men ellers er det jo meningen der skal ændres.
+
+Gruppe kontrakt og Vejleder aftale.
+
+- Små rettelser, tilpasses snarest muligt. Derefter godkendt.
 
 **Fraværende:** 
 
