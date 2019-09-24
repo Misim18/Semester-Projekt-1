@@ -6,70 +6,70 @@ Templates:
 
 ### Tirsdag - Projektarbejde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 
+**Tidspunkt:** 
 
-Forberedelse:
+**Forberedelse:** 
 
-Dagsorden:
+**Dagsorden:** 
 
-Fraværende: 
+**Fraværende:** 
 
-Referat:
+**Referat:** 
 
 ### Tirsdag - Vejledermøde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 11:00
+**Tidspunkt:** 11:00
 
-Forberedelse: 
+**Forberedelse:**  
 
-Dagsorden: 
+**Dagsorden:** 
 
-Fraværende: 
+**Fraværende:** 
 
-Referat:
+**Referat:** 
 
 ------------------------------------------ Document starts here ------------------------------------------
 
 ## Uge 38 - 24/9
 ### Tirsdag - Projektarbejde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 10-11 & 12-14
+**Tidspunkt:** 10-11 & 12-14
 
-Forberedelse: Brainstorm videre på Dykkerspil (Pending Name)
+**Forberedelse:** Brainstorm videre på Dykkerspil (Pending Name)
 
-Dagsorden:
+**Dagsorden:** 
 
 Inden vejleder: Gruppe kontrakt, Vejleder aftale.
 
 Efter vejleder: Resultater af Brainstorm.
 
-Fraværende: 
+**Fraværende:** 
 
-Referat:
+**Referat:** 
 
 ### Tirsdag - Vejledermøde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 11:00
+**Tidspunkt:** 11:00
 
-Forberedelse: 
+**Forberedelse:** 
 
-Dagsorden: Præsentation af spil-idé
+**Dagsorden:** Præsentation af spil-idé
 
 Spørgsmål: ”Er det tilladt at lave en applikation frem for et spil? - erfaringer med dette?”
 
 Spørgsmål: ”Hvor meget skal vi tænke statistik indover projektet?”
 
-Fraværende: 
+**Fraværende:** 
 
-Referat:
+**Referat:** 
 
 
 
@@ -77,17 +77,17 @@ Referat:
 
 ### Tirsdag - Projektarbejde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 10:30 - 14
+**Tidspunkt:** 10:30 - 14
 
-Forberedelse: Ingen
+**Forberedelse:** Ingen
 
-Dagsorden: Brainstorm, Gruppe kontrakt, Vejleder aftale.
+**Dagsorden:** Brainstorm, Gruppe kontrakt, Vejleder aftale.
 
-Fraværende: Ingen
+**Fraværende:** Ingen
 
-Referat:
+**Referat:** 
 
 Vi fik sat de første ord på både gruppe kontrakt samt vejlederaftale.
 
@@ -107,17 +107,17 @@ at kunne svømme/dykke hurtigere etc.
 
 ### Tirsdag - Vejledermøde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 10-10:30
+**Tidspunkt:** 10-10:30
 
-Forberedelse: Ingen
+**Forberedelse:** Ingen
 
-Dagsorden:  Ingen
+**Dagsorden:**  Ingen
 
-Fraværende: Ingen
+**Fraværende:** Ingen
 
-Referat:
+**Referat:**
 
 Vi fik svar på nogle formalier angående projekt og rapport, ellers var det et relativt kort møde.
 
@@ -127,17 +127,17 @@ Vi fik svar på nogle formalier angående projekt og rapport, ellers var det et 
 
 ### Tirsdag - Projektarbejde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 10-11 & 12-14
+**Tidspunkt:** 10-11 & 12-14
 
-Forberedelse: Læs projektoplæg
+**Forberedelse:** Læs projektoplæg
 
-Dagsorden: Forventningsafstemning
+**Dagsorden:** Forventningsafstemning
 
-Fraværende: Ingen
+**Fraværende:** Ingen
 
-Referat: 
+**Referat:** 
 
 Vi er i vid udstrækning enige om en endelig karakter på noget i nærheden af et 10 tal.
 
@@ -153,16 +153,16 @@ Et Overleaf dokument samt en GitHub for gruppen.
 
 ### Tirsdag - Vejledermøde
 
-Sted: Ø28-508-2
+**Sted:** Ø28-508-2
 
-Tidspunkt: 11:00
+**Tidspunkt:** 11:00
 
-Forberedelse: Læs projektoplæg
+**Forberedelse:** Læs projektoplæg
 
-Dagsorden: 
+**Dagsorden:** 
 
-Fraværende: Ingen
+**Fraværende:** Ingen
 
-Referat: 
+**Referat:** 
 
 Indledende til projektet.
