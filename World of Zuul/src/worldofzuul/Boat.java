@@ -25,7 +25,7 @@ public class Boat extends Coordinate {
 		levelTrashCollected = 0;
 		totalTrashCollected = 0;
 		money = 0;
-		carryCapacityUpgrades 0;
+		carryCapacityUpgrades = 0;
 		breathUpgrades = 0;
 		plasticReductionUpgrades = 0;
 
