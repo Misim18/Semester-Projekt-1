@@ -8,7 +8,7 @@ public class Character {
 		lift = 0;
 		levelReached = 0;
 		carryCapacity = 0;
-		inventory = new ArrayList();
+		inventory = new ArrayList<>();
 	}
 
 	// Name
