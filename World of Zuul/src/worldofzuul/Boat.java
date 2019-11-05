@@ -21,9 +21,9 @@ public class Boat extends Coordinate {
 	private int plasticReductionUpgrades;
 
    	public Boat(){
-		super(Math.round(Game.getLimitX()/2),0); //Ændres alt efter Coordinate
+		super(Math.round(Game.getLimitX()/2),0); //Midten af x, og altid på øverste y linje.
 		levelTrashCollected = 0;
-		totalTrashCollected = 0; //Temporary stuff?
+		totalTrashCollected = 0; 
 		money = 0;
 		carryCapacityUpgrades = 0;
 		breathUpgrades = 0;

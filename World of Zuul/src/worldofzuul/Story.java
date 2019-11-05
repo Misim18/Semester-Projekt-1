@@ -31,14 +31,10 @@ public void getRandLine(){
     
 }
 
-public static void IntroLine_1(){
+public static void IntroLine(){
     System.out.println("Hello, you are about to begin the game."); 
-    System.out.println("Please begin by entering your name, and followed by hitting Enter. ");
+    System.out.println("Please begin by entering your name, followed by hitting Enter. ");
 }
 
-public static void IntroLine_2(String name){
-    System.out.println("Welcome to OceanClear " + name + ". We are happy you are here. Let's get startet.");
-    System.out.println("");
-}
 
 }

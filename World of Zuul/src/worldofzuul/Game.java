@@ -12,10 +12,10 @@ public class Game //attributes
     public Game() //Constructor
     {
         Scanner s = new Scanner(System.in);
-        Story.IntroLine_1();
+        Story.IntroLine();
         String name = s.nextLine();
         Character player1 = new Character(name);
-        Story.IntroLine_2(Character.getName());
+        //s.close(); //Doesn't work if u add this :thinking:
         createRooms();
         parser = new Parser();
     }
@@ -126,8 +126,8 @@ public class Game //attributes
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to OceanClear " + Character.getName() + ". We are happy you are here. Let's get started.");
+        System.out.println("OceanClear is a game about cleaning the ocean.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
