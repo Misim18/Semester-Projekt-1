@@ -4,9 +4,9 @@ public class Start {
     
 
 public static void main(String[] args) {
-Game Game1 = new Game();
+Game game_1 = new Game();
 
-Game1.play();
+game_1.play();
 }
 
 }

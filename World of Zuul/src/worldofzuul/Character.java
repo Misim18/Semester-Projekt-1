@@ -3,15 +3,16 @@ package worldofzuul;
 import java.util.ArrayList;
 
 public class Character {
-	private static String name = "Temp"; //consider revising this to work with scanner input
+	private static String name; //consider revising this to work with scanner input
 	private static int breath, life, levelReached, carryCapacity;
 	private static ArrayList<Collectables> inventory;
 
-	public Character(){ //Incorporate scanner name thingy (later)
-		breath = 0;
-		life = 0;
-		levelReached = 0;
-		carryCapacity = 0;
+	public Character(String name){ //Incorporate scanner name thingy (later)
+		breath = 8;
+		life = 100;
+		levelReached = 0;   //Note all numbers are 
+                this.name = name;
+		carryCapacity = 3;
 		inventory = new ArrayList<>();
 	}
 
@@ -37,11 +38,11 @@ public class Character {
 	}
 
 	// LevelReached
-	public int getLevelReached(){
-		return this.levelReached;
+	public static int getLevelReached(){
+		return levelReached;
 	}
-	public void setLevelReached(int levelReached){
-		this.levelReached = levelReached;
+	public static void setLevelReached(int levelReachedIn){
+		levelReached = levelReachedIn;
 	}
 
 	// carryCapacity

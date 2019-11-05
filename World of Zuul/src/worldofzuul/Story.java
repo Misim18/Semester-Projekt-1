@@ -34,7 +34,7 @@ public void getRandLine(){
 public void IntroLine(){
     Scanner s = new Scanner(System.in);
     
-    System.out.println("Hello player1. You are about to begin the game.");
+    System.out.println("Hello, you are about to begin the game."); 
     System.out.println("Please begin by entering your name, and finish by typing Enter. ");
     String name = s.nextLine();
     System.out.println("Welcome to OceanClear " + name + ". We are happy you are here. Let's get startet.");

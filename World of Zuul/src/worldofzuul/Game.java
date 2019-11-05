@@ -4,20 +4,21 @@ public class Game //attributes
 {
     private Parser parser;
     private Room currentRoom;
-    private int limitY = 0; //Character.levelReached times x_1 + x_2
-    private int limitX = 0; //Same as above     
+    private static int limitY = 0; //Character.levelReached times x_1 + x_2
+    private static int limitX = 0; //Same as above     
 
     public Game() //Constructor
     {
         createRooms();
+        Character player1 = new Character("Tomas"); //Temporary name, make interactive
         parser = new Parser();
     }
 
-    public int getLimitY() {
+    public static int getLimitY() {
         return limitY;
     }
 
-    public int getLimitX() {
+    public static int getLimitX() {
         return limitX;
     }
 
@@ -33,8 +34,11 @@ public class Game //attributes
     
     private void createRooms() //Sets up the rooms in the game
     {
-    setLimitX(5);
-    setLimitY(3);
+    Character.setLevelReached(Character.getLevelReached()+1); //Increments levelReached
+    
+    //Sets the boundries for the play field (Grid)
+    setLimitX(5+Character.getLevelReached()*2); 
+    setLimitY(3+Character.getLevelReached()*2);
     
     //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
     Room[][] grid = new Room[getLimitY()][getLimitX()]; 
@@ -95,7 +99,7 @@ public class Game //attributes
             }
         }
     
-        currentRoom = grid[0][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
+        currentRoom = grid[1][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
     }
 
     public void play() 
