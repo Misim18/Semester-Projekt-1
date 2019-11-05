@@ -41,10 +41,10 @@ public void IntroLine(){
     System.out.println("");
 }
     //main skal ikke være i denne klasse.
-    public static void main(String[] args){
-        Story first = new Story();
-        first.IntroLine();
-        first.getRandLine();
-        first.getRandLine();
-    }
+//    public static void main(String[] args){
+//        Story first = new Story();
+//        first.IntroLine();
+//        first.getRandLine();
+//        first.getRandLine();
+//    }
 }

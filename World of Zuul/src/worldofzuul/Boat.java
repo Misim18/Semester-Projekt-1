@@ -21,7 +21,7 @@ public class Boat extends Coordinate {
 	private int plasticReductionUpgrades;
 
    	public Boat(){
-		super(0,); //Ændres alt efter Coordinate
+		super(0,0); //Ændres alt efter Coordinate
 		levelTrashCollected = 0;
 		totalTrashCollected = 0;
 		money = 0;
@@ -40,9 +40,9 @@ public class Boat extends Coordinate {
 		return boatInventory;
 	}
 
-	public String listBoatInventory(){
-		// to do, done for today
-	}
+//	public String listBoatInventory(){
+//		// to do, done for today
+//	}
 
 	// LevelTrashCollected
 	public int getLevelTrashCollected(){

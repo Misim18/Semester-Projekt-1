@@ -8,6 +8,7 @@ private int startPostitionY;
 
 public Hostiles(int dmg, int lvlsizeX, int lvlsizeY)
     {
+    super(0,0); //Changed later
     this.Damage = dmg;
     setDirection();
     setStartPostitionX(lvlsizeX);

@@ -2,11 +2,10 @@ package worldofzuul;
 
 public class Game //attributes
 {
-
     private Parser parser;
     private Room currentRoom;
-    private int limitY; //Character.levelReached times x_1 + x_2
-    private int limitX; //Same as above     
+    private int limitY = 0; //Character.levelReached times x_1 + x_2
+    private int limitX = 0; //Same as above     
 
     public Game() //Constructor
     {
@@ -22,10 +21,20 @@ public class Game //attributes
         return limitX;
     }
 
+     
+    public void setLimitY(int limitY) {
+        this.limitY = limitY;
+    }
+
+    public void setLimitX(int limitX) {
+        this.limitX = limitX;
+    }
+
+    
     private void createRooms() //Sets up the rooms in the game
     {
-    this.limitX = 3; //Temporary fix, make function of levelReached (Character Class)
-    this.limitY = 5;
+    setLimitX(5);
+    setLimitY(3);
     
     //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
     Room[][] grid = new Room[getLimitY()][getLimitX()]; 
