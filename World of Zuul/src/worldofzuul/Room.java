@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,6 +12,8 @@ public class Room
     private HashMap<String, Room> exits;
     private int CoordinateX;
     private int CoordinateY;
+    private static ArrayList<Hostiles> hostilesActive;
+    private static ArrayList<Collectables> collectablesLeft;
 
     public Room(String description)  //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {

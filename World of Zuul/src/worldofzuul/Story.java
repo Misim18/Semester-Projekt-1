@@ -35,7 +35,12 @@ public void getRandLine(){
 public static void IntroLine(){
     System.out.println("Hello, you are about to begin the game."); 
     System.out.println("Please begin by entering your name, followed by hitting Enter. ");
+    System.out.print("> "); 
 }
 
+public static void Tutorial(){
+    System.out.println("This is where we'd give you the tutorial."); 
+    System.out.println("IF WE HAD/WANTED ONE! 🤔");
+}
 
 }

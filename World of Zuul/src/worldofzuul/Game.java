@@ -7,7 +7,9 @@ public class Game //attributes
     private Parser parser;
     private Room currentRoom;
     private static int limitY = 0; //Character.levelReached times x_1 + x_2
-    private static int limitX = 0; //Same as above     
+    private static int limitX = 0; //Same as above
+    private Boat boat;
+    private static String[] itemNames;
 
     public Game() //Constructor
     {
@@ -16,10 +18,40 @@ public class Game //attributes
         String name = s.nextLine();
         Character player1 = new Character(name);
         //s.close(); //Doesn't work if u add this :thinking:
-        createRooms();
         parser = new Parser();
+        this.boat = new Boat();
+        initializeItemNames();
+        nextLevel();
     }
 
+    public void initializeItemNames () {
+        itemNames = new String[7];
+        itemNames[0] = "Food Wrapper";
+        itemNames[1] = "Plastic Bottle";
+        itemNames[2] = "Plastic Bottle Cap";
+        itemNames[3] = "Plastic Bag";
+        itemNames[4] = "Straw";
+        itemNames[5] = "Plastic Take Away Container";
+        itemNames[6] = "Plastic Lid";
+
+//        //used for verifying content of itemNames        
+//        for (int x = 0; x < getItemNames().length; x++) 
+//    {
+//        System.out.println(getItemNames()[x]);
+//    }
+    }
+    
+    public void nextLevel() {//Java said it might be a good idea to make this final, as to never be overwritten.
+        setLimitX(5+Character.getLevelReached()*2); 
+        setLimitY(3+Character.getLevelReached()*2);
+        createRooms();
+        boat.placeBoat(0, Math.round(getLimitX()/2));
+        boat.setLevelTrashCollected(0);
+        createCollectables(3+3*Character.getLevelReached());
+        createHostiles(3+3*Character.getLevelReached());
+        Character.setLevelReached(Character.getLevelReached()+1); //Increments levelReached
+    }
+    
     public static int getLimitY() {
         return limitY;
     }
@@ -28,7 +60,7 @@ public class Game //attributes
         return limitX;
     }
 
-     
+    
     public void setLimitY(int limitY) {
         this.limitY = limitY;
     }
@@ -37,15 +69,53 @@ public class Game //attributes
         this.limitX = limitX;
     }
 
+    public static String[] getItemNames() {
+    return itemNames;
+    }
+
+    public static String getItemNamesElement(int x) {
+    return itemNames[x];
+    }
+    
+    private void createHostiles(int amountOfActiveHostiles) //Sets up the hostiles in the game
+    {
+        Hostiles[] gameHostiles = new Hostiles[amountOfActiveHostiles];
+                
+        for (int x = 0; x < gameHostiles.length; x++) 
+    {
+        gameHostiles[x] = new Hostiles(100);
+    }
+//            //Troubleshooting
+//             for (int x = 0; x < gameHostiles.length; x++) 
+//    {
+//        System.out.println("Hostile #" + x);
+//        System.out.println(gameHostiles[x].getCoordinateX());
+//        System.out.println(gameHostiles[x].getCoordinateY());      
+//    }
+    }
+    
+    private void createCollectables(int amountOfCollectables) //Sets up the hostiles in the game
+    {
+    
+        Collectables[] gameCollectables = new Collectables[amountOfCollectables];
+                
+        for (int x = 0; x < gameCollectables.length; x++) 
+    {
+        gameCollectables[x] = new Collectables();
+    }
+//            //Troubleshooting
+//             for (int x = 0; x < gameCollectables.length; x++) 
+//    {
+//        System.out.println("Collectables #" + x);
+//        System.out.println(gameCollectables[x].getCoordinateX());
+//        System.out.println(gameCollectables[x].getCoordinateY());
+//        System.out.println(gameCollectables[x].getName());
+//    }
+        
+    }
     
     private void createRooms() //Sets up the rooms in the game
-    {
-    Character.setLevelReached(Character.getLevelReached()+1); //Increments levelReached
-    
-    //Sets the boundries for the play field (Grid)
-    setLimitX(5+Character.getLevelReached()*2); 
-    setLimitY(3+Character.getLevelReached()*2);
-    
+    {    
     //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
     Room[][] grid = new Room[getLimitY()][getLimitX()]; 
 
@@ -128,6 +198,11 @@ public class Game //attributes
         System.out.println();
         System.out.println("Welcome to OceanClear " + Character.getName() + ". We are happy you are here. Let's get started.");
         System.out.println("OceanClear is a game about cleaning the ocean.");
+        System.out.println();
+        
+        Story.Tutorial();
+        
+        System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());

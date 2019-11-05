@@ -3,10 +3,9 @@ package worldofzuul;
 public class Hostiles extends Coordinate {
 private int Direction;
 private int Damage;
-//private int startPositionX;
-//private int startPositionY;
 
-public Hostiles(int dmg, int lvlsizeX, int lvlsizeY)
+
+public Hostiles(int dmg)
     {
     super(0,0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
     this.setCoordinateX(setStartPositionX()); //sets the coordinates to the returned value of setStartPositionX (method)

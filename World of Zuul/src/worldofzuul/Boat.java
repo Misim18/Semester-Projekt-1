@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package worldofzuul;
 
 import java.util.ArrayList;
@@ -28,6 +24,11 @@ public class Boat extends Coordinate {
 
 	}
 
+	public void placeBoat(int x, int y){
+		this.setCoordinateX(x);
+                this.setCoordinateY(y);
+	}        
+        
 	// BoatInventory
 	public void addToBoatInventory(Collectables temp){
 		boatInventory.add(temp);

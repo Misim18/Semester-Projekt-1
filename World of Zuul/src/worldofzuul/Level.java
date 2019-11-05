@@ -8,12 +8,14 @@ public class Level {
     private int levelSizeY;
     private int reward;
     private int amountOfCollectables;
+    private int amountOfActiveHostiles;
 
     public Level(int levelReached) {
         this.levelSizeX = 10*levelReached;
         this.levelSizeY = 10*levelReached;
-        this.reward = 1*levelReached;
+        this.reward = 1+1*levelReached;
         this.amountOfCollectables = 5*levelReached;
+        this.amountOfActiveHostiles = 3+3*levelReached;
     } 
   
     public int getLevelSizeX() {
@@ -48,8 +50,13 @@ public class Level {
         this.amountOfCollectables = amountOfCollectables;
     }
     
-    
-    
+    public int getAmountOfActiveHostiles() {
+        return amountOfActiveHostiles;
+    }
+
+    public void setAmountOfActiveHostiles(int amountOfActiveHostiles) {
+        this.amountOfActiveHostiles = amountOfActiveHostiles;    
+    }   
     
     
 }
