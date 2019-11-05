@@ -111,7 +111,7 @@ public class Game //attributes
 //        System.out.println(gameCollectables[x].getCoordinateY());
 //        System.out.println(gameCollectables[x].getName());
 //    }
-        
+//        
     }
     
     private void createRooms() //Sets up the rooms in the game
