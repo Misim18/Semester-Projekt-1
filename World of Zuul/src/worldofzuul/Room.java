@@ -9,9 +9,12 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private int CoordinateX;
+    private int CoordinateY;
 
-    public Room(String description) 
+    public Room(String description)  //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {
+        //super(x,y)
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -21,7 +24,7 @@ public class Room
         exits.put(direction, neighbor);
     }
 
-    public String getShortDescription()
+    public String getShortDescription() //Returns the desciption, which is already a string so an accessor method, although at the same time also a .toString method
     {
         return description;
     }
@@ -33,17 +36,37 @@ public class Room
 
     private String getExitString()
     {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
+        String returnString = "Exits:";     //First word of the 'returnString'
+        Set<String> keys = exits.keySet();  //Creates a set of strings called keys, and is equal to Set is a collection that can't contain dublicates
+        for(String exit : keys) {           //Adds all the exits for the room to the 'returnString'
+            returnString += " " + exit;     
         }
-        return returnString;
+        return returnString;                //Returns the entire 'returnString'
     }
 
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    
+    public int getCoordinateX() { //Can potentially be removed
+        return CoordinateX;
+    }
+
+    
+    public void setCoordinateX(int CoordinateX) { //Can potentially be removed
+        this.CoordinateX = CoordinateX;
+    }
+
+    
+    public int getCoordinateY() { //Can potentially be removed
+        return CoordinateY;
+    }
+
+    
+    public void setCoordinateY(int CoordinateY) { //Can potentially be removed
+        this.CoordinateY = CoordinateY;
     }
 }
 
