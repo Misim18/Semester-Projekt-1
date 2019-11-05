@@ -35,7 +35,7 @@ public class Collectables extends Coordinate {
     }
 
     public String setRandomName () {
-    int temp = (int)Math.round(Math.random()*Game.getItemNames().length)-1;
+    int temp = (int)Math.round(Math.random()*Game.getItemNames().length)-1; //minus one, because arrays are 0 indexed (see next line)
     
     return Game.getItemNamesElement(temp);
     }
