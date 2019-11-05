@@ -7,10 +7,7 @@ package worldofzuul;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author kkmp
- */
+
 public class Boat extends Coordinate {
 	private ArrayList<Collectables> boatInventory = new ArrayList<>();
 	private int levelTrashCollected;

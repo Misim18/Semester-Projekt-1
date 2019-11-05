@@ -1,4 +1,5 @@
 package worldofzuul;
+
 import java.util.Scanner;
 
 public class Story {
