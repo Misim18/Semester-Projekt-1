@@ -4,7 +4,8 @@ public class Game //attributes
 {
     private Parser parser;
     private Room currentRoom;
-        
+    int limitY = 3; //Character.levelReached times x_1 + x_2
+    int limitX = 5; //Same as above     
 
     public Game() //Constructor
     {
@@ -15,8 +16,7 @@ public class Game //attributes
 
     private void createRooms() //Sets up the rooms in the game
     {
-    int limitY = 3; //Character.levelReached times x_1 + x_2
-    int limitX = 5; //Same as above   
+    this.limitX =   
         
     //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
     Room[][] grid = new Room[limitY][limitX]; 
