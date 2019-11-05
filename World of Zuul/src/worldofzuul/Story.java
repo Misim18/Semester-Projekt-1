@@ -31,20 +31,14 @@ public void getRandLine(){
     
 }
 
-public void IntroLine(){
-    Scanner s = new Scanner(System.in);
-    
+public static void IntroLine_1(){
     System.out.println("Hello, you are about to begin the game."); 
-    System.out.println("Please begin by entering your name, and finish by typing Enter. ");
-    String name = s.nextLine();
+    System.out.println("Please begin by entering your name, and followed by hitting Enter. ");
+}
+
+public static void IntroLine_2(String name){
     System.out.println("Welcome to OceanClear " + name + ". We are happy you are here. Let's get startet.");
     System.out.println("");
 }
-    //main skal ikke være i denne klasse.
-//    public static void main(String[] args){
-//        Story first = new Story();
-//        first.IntroLine();
-//        first.getRandLine();
-//        first.getRandLine();
-//    }
+
 }

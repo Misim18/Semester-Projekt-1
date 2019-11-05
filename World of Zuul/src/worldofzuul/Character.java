@@ -17,8 +17,8 @@ public class Character {
 	}
 
 	// Name
-	public String getName(){
-		return this.name;
+	public static String getName(){
+		return name;
 	}
 
 	// Breath

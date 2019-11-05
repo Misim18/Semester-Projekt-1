@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import java.util.Scanner;
+
 public class Game //attributes
 {
     private Parser parser;
@@ -9,8 +11,12 @@ public class Game //attributes
 
     public Game() //Constructor
     {
+        Scanner s = new Scanner(System.in);
+        Story.IntroLine_1();
+        String name = s.nextLine();
+        Character player1 = new Character(name);
+        Story.IntroLine_2(Character.getName());
         createRooms();
-        Character player1 = new Character("Tomas"); //Temporary name, make interactive
         parser = new Parser();
     }
 
@@ -91,13 +97,15 @@ public class Game //attributes
     }
 }    
 
-        for (int y = 0; y < getLimitY(); y++) {
-            for (int x = 0; x < getLimitX(); x++) {
-                System.out.println(grid[y][x].getShortDescription());
-                System.out.println(grid[y][x].getCoordinateX());
-                System.out.println(grid[y][x].getCoordinateY());
-            }
-        }
+//Can be used for printing info about rooms (Troubleshooting)
+//
+//        for (int y = 0; y < getLimitY(); y++) {
+//            for (int x = 0; x < getLimitX(); x++) {
+//                System.out.println(grid[y][x].getShortDescription());
+//                System.out.println(grid[y][x].getCoordinateX());
+//                System.out.println(grid[y][x].getCoordinateY());
+//            }
+//        }
     
         currentRoom = grid[1][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
     }
