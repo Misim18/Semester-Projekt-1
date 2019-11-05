@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author kkmp
  */
 public class Boat extends Coordinate {
-	private ArrayList<Collectables> boatInventory = new ArrayList<Collectables>;
+	private ArrayList<Collectables> boatInventory = new ArrayList<>();
 	private int levelTrashCollected;
 	private int totalTrashCollected;
 	private int money;
@@ -20,12 +20,12 @@ public class Boat extends Coordinate {
 	private int breathUpgrades;
 	private int plasticReductionUpgrades;
 
-   	public Boat() {
+   	public Boat(){
 		super(); //Ændres alt efter Coordinate
 		levelTrashCollected = 0;
 		totalTrashCollected = 0;
 		money = 0;
-		carryCapacityUpgrades 0;
+		carryCapacityUpgrades = 0;
 		breathUpgrades = 0;
 		plasticReductionUpgrades = 0;
 
