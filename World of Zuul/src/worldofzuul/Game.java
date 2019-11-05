@@ -2,10 +2,11 @@ package worldofzuul;
 
 public class Game //attributes
 {
+
     private Parser parser;
     private Room currentRoom;
-    int limitY = 3; //Character.levelReached times x_1 + x_2
-    int limitX = 5; //Same as above     
+    private int limitY; //Character.levelReached times x_1 + x_2
+    private int limitX; //Same as above     
 
     public Game() //Constructor
     {
@@ -13,19 +14,27 @@ public class Game //attributes
         parser = new Parser();
     }
 
+    public int getLimitY() {
+        return limitY;
+    }
+
+    public int getLimitX() {
+        return limitX;
+    }
 
     private void createRooms() //Sets up the rooms in the game
     {
-    this.limitX =   
-        
+    this.limitX = 3; //Temporary fix, make function of levelReached (Character Class)
+    this.limitY = 5;
+    
     //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
-    Room[][] grid = new Room[limitY][limitX]; 
+    Room[][] grid = new Room[getLimitY()][getLimitX()]; 
 
 
 //Creates the grid    
-    for (int y = 0; y < limitY; y++) 
+    for (int y = 0; y < getLimitY(); y++) 
 {
-    for (int x = 0; x < limitX; x++) 
+    for (int x = 0; x < getLimitX(); x++) 
     {
         grid[y][x] = new Room("x"+x+"y"+y);
         grid[y][x].setCoordinateX(x); //Can we delete these
@@ -34,50 +43,50 @@ public class Game //attributes
 }
 
 //Sets east exits
-    for (int y = 0; y < limitY; y++) 
+    for (int y = 0; y < getLimitY(); y++) 
 {
-    for (int x = 0; x < limitX-1; x++) 
+    for (int x = 0; x < getLimitX()-1; x++) 
     {
         grid[y][x].setExit("east", grid[y][x+1]);
     }
 }
     
 //Sets west exits
-    for (int y = 0; y < limitY; y++) 
+    for (int y = 0; y < getLimitY(); y++) 
 {
-    for (int x = 1; x < limitX; x++) //x starts at 1, as to not     
+    for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not     
     {
         grid[y][x].setExit("west", grid[y][x-1]);
     }
 }    
 
 //Sets south exits
-    for (int y = 0; y < limitY-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
+    for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
 {
-    for (int x = 1; x < limitX; x++) 
+    for (int x = 1; x < getLimitX(); x++) 
     {
         grid[y][x].setExit("south", grid[y+1][x]);
     }
 }
 
 //Sets north exits
-    for (int y = 1; y < limitY; y++) // y starts at one, as to not give north exit on top row
+    for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give north exit on top row
 {
-    for (int x = 1; x < limitX; x++) 
+    for (int x = 1; x < getLimitX(); x++) 
     {
         grid[y][x].setExit("north", grid[y-1][x]);
     }
 }    
 
-        for (int y = 0; y < limitY; y++) {
-            for (int x = 0; x < limitX; x++) {
+        for (int y = 0; y < getLimitY(); y++) {
+            for (int x = 0; x < getLimitX(); x++) {
                 System.out.println(grid[y][x].getShortDescription());
                 System.out.println(grid[y][x].getCoordinateX());
                 System.out.println(grid[y][x].getCoordinateY());
             }
         }
     
-        currentRoom = grid[0][Math.round(limitX/2)]; //Change to grid[0][limitX/2] something something ceil...
+        currentRoom = grid[0][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
     }
 
     public void play() 

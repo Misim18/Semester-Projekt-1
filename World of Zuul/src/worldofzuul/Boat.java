@@ -21,7 +21,7 @@ public class Boat extends Coordinate {
 	private int plasticReductionUpgrades;
 
    	public Boat(){
-		super(); //Ændres alt efter Coordinate
+		super(0,); //Ændres alt efter Coordinate
 		levelTrashCollected = 0;
 		totalTrashCollected = 0;
 		money = 0;

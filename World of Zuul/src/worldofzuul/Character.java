@@ -1,11 +1,15 @@
-public class Character {
-	private String Name = "";
-	private int breath, life, levelReached, carryCapacity;
-	private ArrayList<Collectables> inventory;
+package worldofzuul;
 
-	public Character{
+import java.util.ArrayList;
+
+public class Character {
+	private static String name = "Temp"; //consider revising this to work with scanner input
+	private static int breath, life, levelReached, carryCapacity;
+	private static ArrayList<Collectables> inventory;
+
+	public Character(){ //Incorporate scanner name thingy (later)
 		breath = 0;
-		lift = 0;
+		life = 0;
 		levelReached = 0;
 		carryCapacity = 0;
 		inventory = new ArrayList<>();
@@ -29,7 +33,7 @@ public class Character {
 		return this.life;
 	}
 	public void setLife(int life){
-		this.life = lift;
+		this.life = life;
 	}
 
 	// LevelReached
@@ -49,18 +53,18 @@ public class Character {
 	}
 
 	// addToInventory
-	public void addToInventory(Collectable collectable){
+	public void addToInventory(Collectables collectable){
 		inventory.add(collectable);
 	}
 
 	// removeFromInventory
-	public void removeFromInventory(Collectable collectable){
+	public void removeFromInventory(Collectables collectable){
 		inventory.remove(collectable);
 
 	}
 
 	// dumpInventory
-	public ArrayList<Collectable> dumpInventory(){
+	public ArrayList<Collectables> dumpInventory(){
 		return inventory;
 	}
 }
