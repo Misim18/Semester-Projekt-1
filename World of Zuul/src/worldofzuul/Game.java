@@ -14,7 +14,7 @@ public class Game //attributes
     public Game() //Constructor
     {
         Scanner s = new Scanner(System.in);
-        Story.IntroLine();
+        Story.introLine();
         String name = s.nextLine();
         Character player1 = new Character(name);
         //s.close(); //Doesn't work if u add this :thinking:
@@ -200,7 +200,7 @@ public class Game //attributes
         System.out.println("OceanClear is a game about cleaning the ocean.");
         System.out.println();
         
-        Story.Tutorial();
+        Story.tutorial();
         
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");

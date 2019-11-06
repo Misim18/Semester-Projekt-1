@@ -1,12 +1,15 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Story {
 
 private String Line;    
-public Story(){}
 private String[] randLineArray = new String[10];
+
+public Story(){
+}
 
 public void fillArray(){ //facts fra poster billede.
 randLineArray[0] = "2,412,151";
@@ -32,15 +35,19 @@ public void getRandLine(){
     
 }
 
-public static void IntroLine(){
+public static void introLine(){
     System.out.println("Hello, you are about to begin the game."); 
     System.out.println("Please begin by entering your name, followed by hitting Enter. ");
     System.out.print("> "); 
 }
 
-public static void Tutorial(){
+public static void tutorial(){
     System.out.println("This is where we'd give you the tutorial."); 
-    System.out.println("IF WE HAD/WANTED ONE! 🤔");
+    System.out.println("IF WE HAD/WANTED ONE! 🤔");//nice FOP refrence xD 
+}
+
+public static void printAfterMoved(){
+    ArrayList<String> listOfElements = new ArrayList<>();
 }
 
 }
