@@ -84,6 +84,11 @@ public class Room
         hostilesActive.add(number, hostile);
         hostilesActive.remove(number+1);
     }
+        
+    public static void clearHostilesActive() {
+        hostilesActive.clear();
+    }    
+        
     
     public static ArrayList<Collectables> getCollectablesLeft(){
         return collectablesLeft; 
@@ -96,5 +101,10 @@ public class Room
         public static void removeFromCollectablesLeft(int number){
         collectablesLeft.remove(number);
     } 
+        
+    public static void clearCollectablesLeft() {
+        collectablesLeft.clear();
+    }
+    
 }
 

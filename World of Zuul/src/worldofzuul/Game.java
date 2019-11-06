@@ -46,15 +46,17 @@ public class Game //attributes
         return boat; 
     }
     
-    public void nextLevel() {                                       //Java said it might be a good idea to make this final, as to never be overwritten.
-        setLimitX(5+Character.getLevelReached()*2);                 //Sets the new limitX
-        setLimitY(3+Character.getLevelReached()*2);                 //Sets the new limitX
-        createRooms();                                              //Creates the playable grid
-        boat.placeBoat(0, Math.round(getLimitX()/2));               //Places the boat at y = 0, x = middle
-        boat.setLevelTrashCollected(0);                             //Resets levelTrashCollected attribute in Boat
-        createInitialCollectables(3+3*Character.getLevelReached());        //Creates the amount of Collectables fed into the method
-        createInitialHostiles(3+3*Character.getLevelReached());            //Creates the amount of Hostiles fed into the method
-        Character.setLevelReached(Character.getLevelReached()+1);   //Increments levelReached
+    public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
+        setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
+        setLimitY(3+Character.getLevelReached()*2);                         //Sets the new limitX
+        createRooms();                                                      //Creates the playable grid
+        boat.placeBoat(0, Math.round(getLimitX()/2));                       //Places the boat at y = 0, x = middle
+        boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
+        Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft
+        Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
+        createInitialCollectables(3+3*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
+        createInitialHostiles(3+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
+        Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
     }
     
     public static int getLimitY() {
@@ -82,7 +84,7 @@ public class Game //attributes
     return itemNames[x];
     }
     
-    private void createInitialHostiles(int amountOfActiveHostiles) //Sets up the hostiles in the game
+    private void createInitialHostiles(int amountOfActiveHostiles) //Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
     {
         Hostiles[] gameHostiles = new Hostiles[amountOfActiveHostiles];
                 
@@ -91,8 +93,12 @@ public class Game //attributes
         gameHostiles[x] = new Hostiles(100);
     }
         
+           for (int x = 0; x < gameHostiles.length; x++) 
+    {
+        Room.addToHostilesActive(gameHostiles[x]);
+    }
     
-    
+        
 //            //Troubleshooting
 //             for (int x = 0; x < gameHostiles.length; x++) 
 //    {
@@ -102,7 +108,7 @@ public class Game //attributes
 //    }
     }
     
-    private void createInitialCollectables(int amountOfCollectables) //Sets up the hostiles in the game
+    private void createInitialCollectables(int amountOfCollectables) //Creates and int number of Collectables and loads them into the collectablesLeft ArrayList in Room
     {
     
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
@@ -117,8 +123,6 @@ public class Game //attributes
         Room.addToCollectablesLeft(gameCollectables[x]); 
     }
     
-        System.out.println("Size of CollectablesLeft: ");
-        System.out.println(Room.getCollectablesLeft().size());
 //            //Troubleshooting
 //             for (int x = 0; x < gameCollectables.length; x++) 
 //    {
