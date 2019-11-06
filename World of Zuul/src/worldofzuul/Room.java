@@ -71,5 +71,13 @@ public class Room
     public void setCoordinateY(int CoordinateY) { //Can potentially be removed
         this.CoordinateY = CoordinateY;
     }
+    
+    public static ArrayList<Hostiles> getHostilesActive(){
+        return hostilesActive; 
+    }
+    
+    public static ArrayList<Collectables> getCollectablesLeft(){
+        return collectablesLeft; 
+    } 
 }
 

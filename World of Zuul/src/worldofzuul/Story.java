@@ -47,7 +47,32 @@ public static void tutorial(){
 }
 
 public static void printAfterMoved(){
-    ArrayList<String> listOfElements = new ArrayList<>();
+    ArrayList<Coordinate> listOfElements = new ArrayList<>();
+    
+    for(int i = 0; i<Room.getCollectablesLeft().size(); i++){
+        listOfElements.add(Room.getCollectablesLeft().get(i));
+    }
+    for(int i = 0; i<Room.getHostilesActive().size();  i++){
+        listOfElements.add(Room.getHostilesActive().get(i));
+    }
+    
+    for (Coordinate Element : listOfElements) {
+        int xCoordinate = Element.getCoordinateX(); 
+        int yCoordinate = Element.getCoordinateY(); 
+        String type; 
+        if(Element instanceof Hostiles){
+            type = "hostile"; 
+        }
+        else if(Element instanceof Collectables){
+            type = "collectable";
+        }
+        else{
+            type = ""; 
+        }
+        
+        System.out.println("a " + type + " is at the coordinates: x" + xCoordinate + " Y" + yCoordinate);
+        
+    }
 }
 
 }
