@@ -6,8 +6,8 @@ public class Game //attributes
 {
     private Parser parser;
     private Room currentRoom;
-    private static int limitY = 0; //Character.levelReached times x_1 + x_2
-    private static int limitX = 0; //Same as above
+    private static int limitY; 
+    private static int limitX; 
     private static Boat boat;
     private static String[] itemNames;
 
