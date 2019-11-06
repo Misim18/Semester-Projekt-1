@@ -76,8 +76,17 @@ public class Room
         return hostilesActive; 
     }
     
+        public static void overwriteActiveHostile(int number, Hostiles hostile){ //Adds the hostile at the given index, and removes the previous one
+        hostilesActive.add(number, hostile);
+        hostilesActive.remove(number+1);
+    }
+    
     public static ArrayList<Collectables> getCollectablesLeft(){
         return collectablesLeft; 
+    } 
+    
+        public static void removeFromCollectablesLeft(int number){
+        collectablesLeft.remove(number);
     } 
 }
 
