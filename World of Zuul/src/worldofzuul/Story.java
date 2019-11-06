@@ -71,8 +71,12 @@ public static void printAfterMoved(){
         }
         
         System.out.println("a " + type + " is at the coordinates: x" + xCoordinate + " Y" + yCoordinate);
-        
     }
+    
+    System.out.println("Collectables left: " + Room.getCollectablesLeft().size());
+    System.out.println("Trash collected in this level: " + Game.getBoat().getLevelTrashCollected());
+    System.out.println("Total trash collected: " + Game.getBoat().getTotalTrashCollected());
+    System.out.println("");
 }
 
 }

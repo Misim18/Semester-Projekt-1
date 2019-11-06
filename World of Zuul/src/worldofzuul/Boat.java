@@ -52,10 +52,10 @@ public class Boat extends Coordinate {
 
 	// TotalTrashCollected
 	public int getTotalTrashCollected(){
-		return totalTrashCollected;
+		return this.totalTrashCollected;
 	}
-	public void setTotalTrashCollected(int totalTrashCollected){
-		this.totalTrashCollected = totalTrashCollected;
+	public void setTotalTrashCollected(int totalTrashCollectedNew){
+		totalTrashCollected = totalTrashCollectedNew;
 	}
 
 	// Money

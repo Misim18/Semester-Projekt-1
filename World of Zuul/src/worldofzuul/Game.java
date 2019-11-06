@@ -8,7 +8,7 @@ public class Game //attributes
     private Room currentRoom;
     private static int limitY = 0; //Character.levelReached times x_1 + x_2
     private static int limitX = 0; //Same as above
-    private Boat boat;
+    private static Boat boat;
     private static String[] itemNames;
 
     public Game() //Constructor
@@ -19,7 +19,7 @@ public class Game //attributes
         Character player1 = new Character(name);
         //s.close(); //Doesn't work if u add this :thinking:
         parser = new Parser();
-        this.boat = new Boat();
+        boat = new Boat();
         initializeItemNames();
         nextLevel();
     }
@@ -39,6 +39,10 @@ public class Game //attributes
 //    {
 //        System.out.println(getItemNames()[x]);
 //    }
+    }
+    
+    public static Boat getBoat(){
+        return boat; 
     }
     
     public void nextLevel() {//Java said it might be a good idea to make this final, as to never be overwritten.
