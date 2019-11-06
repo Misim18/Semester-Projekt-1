@@ -52,8 +52,8 @@ public class Game //attributes
         createRooms();                                              //Creates the playable grid
         boat.placeBoat(0, Math.round(getLimitX()/2));               //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                             //Resets levelTrashCollected attribute in Boat
-        createCollectables(3+3*Character.getLevelReached());        //Creates the amount of Collectables fed into the method
-        createHostiles(3+3*Character.getLevelReached());            //Creates the amount of Hostiles fed into the method
+        createInitialCollectables(3+3*Character.getLevelReached());        //Creates the amount of Collectables fed into the method
+        createInitialHostiles(3+3*Character.getLevelReached());            //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);   //Increments levelReached
     }
     
@@ -82,7 +82,7 @@ public class Game //attributes
     return itemNames[x];
     }
     
-    private void createHostiles(int amountOfActiveHostiles) //Sets up the hostiles in the game
+    private void createInitialHostiles(int amountOfActiveHostiles) //Sets up the hostiles in the game
     {
         Hostiles[] gameHostiles = new Hostiles[amountOfActiveHostiles];
                 
@@ -90,6 +90,9 @@ public class Game //attributes
     {
         gameHostiles[x] = new Hostiles(100);
     }
+        
+    
+    
 //            //Troubleshooting
 //             for (int x = 0; x < gameHostiles.length; x++) 
 //    {
@@ -99,7 +102,7 @@ public class Game //attributes
 //    }
     }
     
-    private void createCollectables(int amountOfCollectables) //Sets up the hostiles in the game
+    private void createInitialCollectables(int amountOfCollectables) //Sets up the hostiles in the game
     {
     
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
@@ -108,6 +111,14 @@ public class Game //attributes
     {
         gameCollectables[x] = new Collectables();
     }
+        
+        for (int x = 0; x < gameCollectables.length; x++) 
+    {
+        Room.addToCollectablesLeft(gameCollectables[x]); 
+    }
+    
+        System.out.println("Size of CollectablesLeft: ");
+        System.out.println(Room.getCollectablesLeft().size());
 //            //Troubleshooting
 //             for (int x = 0; x < gameCollectables.length; x++) 
 //    {

@@ -12,8 +12,8 @@ public class Room
     private HashMap<String, Room> exits;
     private int CoordinateX;
     private int CoordinateY;
-    private static ArrayList<Hostiles> hostilesActive;
-    private static ArrayList<Collectables> collectablesLeft;
+    private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
+    private static ArrayList<Collectables> collectablesLeft = new ArrayList<>();
 
     public Room(String description)  //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {
@@ -76,6 +76,10 @@ public class Room
         return hostilesActive; 
     }
     
+      public static void addToHostilesActive(Hostiles hostile){
+        hostilesActive.add(hostile);
+    }
+    
         public static void overwriteActiveHostile(int number, Hostiles hostile){ //Adds the hostile at the given index, and removes the previous one
         hostilesActive.add(number, hostile);
         hostilesActive.remove(number+1);
@@ -84,6 +88,10 @@ public class Room
     public static ArrayList<Collectables> getCollectablesLeft(){
         return collectablesLeft; 
     } 
+    
+     public static void addToCollectablesLeft(Collectables collectable){
+        collectablesLeft.add(collectable);
+    }
     
         public static void removeFromCollectablesLeft(int number){
         collectablesLeft.remove(number);
