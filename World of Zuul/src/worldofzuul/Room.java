@@ -90,7 +90,7 @@ public class Room
         hostilesActive.clear();
     }    
     
-    public static void updateHostiles() {
+    public static void updateHostiles() { //U N - T E S T E D 
         for (int i = 0; i < hostilesActive.size(); i++) { //Goes through all the active hostiles and...
             if (hostilesActive.get(i).getCoordinateX() == 0 && hostilesActive.get(i).getDirection() == -1) { //if they're at the left side AND are moving left, overwrite hostile
                 Room.overwriteActiveHostile(i);
