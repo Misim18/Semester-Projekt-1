@@ -13,15 +13,16 @@ public class Game //attributes
 
     public Game() //Constructor
     {
-        Scanner s = new Scanner(System.in);
-        Story.introLine();
-        String name = s.nextLine();
-        Character player1 = new Character(name);
-        //s.close(); //Doesn't work if u add this :thinking:
-        parser = new Parser();
-        boat = new Boat();
-        initializeItemNames();
-        nextLevel();
+        Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
+        Story.introLine();                                                          //calls the introLine method in Story
+        String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
+        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
+        Character player1 = new Character(name);                                    //Makes a new character, feeding the name to the contructor
+        //s.close();                                                                //Doesn't work if u add this :thinking:
+        parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
+        boat = new Boat();                                                          //Creates a new boat
+        initializeItemNames();                                                      //Calls the initializeItemNames method 
+        nextLevel();                                                                //Calls the nextLevel method 
     }
 
     public void initializeItemNames () {
@@ -45,15 +46,15 @@ public class Game //attributes
         return boat; 
     }
     
-    public void nextLevel() {//Java said it might be a good idea to make this final, as to never be overwritten.
-        setLimitX(5+Character.getLevelReached()*2); 
-        setLimitY(3+Character.getLevelReached()*2);
-        createRooms();
-        boat.placeBoat(0, Math.round(getLimitX()/2));
-        boat.setLevelTrashCollected(0);
-        createCollectables(3+3*Character.getLevelReached());
-        createHostiles(3+3*Character.getLevelReached());
-        Character.setLevelReached(Character.getLevelReached()+1); //Increments levelReached
+    public void nextLevel() {                                       //Java said it might be a good idea to make this final, as to never be overwritten.
+        setLimitX(5+Character.getLevelReached()*2);                 //Sets the new limitX
+        setLimitY(3+Character.getLevelReached()*2);                 //Sets the new limitX
+        createRooms();                                              //Creates the playable grid
+        boat.placeBoat(0, Math.round(getLimitX()/2));               //Places the boat at y = 0, x = middle
+        boat.setLevelTrashCollected(0);                             //Resets levelTrashCollected attribute in Boat
+        createCollectables(3+3*Character.getLevelReached());        //Creates the amount of Collectables fed into the method
+        createHostiles(3+3*Character.getLevelReached());            //Creates the amount of Hostiles fed into the method
+        Character.setLevelReached(Character.getLevelReached()+1);   //Increments levelReached
     }
     
     public static int getLimitY() {
@@ -73,11 +74,11 @@ public class Game //attributes
         this.limitX = limitX;
     }
 
-    public static String[] getItemNames() {
+    public static String[] getItemNames() { //Returns the entire array
     return itemNames;
     }
 
-    public static String getItemNamesElement(int x) {
+    public static String getItemNamesElement(int x) { //Returns the x'th array element
     return itemNames[x];
     }
     
