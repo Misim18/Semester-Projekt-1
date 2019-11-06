@@ -52,7 +52,7 @@ public class Game //attributes
         createRooms();                                                      //Creates the playable grid
         boat.placeBoat(0, Math.round(getLimitX()/2));                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
-        Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft
+        Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
         createInitialCollectables(3+3*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
