@@ -80,15 +80,28 @@ public class Room
         hostilesActive.add(hostile);
     }
     
-        public static void overwriteActiveHostile(int number, Hostiles hostile){ //Adds the hostile at the given index, and removes the previous one
-        hostilesActive.add(number, hostile);
+        public static void overwriteActiveHostile(int number){ //Adds a new hostile at the given index, and removes the old one
+        Hostiles tmpHostile = new Hostiles(100);
+        hostilesActive.add(number, tmpHostile);
         hostilesActive.remove(number+1);
     }
         
     public static void clearHostilesActive() {
         hostilesActive.clear();
     }    
-        
+    
+    public static void updateHostiles() {
+        for (int i = 0; i < hostilesActive.size(); i++) { //Goes through all the active hostiles and...
+            if (hostilesActive.get(i).getCoordinateX() == 0 && hostilesActive.get(i).getDirection() == -1) { //if they're at the left side AND are moving left, overwrite hostile
+                Room.overwriteActiveHostile(i);
+            } else if (hostilesActive.get(i).getCoordinateX() == Game.getLimitX() && hostilesActive.get(i).getDirection() == 1) { //if they're at the right side AND are moving right, overwrite hostile
+                Room.overwriteActiveHostile(i);
+            } else {
+                hostilesActive.get(i).setCoordinateX(hostilesActive.get(i).getCoordinateX() + hostilesActive.get(i).getDirection()); //Just update their position
+            }
+        }
+    }
+    
     
     public static ArrayList<Collectables> getCollectablesLeft(){
         return collectablesLeft; 
