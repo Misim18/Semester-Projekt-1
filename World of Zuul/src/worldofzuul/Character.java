@@ -46,11 +46,11 @@ public class Character {
 	}
 
 	// carryCapacity
-	public int getCarryCapacity(){
-		return this.carryCapacity;
+	public static int getCarryCapacity(){
+		return carryCapacity;
 	}
-	public void setCarryCapacity(int carryCapacity){
-		this.carryCapacity = carryCapacity;
+	public static void setCarryCapacity(int carryCapacityIn){
+		carryCapacity = carryCapacityIn;
 	}
 
 	// addToInventory

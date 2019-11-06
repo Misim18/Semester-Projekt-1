@@ -13,6 +13,8 @@ public class Game //attributes
 
     public Game() //Constructor
     {
+        //Shopping.goToShop(); Når vi vil kalde shoppen
+        
         Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
