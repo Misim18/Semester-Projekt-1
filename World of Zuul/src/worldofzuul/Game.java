@@ -20,7 +20,6 @@ public class Game //attributes
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
         Character player1 = new Character(name);                                    //Makes a new character, feeding the name to the contructor
-        //s.close();                                                                //Doesn't work if u add this :thinking:
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method 
@@ -36,7 +35,7 @@ public class Game //attributes
         itemNames[4] = "Straw";
         itemNames[5] = "Plastic Take Away Container";
         itemNames[6] = "Plastic Lid";
-
+    
 //        //used for verifying content of itemNames        
 //        for (int x = 0; x < getItemNames().length; x++) 
 //    {
@@ -52,7 +51,7 @@ public class Game //attributes
         setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
         setLimitY(3+Character.getLevelReached()*2);                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
-        boat.placeBoat(0, Math.round(getLimitX()/2));                       //Places the boat at y = 0, x = middle
+        boat.placeBoat(Math.round(getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
