@@ -229,7 +229,7 @@ public class Game //attributes
             printHelp();
         }
         else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+            wantToQuit = goRoom(command);
         }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -246,11 +246,11 @@ public class Game //attributes
         parser.showCommands();
     }
 
-    private void goRoom(Command command)
+    private boolean goRoom(Command command)
     {
         if(!command.hasSecondWord()) { //if the command does not have second word
             System.out.println("Go where?");
-            return;
+            return false;
         }
 
         String direction = command.getSecondWord();  //Otherwise create string 'dicrection' equal to second word
@@ -263,15 +263,20 @@ public class Game //attributes
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-			currentRoom.updateHostiles();
-			System.out.println(currentRoom.getHostilesActive());
-			for(Hostiles hostile : currentRoom.getHostilesActive()){
-				if(hostile.getCoordinateX() == currentRoom.getCoordinateX()){
-					System.out.println("True");
-				}
-			}
+			update();
         }
+		return false;
     }
+
+	private void update(){
+		currentRoom.updateHostiles();
+		System.out.println(currentRoom.getHostilesActive());
+		for(Hostiles hostile : currentRoom.getHostilesActive()){
+			if(hostile.getCoordinateX() == currentRoom.getCoordinateX()){
+				System.out.println("True");
+			}
+		}
+	}
 
     private boolean quit(Command command) //quit command, med fejl på quit + second word
     {
