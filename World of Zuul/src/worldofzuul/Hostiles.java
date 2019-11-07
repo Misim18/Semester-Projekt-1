@@ -12,7 +12,7 @@ public Hostiles(int dmg)
     this.setCoordinateY(setStartPositionY()); //sets the coordinates to the returned value of setStartPositionY (method)
     this.Damage = dmg;
     setDirection();
-    
+
     }
 
     public int getDirection() {
@@ -40,18 +40,24 @@ public Hostiles(int dmg)
     public int setStartPositionX() {
         int temp = (int)Math.round(Math.random()*Game.getLimitX());
         int startPositionX;
-        if(temp < Game.getLimitX()/2){startPositionX = 0;} 
+        if(temp < Game.getLimitX()/2){startPositionX = 0;}
         else {startPositionX = Game.getLimitX();}
-        
+
         return startPositionX;
     }
 
     public int setStartPositionY() {
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
-        
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
+
         return startPositionY;
     }
-    
-    
+
+	@Override
+	public String toString(){
+		return "\n Damage: " + Damage + "; Direction: " + Direction +
+			"; x: " + getCoordinateX() +
+			"; y: " + getCoordinateY();
+	}
+
 
 }

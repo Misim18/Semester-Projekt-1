@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
-public class Room 
+public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
@@ -22,7 +22,7 @@ public class Room
         exits = new HashMap<String, Room>();
     }
 
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, Room neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -42,55 +42,55 @@ public class Room
         String returnString = "Exits:";     //First word of the 'returnString'
         Set<String> keys = exits.keySet();  //Creates a set of strings called keys, and is equal to Set is a collection that can't contain dublicates
         for(String exit : keys) {           //Adds all the exits for the room to the 'returnString'
-            returnString += " " + exit;     
+            returnString += " " + exit;
         }
         return returnString;                //Returns the entire 'returnString'
     }
 
-    public Room getExit(String direction) 
+    public Room getExit(String direction)
     {
         return exits.get(direction);
     }
 
-    
+
     public int getCoordinateX() { //Can potentially be removed
         return CoordinateX;
     }
 
-    
+
     public void setCoordinateX(int CoordinateX) { //Can potentially be removed
         this.CoordinateX = CoordinateX;
     }
 
-    
+
     public int getCoordinateY() { //Can potentially be removed
         return CoordinateY;
     }
 
-    
+
     public void setCoordinateY(int CoordinateY) { //Can potentially be removed
         this.CoordinateY = CoordinateY;
     }
-    
+
     public static ArrayList<Hostiles> getHostilesActive(){
-        return hostilesActive; 
+        return hostilesActive;
     }
-    
+
       public static void addToHostilesActive(Hostiles hostile){
         hostilesActive.add(hostile);
     }
-    
+
         public static void overwriteActiveHostile(int number){ //Adds a new hostile at the given index, and removes the old one
         Hostiles tmpHostile = new Hostiles(100);
         hostilesActive.add(number, tmpHostile);
         hostilesActive.remove(number+1);
     }
-        
+
     public static void clearHostilesActive() {
         hostilesActive.clear();
-    }    
-    
-    public static void updateHostiles() { //U N - T E S T E D 
+    }
+
+    public static void updateHostiles() { //U N - T E S T E D
         for (int i = 0; i < hostilesActive.size(); i++) { //Goes through all the active hostiles and...
             if (hostilesActive.get(i).getCoordinateX() == 0 && hostilesActive.get(i).getDirection() == -1) { //if they're at the left side AND are moving left, overwrite hostile
                 Room.overwriteActiveHostile(i);
@@ -101,23 +101,23 @@ public class Room
             }
         }
     }
-    
-    
+
+
     public static ArrayList<Collectables> getCollectablesLeft(){
-        return collectablesLeft; 
-    } 
-    
+        return collectablesLeft;
+    }
+
      public static void addToCollectablesLeft(Collectables collectable){
         collectablesLeft.add(collectable);
     }
-    
+
         public static void removeFromCollectablesLeft(int number){
         collectablesLeft.remove(number);
-    } 
-        
+    }
+
     public static void clearCollectablesLeft() {
         collectablesLeft.clear();
     }
-    
+
 }
 

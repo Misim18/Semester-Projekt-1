@@ -2,15 +2,16 @@ package worldofzuul;
 
 import java.util.ArrayList;
 
-public class Character {
+public class Character extends Coordinate {
 	private static String name; //consider revising this to work with scanner input
 	private static int breath, life, levelReached, carryCapacity;
 	private static ArrayList<Collectables> inventory;
 
-	public Character(String name){ //Incorporate scanner name thingy (later)
+	public Character(String name, int xPos, int yPos){ //Incorporate scanner name thingy (later)
+		super(xPos, yPos);
 		breath = 8;
 		life = 100;
-		levelReached = 0;   //Note all numbers are 
+		levelReached = 0;   //Note all numbers are
                 this.name = name;
 		carryCapacity = 3;
 		inventory = new ArrayList<>();

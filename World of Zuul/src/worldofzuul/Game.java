@@ -6,24 +6,25 @@ public class Game //attributes
 {
     private Parser parser;
     private Room currentRoom;
-    private static int limitY; 
-    private static int limitX; 
+    private static int limitY;
+    private static int limitX;
     private static Boat boat;
+	private Character player1;
     private static String[] itemNames;
 
     public Game() //Constructor
     {
         //Shopping.goToShop(); Når vi vil kalde shoppen
-        
+
         Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
-        Character player1 = new Character(name);                                    //Makes a new character, feeding the name to the contructor
+		player1 = new Character(name, Math.round(getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
-        initializeItemNames();                                                      //Calls the initializeItemNames method 
-        nextLevel();                                                                //Calls the nextLevel method 
+        initializeItemNames();                                                      //Calls the initializeItemNames method
+        nextLevel();                                                                //Calls the nextLevel method
     }
 
     public void initializeItemNames () {
@@ -35,18 +36,18 @@ public class Game //attributes
         itemNames[4] = "Straw";
         itemNames[5] = "Plastic Take Away Container";
         itemNames[6] = "Plastic Lid";
-    
-//        //used for verifying content of itemNames        
-//        for (int x = 0; x < getItemNames().length; x++) 
+
+//        //used for verifying content of itemNames
+//        for (int x = 0; x < getItemNames().length; x++)
 //    {
 //        System.out.println(getItemNames()[x]);
 //    }
     }
-    
+
     public static Boat getBoat(){
-        return boat; 
+        return boat;
     }
-    
+
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
         setLimitY(3+Character.getLevelReached()*2);                         //Sets the new limitX
@@ -59,7 +60,7 @@ public class Game //attributes
         createInitialHostiles(3+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
     }
-    
+
     public static int getLimitY() {
         return limitY;
     }
@@ -68,7 +69,7 @@ public class Game //attributes
         return limitX;
     }
 
-    
+
     public void setLimitY(int limitY) {
         this.limitY = limitY;
     }
@@ -84,67 +85,51 @@ public class Game //attributes
     public static String getItemNamesElement(int x) { //Returns the x'th array element
     return itemNames[x];
     }
-    
+
     private void createInitialHostiles(int amountOfActiveHostiles) //Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
     {
-        Hostiles[] gameHostiles = new Hostiles[amountOfActiveHostiles];
-                
-        for (int x = 0; x < gameHostiles.length; x++) 
-    {
-        gameHostiles[x] = new Hostiles(100);
+		for (int x = 0; x < amountOfActiveHostiles; x++)
+    	{
+			Room.addToHostilesActive(new Hostiles(100));
+		}
     }
-        
-           for (int x = 0; x < gameHostiles.length; x++) 
-    {
-        Room.addToHostilesActive(gameHostiles[x]);
-    }
-    
-        
-//            //Troubleshooting
-//             for (int x = 0; x < gameHostiles.length; x++) 
-//    {
-//        System.out.println("Hostile #" + x);
-//        System.out.println(gameHostiles[x].getCoordinateX());
-//        System.out.println(gameHostiles[x].getCoordinateY());      
-//    }
-    }
-    
+
     private void createInitialCollectables(int amountOfCollectables) //Creates and int number of Collectables and loads them into the collectablesLeft ArrayList in Room
     {
-    
+
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
-                
-        for (int x = 0; x < gameCollectables.length; x++) 
+
+        for (int x = 0; x < gameCollectables.length; x++)
     {
         gameCollectables[x] = new Collectables();
     }
-        
-        for (int x = 0; x < gameCollectables.length; x++) 
+
+        for (int x = 0; x < gameCollectables.length; x++)
     {
-        Room.addToCollectablesLeft(gameCollectables[x]); 
+        Room.addToCollectablesLeft(gameCollectables[x]);
     }
-    
+
 //            //Troubleshooting
-//             for (int x = 0; x < gameCollectables.length; x++) 
+//             for (int x = 0; x < gameCollectables.length; x++)
 //    {
 //        System.out.println("Collectables #" + x);
 //        System.out.println(gameCollectables[x].getCoordinateX());
 //        System.out.println(gameCollectables[x].getCoordinateY());
 //        System.out.println(gameCollectables[x].getName());
 //    }
-//        
+//
     }
-    
+
     private void createRooms() //Sets up the rooms in the game
-    {    
-    //Creates a new two-dimensional room array, with limitY "slots" of limitX elements    
-    Room[][] grid = new Room[getLimitY()][getLimitX()]; 
+    {
+    //Creates a new two-dimensional room array, with limitY "slots" of limitX elements
+    Room[][] grid = new Room[getLimitY()][getLimitX()];
 
 
-//Creates the grid    
-    for (int y = 0; y < getLimitY(); y++) 
+//Creates the grid
+    for (int y = 0; y < getLimitY(); y++)
 {
-    for (int x = 0; x < getLimitX(); x++) 
+    for (int x = 0; x < getLimitX(); x++)
     {
         grid[y][x] = new Room("x"+x+"y"+y);
         grid[y][x].setCoordinateX(x); //Can we delete these
@@ -153,27 +138,27 @@ public class Game //attributes
 }
 
 //Sets east exits
-    for (int y = 0; y < getLimitY(); y++) 
+    for (int y = 0; y < getLimitY(); y++)
 {
-    for (int x = 0; x < getLimitX()-1; x++) 
+    for (int x = 0; x < getLimitX()-1; x++)
     {
         grid[y][x].setExit("east", grid[y][x+1]);
     }
 }
-    
+
 //Sets west exits
-    for (int y = 0; y < getLimitY(); y++) 
+    for (int y = 0; y < getLimitY(); y++)
 {
-    for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not     
+    for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not
     {
         grid[y][x].setExit("west", grid[y][x-1]);
     }
-}    
+}
 
 //Sets south exits
     for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
 {
-    for (int x = 1; x < getLimitX(); x++) 
+    for (int x = 1; x < getLimitX(); x++)
     {
         grid[y][x].setExit("south", grid[y+1][x]);
     }
@@ -182,11 +167,11 @@ public class Game //attributes
 //Sets north exits
     for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give north exit on top row
 {
-    for (int x = 1; x < getLimitX(); x++) 
+    for (int x = 1; x < getLimitX(); x++)
     {
         grid[y][x].setExit("north", grid[y-1][x]);
     }
-}    
+}
 
 //Can be used for printing info about rooms (Troubleshooting)
 //
@@ -197,15 +182,15 @@ public class Game //attributes
 //                System.out.println(grid[y][x].getCoordinateY());
 //            }
 //        }
-    
+
         currentRoom = grid[1][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
     }
 
-    public void play() 
-    {            
+    public void play()
+    {
         printWelcome();
 
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -220,16 +205,16 @@ public class Game //attributes
         System.out.println("Welcome to OceanClear " + Character.getName() + ". We are happy you are here. Let's get started.");
         System.out.println("OceanClear is a game about cleaning the ocean.");
         System.out.println();
-        
+
         Story.tutorial();
-        
+
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
 
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
 
@@ -252,7 +237,7 @@ public class Game //attributes
         return wantToQuit;
     }
 
-    private void printHelp() 
+    private void printHelp()
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -261,7 +246,7 @@ public class Game //attributes
         parser.showCommands();
     }
 
-    private void goRoom(Command command) 
+    private void goRoom(Command command)
     {
         if(!command.hasSecondWord()) { //if the command does not have second word
             System.out.println("Go where?");
@@ -278,6 +263,13 @@ public class Game //attributes
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+			currentRoom.updateHostiles();
+			System.out.println(currentRoom.getHostilesActive());
+			for(Hostiles hostile : currentRoom.getHostilesActive()){
+				if(hostile.getCoordinateX() == currentRoom.getCoordinateX()){
+					System.out.println("True");
+				}
+			}
         }
     }
 
