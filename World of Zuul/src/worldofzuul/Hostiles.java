@@ -69,10 +69,12 @@ public Hostiles()
 
     //math.round maintains the same chance for all grids, an explicit casting would simply floor
     public int setStartPositionY() {
-        //to keep the upper 2 grid lines shark free, prevent sharks from spawning higher than limitY
+        //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
         int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
         boolean run = true;
         int counter;
+        //Makes sure Hostiles are never spawned on the same y position 
+        //(Note: Endless loop if number of hostiles > limitY-2)
         do{
             counter = 0;
         for (int i = 0; i<Room.getHostilesActive().size(); i++){
