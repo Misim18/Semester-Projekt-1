@@ -39,7 +39,9 @@ public Hostiles(int dmg)
 
     //math.round maintains the same chance for all grids, an explicit casting would simply floor
     public int setStartPositionX() {
+        
         int temp = (int)Math.round(Math.random()*Game.getLimitX());
+        
         int startPositionX;
         if(temp < Game.getLimitX()/2){startPositionX = 0;}
         else {startPositionX = Game.getLimitX();}
@@ -49,8 +51,26 @@ public Hostiles(int dmg)
 
     //math.round maintains the same chance for all grids, an explicit casting would simply floor
     public int setStartPositionY() {
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
-
+        //to keep the upper 2 grid lines shark free, prevent sharks from spawning higher than limitY
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
+        boolean run = true;
+        int counter;
+        do{
+            counter = 0;
+        for (int i = 0; i<Room.getHostilesActive().size(); i++){
+            if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
+                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
+                run = true;
+                break;
+            }
+            else{counter++;}
+        }
+        if (counter == Room.getHostilesActive().size()){
+        run = false;    
+        }
+        
+        }while (run);
+        
         return startPositionY;
     }
 

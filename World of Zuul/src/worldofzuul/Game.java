@@ -50,14 +50,14 @@ public class Game //attributes
 
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
-        setLimitY(3+Character.getLevelReached()*2);                         //Sets the new limitX
+        setLimitY(9+Character.getLevelReached()*2);                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
         boat.placeBoat((getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
         createInitialCollectables(0+0*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
-        createInitialHostiles(3+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
+        createInitialHostiles(7+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
     }
 
