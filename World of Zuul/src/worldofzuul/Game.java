@@ -90,7 +90,7 @@ public class Game //attributes
     {
 		for (int x = 0; x < amountOfActiveHostiles; x++)
     	{
-			Room.addToHostilesActive(new Hostiles(40));
+			Room.addToHostilesActive(new Shark());
 		}
     }
 

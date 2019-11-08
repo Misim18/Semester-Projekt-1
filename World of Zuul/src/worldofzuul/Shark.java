@@ -13,10 +13,10 @@ public class Shark extends Hostiles {
         super.setDamage(100); //initialiserer damage fra Hostile klassen
         setSharkDirectionX(); //initialiserer directionX fra Hostile klassen.
         setSharkDirectionY(); //initialiserer directionY fra Hostile klassen.
-        setSharkMovespeedX(); //initialiserer moveSpeedX fra Hostile klassen.
+        //setSharkMovespeedX(); //initialiserer moveSpeedX fra Hostile klassen.
         setSharkMovespeedY(); //initialiserer moveSpeedY fra Hostile klassen.
-        setSharkSpawnLocationX(); //initialiserer spawnLocationX fra Hostile klassen.
-        setSharkSpawnLocationY(); //initialiserer spawnLocationY fra Hostile klassen.
+        setSharkStartPositionX(); //initialiserer spawnLocationX fra Hostile klassen.
+        setSharkStartPositionY(); //initialiserer spawnLocationY fra Hostile klassen.
     }
 
 
@@ -34,43 +34,37 @@ public class Shark extends Hostiles {
         super.setDirectionY(0);
     }
 
-    public void setSharkMovespeedX() {
-        switch (Character.getLevelReached()) {
-            case 0:
-                lastSharkMovespeed = 1;
-                break;
-            case 1:
-                if (lastSharkMovespeed == 2) {
-                    lastSharkMovespeed = 1;
-                } else if (lastSharkMovespeed == 1) {
-                    lastSharkMovespeed = 2;
-                }   super.setMoveSpeedX(lastSharkMovespeed);
-                super.setMoveSpeedX(1);
-                break;
-            default:
-                super.setMoveSpeedX((int) Math.ceil(Math.random() * 3));
-                break;
-        }
-    }
+//    public void setSharkMovespeedX() {
+//        switch (Character.getLevelReached()) {
+//            case 0:
+//                lastSharkMovespeed = 1;
+//                break;
+//            case 1:
+//                if (lastSharkMovespeed == 2) {
+//                    lastSharkMovespeed = 1;
+//                } else if (lastSharkMovespeed == 1) {
+//                    lastSharkMovespeed = 2;
+//                }   super.setMoveSpeedX(lastSharkMovespeed);
+//                super.setMoveSpeedX(1);
+//                break;
+//            default:
+//                super.setMoveSpeedX((int) Math.ceil(Math.random() * 3));
+//                break;
+//        }
+//    }
     
     public void setSharkMovespeedY() {
         super.setMoveSpeedY(0);
     }
     
-    public void setSharkSpawnLocationX(){
-        int temp = (int)Math.round(Math.random()*Game.getLimitX());
-        if(temp < (double)Game.getLimitX()/2){super.setSpawnLocationX(0);} // skal det være en double her i tilfælde af ulige limitX?
-        else {super.setSpawnLocationX(Game.getLimitX());}
+    public void setSharkStartPositionX(){
+        super.setStartPositionX();
         
         
     }
     
-    public void setSharkSpawnLocationY(){
-        int temp = (int)Math.round(Math.random()*Game.getLimitY());
-        if(temp < (double)Game.getLimitY()/2){super.setSpawnLocationY(0);} // skal det være en double her i tilfælde af ulige limitX?
-        else {super.setSpawnLocationY((Game.getLimitY()-2)+2);}
-        
-        
+    public void setSharkStartPositionY(){
+        super.setStartPositionY();
     }
     
     public int checkSharkCoordinateX(){

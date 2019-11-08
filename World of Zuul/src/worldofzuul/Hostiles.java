@@ -94,7 +94,7 @@ public Hostiles()
 
 	@Override
 	public String toString(){
-		return "Damage: " + Damage + "; Dir:" + Direction +
+		return "Damage: " + Damage + "; Dir:" + DirectionX +
 			"; x:" + getCoordinateX() +
 			"; y:" + getCoordinateY();
 	}
