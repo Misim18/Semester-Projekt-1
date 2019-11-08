@@ -2,6 +2,7 @@
 package worldofzuul;
 
 
+
 public class Level {
     
     private int levelSizeX;
