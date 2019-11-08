@@ -20,7 +20,7 @@ public class Game //attributes
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
-		player1 = new Character(name, Math.round(getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
+	player1 = new Character(name, Math.round(getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -183,13 +183,12 @@ public class Game //attributes
 //            }
 //        }
 
-        currentRoom = grid[1][Math.round(getLimitX()/2)]; //Change to grid[0][limitX/2] something something ceil...
+        currentRoom = grid[1][getLimitX()/2]; //Change to grid[0][limitX/2]
     }
 
     public void play()
     {
         printWelcome();
-
 
         boolean finished = false;
         while (! finished) {
@@ -211,6 +210,13 @@ public class Game //attributes
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
+        System.out.println("\nCollectables: ");
+        System.out.println(currentRoom.getCollectablesLeft());
+        System.out.println("\nHostiles: ");
+        System.out.println(currentRoom.getHostilesActive());
+        System.out.println();
+        System.out.println("Player Health:" + player1.getLife());
+        System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
 
@@ -220,7 +226,8 @@ public class Game //attributes
 		clearScreen();
 
         CommandWord commandWord = command.getCommandWord();
-
+        System.out.println();
+        
         if(commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");  //Whenever the commandWord is set to .UNKNOWN prints this message, used to communicate to the player that the input wasn't understood.
             return false;
@@ -260,12 +267,14 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
+            System.out.println(currentRoom.getHostilesActive());
+            System.out.println(currentRoom.getCollectablesLeft());
 			//return update(); tilføj senere spørg kevin
         }
         else {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
 			return update();
+                        
         }
 		return false;
     }
@@ -273,8 +282,8 @@ public class Game //attributes
 	private boolean update(){
 		currentRoom.updateHostiles();
 		// Prints out hostiles in every room
-		System.out.println("Boat x:"+boat.getCoordinateX() + " y:" + boat.getCoordinateY());
-		System.out.println(currentRoom.getHostilesActive());
+		System.out.println("Hostiles: ");
+                System.out.println(currentRoom.getHostilesActive());
 		// Set the player coordinates
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
@@ -305,8 +314,9 @@ public class Game //attributes
 				--i;
 			}
 		}
-		System.out.println(currentRoom.getCollectablesLeft());
-
+		System.out.println("\nCollectables: ");
+                System.out.println(currentRoom.getCollectablesLeft());
+                
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
 			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
@@ -322,7 +332,12 @@ public class Game //attributes
 				}
 			}
 		}
+                System.out.println();
+                System.out.println("Boat x:"+boat.getCoordinateX() + " y:" + boat.getCoordinateY());
+                System.out.println();
 		System.out.println("Player Health: " + player1.getLife());
+                System.out.println();
+                System.out.println(currentRoom.getLongDescription());
 		return false;
 	}
 
