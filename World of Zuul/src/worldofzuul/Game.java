@@ -158,7 +158,7 @@ public class Game //attributes
 //Sets south exits
     for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
 {
-    for (int x = 1; x < getLimitX(); x++)
+    for (int x = 0; x < getLimitX(); x++)
     {
         grid[y][x].setExit("south", grid[y+1][x]);
     }
@@ -167,7 +167,7 @@ public class Game //attributes
 //Sets north exits
     for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give north exit on top row
 {
-    for (int x = 1; x < getLimitX(); x++)
+    for (int x = 0; x < getLimitX(); x++)
     {
         grid[y][x].setExit("north", grid[y-1][x]);
     }
