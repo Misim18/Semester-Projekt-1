@@ -61,7 +61,7 @@ public Hostiles()
         int temp = (int)Math.round(Math.random()*Game.getLimitX());
         
         int startPositionX;
-        if(temp < Game.getLimitX()/2){startPositionX = 0;}
+        if(temp < Game.getLimitX()/2){startPositionX = -1;}
         else {startPositionX = Game.getLimitX();}
 
         return startPositionX;
