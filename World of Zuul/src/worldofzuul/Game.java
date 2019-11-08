@@ -220,7 +220,7 @@ public class Game //attributes
 
         CommandWord commandWord = command.getCommandWord();
         System.out.println();
-        
+
         if(commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");  //Whenever the commandWord is set to .UNKNOWN prints this message, used to communicate to the player that the input wasn't understood.
             return false;
@@ -232,11 +232,21 @@ public class Game //attributes
         else if (commandWord == CommandWord.GO) {
             wantToQuit = goRoom(command);
         }
+		else if(commandWord == CommandWord.CHEAT) {
+			cheat(command);
+		}
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
         return wantToQuit;
     }
+
+	private void cheat(Command command){
+		// cheat her tak :D
+		String cheat = command.getSecondWord();
+
+		System.out.println("Denne cheat er ikke implimiteret endnu: " + cheat);
+	}
 
     private void printHelp()
     {
@@ -267,14 +277,14 @@ public class Game //attributes
         else {
             currentRoom = nextRoom;
 			return update();
-                        
+
         }
 		return false;
     }
 
-	private boolean update(){ 
+	private boolean update(){
 		currentRoom.updateHostiles();
-		
+
 		// Set the player coordinates
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
@@ -305,7 +315,7 @@ public class Game //attributes
 				--i;
 			}
 		}
-                
+
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
 			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
