@@ -210,14 +210,7 @@ public class Game //attributes
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println("\nCollectables: ");
-        System.out.println(currentRoom.getCollectablesLeft());
-        System.out.println("\nHostiles: ");
-        System.out.println(currentRoom.getHostilesActive());
-        System.out.println();
-        System.out.println("Player Health:" + player1.getLife());
-        System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
     }
 
     private boolean processCommand(Command command)
@@ -279,11 +272,9 @@ public class Game //attributes
 		return false;
     }
 
-	private boolean update(){
+	private boolean update(){ 
 		currentRoom.updateHostiles();
-		// Prints out hostiles in every room
-		System.out.println("Hostiles: ");
-                System.out.println(currentRoom.getHostilesActive());
+		
 		// Set the player coordinates
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
@@ -314,8 +305,6 @@ public class Game //attributes
 				--i;
 			}
 		}
-		System.out.println("\nCollectables: ");
-                System.out.println(currentRoom.getCollectablesLeft());
                 
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
@@ -332,12 +321,7 @@ public class Game //attributes
 				}
 			}
 		}
-                System.out.println();
-                System.out.println("Boat x:"+boat.getCoordinateX() + " y:" + boat.getCoordinateY());
-                System.out.println();
-		System.out.println("Player Health: " + player1.getLife());
-                System.out.println();
-                System.out.println(currentRoom.getLongDescription());
+                Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
 		return false;
 	}
 

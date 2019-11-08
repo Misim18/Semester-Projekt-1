@@ -79,4 +79,22 @@ public static void printAfterMoved(){
     System.out.println("");
 }
 
+public static void printInfo(ArrayList<Hostiles> hostileArray, ArrayList<Collectables> collectablesArray, int health, Room currentRoom){
+
+    System.out.println();
+    System.out.println("Collectables: ");
+    for (Collectables collectable : collectablesArray) {
+        System.out.println(collectable);
+    }
+    System.out.println();
+    System.out.println("Hostiles: ");
+    for (Hostiles hostile : hostileArray) {
+        System.out.println(hostile);
+    }
+    
+    System.out.println();
+    System.out.println("Player Health:" + health);
+    System.out.println();
+    System.out.println(currentRoom.getLongDescription());
+}
 }
