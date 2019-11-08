@@ -24,7 +24,7 @@ public class Character extends Coordinate {
 
 	// Breath
 	public int getBreath(){
-		return this.breath;
+		return breath;
 	}
 	public void setBreath(int breath){
 		this.breath = breath;
@@ -32,7 +32,7 @@ public class Character extends Coordinate {
 
 	// Life
 	public int getLife(){
-		return this.life;
+		return life;
 	}
 	public void setLife(int life){
 		this.life = life;

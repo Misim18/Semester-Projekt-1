@@ -263,19 +263,27 @@ public class Game //attributes
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
-			update();
+			return update();
         }
 		return false;
     }
 
-	private void update(){
+	private boolean update(){
 		currentRoom.updateHostiles();
 		System.out.println(currentRoom.getHostilesActive());
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
-			if(hostile.getCoordinateX() == currentRoom.getCoordinateX()){
-				System.out.println("True");
+			if(hostile.getCoordinateX() == currentRoom.getCoordinateX() &&
+					hostile.getCoordinateY() == currentRoom.getCoordinateY())
+			{
+				player1.setLife(player1.getLife() - hostile.getDamage());
+				if(player1.getLife()<0){
+					System.out.println("Player Health: " + player1.getLife());
+					return true;
+				}
 			}
 		}
+		System.out.println("Player Health: " + player1.getLife());
+		return false;
 	}
 
     private boolean quit(Command command) //quit command, med fejl på quit + second word
