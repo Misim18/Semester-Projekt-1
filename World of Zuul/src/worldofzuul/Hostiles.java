@@ -1,32 +1,50 @@
 package worldofzuul;
 
 public class Hostiles extends Coordinate {
-private int Direction;
+private int DirectionX;
+private int DirectionY;
 private int Damage;
+private int MoveSpeedX;
+private int MoveSpeedY;
 
-
-public Hostiles(int dmg)
+public Hostiles()
     {
     super(0,0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
     this.setCoordinateX(setStartPositionX()); //sets the coordinates to the returned value of setStartPositionX (method)
     this.setCoordinateY(setStartPositionY()); //sets the coordinates to the returned value of setStartPositionY (method)
-    this.Damage = dmg;
-    setDirection();
-
+    
     }
 
-    public int getDirection() {
-        return Direction;
+    public int getDirectionX() {
+        return DirectionX;
     }
 
-    public void setDirection() {
-        if (this.getCoordinateX() == 0) {
-            this.Direction = 1;
-        } else if (this.getCoordinateX() == Game.getLimitX()) {
-            this.Direction = -1;
-        } else {
-            System.out.println("Something went wrong with adding the direction");
-        }
+    public void setDirectionX(int directionX) {
+        this.DirectionX = directionX;
+    }
+    
+    public int getDirectionY() {
+        return DirectionY;
+    }
+
+    public void setDirectionY(int directionY) {
+        this.DirectionY = directionY;
+    }
+    
+    public int getMoveSpeedX() {
+        return MoveSpeedX;
+    }
+
+    public void setMoveSpeedX(int moveSpeedX) {
+        this.MoveSpeedX = moveSpeedX;
+    }
+    
+    public int getMoveSpeedY() {
+        return MoveSpeedY;
+    }
+
+    public void setMoveSpeedY(int movespeedY) {
+        this.MoveSpeedY = movespeedY;
     }
 
     public int getDamage() {
