@@ -93,6 +93,13 @@ public static void printInfo(ArrayList<Hostiles> hostileArray, ArrayList<Collect
     }
     
     System.out.println();
+    System.out.println("Current Inventory: ");
+    for (Collectables inv : Character.getInventory()) {
+        System.out.println(inv.getName());
+    }
+    
+    
+    System.out.println();
     System.out.println("Player Health:" + health);
     System.out.println();
     System.out.println(currentRoom.getLongDescription());

@@ -66,7 +66,12 @@ public class Character extends Coordinate {
 	}
 
 	// dumpInventory
-	public ArrayList<Collectables> dumpInventory(){
+	public static ArrayList<Collectables> getInventory(){
+		return inventory;
+	}
+
+        // dumpInventory this might need to change
+	public static ArrayList<Collectables> dumpInventory(){
 		return inventory;
 	}
 }

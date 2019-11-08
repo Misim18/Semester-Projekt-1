@@ -42,6 +42,6 @@ public class Collectables extends Coordinate {
 
 	@Override
 	public String toString(){
-		return "\n x:" + getCoordinateX() + " y:" + getCoordinateY() + " Name:" + name;
+		return "x:" + getCoordinateX() + " y:" + getCoordinateY() + " Name:" + name;
 	}
 }

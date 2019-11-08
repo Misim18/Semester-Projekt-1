@@ -54,7 +54,7 @@ public Hostiles(int dmg)
 
 	@Override
 	public String toString(){
-		return "\n Damage: " + Damage + "; Dir:" + Direction +
+		return "Damage: " + Damage + "; Dir:" + Direction +
 			"; x:" + getCoordinateX() +
 			"; y:" + getCoordinateY();
 	}
