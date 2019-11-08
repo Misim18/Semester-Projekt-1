@@ -44,9 +44,9 @@ public class Game //attributes
 //    }
     }
 
-    public static Boat getBoat(){
-        return boat;
-    }
+	public static Boat getBoat(){
+		return boat;
+	}
 
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
@@ -90,7 +90,7 @@ public class Game //attributes
     {
 		for (int x = 0; x < amountOfActiveHostiles; x++)
     	{
-			Room.addToHostilesActive(new Hostiles(100));
+			Room.addToHostilesActive(new Hostiles(40));
 		}
     }
 
@@ -270,14 +270,27 @@ public class Game //attributes
 
 	private boolean update(){
 		currentRoom.updateHostiles();
+		// Prints out hostiles in every room
 		System.out.println(currentRoom.getHostilesActive());
+		// Set the player coordinates
+		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
+		// Check it player is on boat:
+		if(boat.getCoordinateX() == player1.getCoordinateX()){
+				for(Collectables item : player1.dumpInventory()){
+					boat.addToBoatInventory(item);
+				}
+		}
+		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
-			if(hostile.getCoordinateX() == currentRoom.getCoordinateX() &&
-					hostile.getCoordinateY() == currentRoom.getCoordinateY())
+			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
+					hostile.getCoordinateY() == player1.getCoordinateY())
 			{
+				// Damage the player
 				player1.setLife(player1.getLife() - hostile.getDamage());
+				// Checks if the player is dead
 				if(player1.getLife()<0){
 					System.out.println("Player Health: " + player1.getLife());
+					System.out.println("You are dead");
 					return true;
 				}
 			}

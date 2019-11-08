@@ -11,11 +11,11 @@ package worldofzuul;
  */
 public abstract class Coordinate {
     private int coordinateX;
-    private int coordinateY; 
-    
+    private int coordinateY;
+
     public Coordinate(int coordinateX, int coordinateY){
-        this.coordinateX = coordinateX; 
-        this.coordinateY = coordinateY; 
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
     }
 
     /**
@@ -45,6 +45,12 @@ public abstract class Coordinate {
     public void setCoordinateY(int coordinateY) {
         this.coordinateY = coordinateY;
     }
-    
-    
+
+	public void setCoordinate_X_Y(int xPos, int yPos){
+		this.coordinateX = xPos;
+		this.coordinateY = yPos;
+
+	}
+
+
 }
