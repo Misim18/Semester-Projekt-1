@@ -217,6 +217,7 @@ public class Game //attributes
     private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
+		clearScreen();
 
         CommandWord commandWord = command.getCommandWord();
 
@@ -259,6 +260,7 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
+			//return update(); tilføj senere spørg kevin
         }
         else {
             currentRoom = nextRoom;
@@ -271,15 +273,40 @@ public class Game //attributes
 	private boolean update(){
 		currentRoom.updateHostiles();
 		// Prints out hostiles in every room
+		System.out.println("Boat x:"+boat.getCoordinateX() + " y:" + boat.getCoordinateY());
 		System.out.println(currentRoom.getHostilesActive());
 		// Set the player coordinates
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
+
 		// Check it player is on boat:
-		if(boat.getCoordinateX() == player1.getCoordinateX()){
+		if(boat.getCoordinateY() == player1.getCoordinateY()){
 				for(Collectables item : player1.dumpInventory()){
 					boat.addToBoatInventory(item);
 				}
+				if(currentRoom.getNumberOfCollectablesLeft() <= 0){
+					System.out.println("There are no more items left");
+					System.out.println("goToShop();");
+					System.out.println("nextLevel();");
+					//nextLevel()  // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL
+				} else{
+				System.out.println("There are still more items left: " +
+						currentRoom.getNumberOfCollectablesLeft());
+				}
 		}
+
+		// Check if player is on item, then player pickup
+		for(int i=0; i <currentRoom.getCollectablesLeft().size(); i++){
+			if(currentRoom.getCollectablesLeft().get(i).getCoordinateX() == player1.getCoordinateX() &&
+					currentRoom.getCollectablesLeft().get(i).getCoordinateY() == player1.getCoordinateY())
+			{
+				player1.addToInventory(currentRoom.getCollectablesLeft().get(i));
+				System.out.println("You Picked up: " + currentRoom.getCollectablesLeft().get(i).getName());
+				currentRoom.removeFromCollectablesLeft(i);
+				--i;
+			}
+		}
+		System.out.println(currentRoom.getCollectablesLeft());
+
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
 			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
@@ -297,6 +324,12 @@ public class Game //attributes
 		}
 		System.out.println("Player Health: " + player1.getLife());
 		return false;
+	}
+
+	// got it from https://stackoverflow.com/questions/2979383/java-clear-the-console 08-11-19
+	public static void clearScreen() {
+    	System.out.print("\033[H\033[2J");
+    	System.out.flush();
 	}
 
     private boolean quit(Command command) //quit command, med fejl på quit + second word

@@ -107,12 +107,16 @@ public class Room
         return collectablesLeft;
     }
 
+	public static int getNumberOfCollectablesLeft(){
+		return collectablesLeft.size();
+	}
+
      public static void addToCollectablesLeft(Collectables collectable){
         collectablesLeft.add(collectable);
     }
 
-        public static void removeFromCollectablesLeft(int number){
-        collectablesLeft.remove(number);
+        public static void removeFromCollectablesLeft(int index){
+        collectablesLeft.remove(index);
     }
 
     public static void clearCollectablesLeft() {
