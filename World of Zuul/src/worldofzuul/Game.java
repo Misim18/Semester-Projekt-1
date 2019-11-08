@@ -242,10 +242,34 @@ public class Game //attributes
     }
 
 	private void cheat(Command command){
-		// cheat her tak :D
+        if(!command.hasSecondWord()) { //if the command does not have second word
+            System.out.println("What kind of cheat?, it taks on arg?");
+            return;
+        }
 		String cheat = command.getSecondWord();
-
-		System.out.println("Denne cheat er ikke implimiteret endnu: " + cheat);
+		switch(cheat){
+			case "list":
+				System.out.println("cheat motherload");
+				System.out.println("cheat getAllItem");
+				System.out.println("cheat nextlevel");
+				break;
+			case "motherload":
+				System.out.println("Here are 999,999 thousend of dollars to sims xD ");
+				update();
+				break;
+			case "getAllItem":
+				for(Collectables item : currentRoom.getCollectablesLeft()){
+					player1.addToInventory(item);
+				}
+				currentRoom.clearCollectablesLeft();
+				update();
+				break;
+			case "nextLevel":
+				nextLevel();
+				break;
+			default:
+				System.out.println("This: " + cheat + "is not implementet yet");
+      }
 	}
 
     private void printHelp()
