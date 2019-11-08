@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Character extends Coordinate {
 	private static String name; //consider revising this to work with scanner input
-	private static int breath, life, levelReached, carryCapacity;
+	private static int breath, life, levelReached, carryCapacity, recyclingUpgrade;
 	private static ArrayList<Collectables> inventory;
 
 	public Character(String name, int xPos, int yPos){ //Incorporate scanner name thingy (later)
@@ -12,6 +12,7 @@ public class Character extends Coordinate {
 		breath = 8;
 		life = 100;
 		levelReached = 0;   //Note all numbers are
+                recyclingUpgrade = 0;
                 this.name = name;
 		carryCapacity = 3;
 		inventory = new ArrayList<>();
@@ -79,4 +80,12 @@ public class Character extends Coordinate {
 		inventory.clear();
 	}
 
+    public static int getRecyclingUpgrade() {
+        return recyclingUpgrade;
+    }
+
+    public static void setRecyclingUpgrade(int aRecyclingUpgrade) {
+        recyclingUpgrade = aRecyclingUpgrade;
+    }
+        
 }

@@ -23,13 +23,13 @@ public class Collectables extends Coordinate {
     }
 
     public int setRandomPositionX() {
-        int startPositionX = (int)Math.round(Math.random()*(Game.getLimitX()));
+        int startPositionX = (int)Math.round(Math.random()*(Game.getLimitX()-1)); //minus one, because arrays are 0 indexed (see next line)
 
         return startPositionX;
     }
 
     public int setRandomPositionY() {
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-1))+1;  //as to not put a collectable on the boat
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+1;  //as to not put a collectable on the boat
 
         return startPositionY;
     }
