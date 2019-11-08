@@ -74,4 +74,9 @@ public class Character extends Coordinate {
 	public static ArrayList<Collectables> dumpInventory(){
 		return inventory;
 	}
+
+        public static void clearInventory(){
+		inventory.clear();
+	}
+
 }

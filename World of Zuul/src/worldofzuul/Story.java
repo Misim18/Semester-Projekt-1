@@ -28,7 +28,7 @@ public String getLine(){
     return Line;
 }
 
-public void getRandLine(){
+public void getRandLine(){ //currently un-used
     fillArray();
     int temp =(int) Math.round(Math.random()*9);
     System.out.println(randLineArray[temp]);

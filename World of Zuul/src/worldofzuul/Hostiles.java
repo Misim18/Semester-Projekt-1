@@ -37,6 +37,7 @@ public Hostiles(int dmg)
         this.Damage = Damage;
     }
 
+    //math.round maintains the same chance for all grids, an explicit casting would simply floor
     public int setStartPositionX() {
         int temp = (int)Math.round(Math.random()*Game.getLimitX());
         int startPositionX;
@@ -46,8 +47,9 @@ public Hostiles(int dmg)
         return startPositionX;
     }
 
+    //math.round maintains the same chance for all grids, an explicit casting would simply floor
     public int setStartPositionY() {
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
 
         return startPositionY;
     }

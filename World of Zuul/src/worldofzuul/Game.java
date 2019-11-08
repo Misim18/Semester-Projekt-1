@@ -20,7 +20,7 @@ public class Game //attributes
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
-	player1 = new Character(name, Math.round(getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
+	player1 = new Character(name, (getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -52,11 +52,11 @@ public class Game //attributes
         setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
         setLimitY(3+Character.getLevelReached()*2);                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
-        boat.placeBoat(Math.round(getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
+        boat.placeBoat((getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
-        createInitialCollectables(3+3*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
+        createInitialCollectables(0+0*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
     }
@@ -283,11 +283,11 @@ public class Game //attributes
 				for(Collectables item : player1.dumpInventory()){
 					boat.addToBoatInventory(item);
 				}
+                                player1.clearInventory();
 				if(currentRoom.getNumberOfCollectablesLeft() <= 0){
 					System.out.println("There are no more items left");
-					System.out.println("goToShop();");
-					System.out.println("nextLevel();");
-					//nextLevel()  // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL // NEXT LEVEL
+					Shopping.goToShop();
+					nextLevel();
 				} else{
 				System.out.println("There are still more items left: " +
 						currentRoom.getNumberOfCollectablesLeft());
