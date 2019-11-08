@@ -314,7 +314,7 @@ public class Game //attributes
 				// Damage the player
 				player1.setLife(player1.getLife() - hostile.getDamage());
 				// Checks if the player is dead
-				if(player1.getLife()<0){
+				if(player1.getLife()<=0){
 					System.out.println("Player Health: " + player1.getLife());
 					System.out.println("You are dead");
 					return true;
