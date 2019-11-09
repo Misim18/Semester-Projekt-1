@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game //attributes
@@ -19,8 +20,8 @@ public class Game //attributes
         Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
-        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
-	player1 = new Character(name, (getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
+        name = uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
+	player1 = new Character(name, (getLimitX()/2), 1);                          //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -44,6 +45,36 @@ public class Game //attributes
 //    }
     }
 
+    public String uppercaseName (String name) {
+    name = name.trim();        //Trim to get rid of white space (both in before and after the string)
+    
+    ArrayList<String> nameArray = new ArrayList<>();
+    
+    
+    //While the name contains a space, fetch all the segments in between the spaces
+    while (name.contains(" ")){         
+        int cutAt = name.indexOf(" ");                  //indexOf(" ") gives an int correcsponding to where the first space is in the string
+        nameArray.add(name.substring(0,cutAt));         //So the first "name" must be from 0 to where the space occurs
+        name = name.substring(cutAt+1);                 //Now we cut at this point + 1, because we dont want to include the space 
+    }
+    //Since the name was trimmed originally, the last "name" can't be found by looking for the space character
+    nameArray.add(name);                
+    //Reset name, as we are going to have it contain the uppercased version instead
+    name = "";
+
+    
+    //For the entire nameArray, set name to the i'th arrayElement with first letter uppercased and rest lowercased
+        for (int i = 0; i<nameArray.size(); i++){
+        name += nameArray.get(i).substring(0,1).toUpperCase() + nameArray.get(i).substring(1).toLowerCase() + " ";
+    }
+    
+    //The above method, adds an additional space at the end, we remove this here.    
+    name = name.trim();
+    
+    
+    return name;
+    }
+    
 	public static Boat getBoat(){
 		return boat;
 	}
