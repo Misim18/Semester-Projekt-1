@@ -22,7 +22,7 @@ public abstract class Coordinate {
 	 * @return the coordinateX
 	 */
 	public int getCoordinateX() {
-		return coordinateX;
+		return this.coordinateX;
 	}
 
 	/**
@@ -36,7 +36,7 @@ public abstract class Coordinate {
 	 * @return the coordinateY
 	 */
 	public int getCoordinateY() {
-		return coordinateY;
+		return this.coordinateY;
 	}
 
 	/**
