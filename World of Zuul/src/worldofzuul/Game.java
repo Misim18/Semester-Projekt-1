@@ -168,39 +168,39 @@ public class Game //attributes
     }
 }
 
-//Sets east exits
+//Sets right exits
     for (int y = 0; y < getLimitY(); y++)
 {
     for (int x = 0; x < getLimitX()-1; x++)
     {
-        grid[y][x].setExit("east", grid[y][x+1]);
+        grid[y][x].setExit("right", grid[y][x+1]);
     }
 }
 
-//Sets west exits
+//Sets left exits
     for (int y = 0; y < getLimitY(); y++)
 {
     for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not
     {
-        grid[y][x].setExit("west", grid[y][x-1]);
+        grid[y][x].setExit("left", grid[y][x-1]);
     }
 }
 
-//Sets south exits
-    for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
+//Sets down exits
+    for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row down exit
 {
     for (int x = 0; x < getLimitX(); x++)
     {
-        grid[y][x].setExit("south", grid[y+1][x]);
+        grid[y][x].setExit("down", grid[y+1][x]);
     }
 }
 
-//Sets north exits
-    for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give north exit on top row
+//Sets up exits
+    for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give up exit on top row
 {
     for (int x = 0; x < getLimitX(); x++)
     {
-        grid[y][x].setExit("north", grid[y-1][x]);
+        grid[y][x].setExit("up", grid[y-1][x]);
     }
 }
 
