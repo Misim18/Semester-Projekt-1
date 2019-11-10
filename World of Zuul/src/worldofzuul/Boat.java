@@ -14,7 +14,7 @@ public class Boat extends Coordinate {
 	private int plasticReductionUpgrades;
 
    	public Boat(){
-		super((Game.getLimitX()/2),0); //Midten af x, og altid på øverste y linje.
+		super((Game.getLimitX()/2),0); //Middle x value, and top y value on the grid.
 		levelTrashCollected = 0;
 		totalTrashCollected = 0; 
 		money = 0;
@@ -34,7 +34,7 @@ public class Boat extends Coordinate {
 		boatInventory.add(temp);
 	}
 
-	public ArrayList<Collectables> getBoatInventory(){ // skal enten fjernes eller redigeres.
+	public ArrayList<Collectables> getBoatInventory(){ // Should be either removed or modified.
 		return boatInventory;
 	}
 

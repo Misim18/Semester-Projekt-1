@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class CommandWords
 {
     private HashMap<String, CommandWord> validCommands;
-
+    
+    //Takes the commanwords from the CommandWord Class, and puts them in the hashmap.
     public CommandWords()
     {
         validCommands = new HashMap<String, CommandWord>();
@@ -15,7 +16,7 @@ public class CommandWords
             }
         }
     }
-
+    // to see whether the command is a valid or invalid one.
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);
