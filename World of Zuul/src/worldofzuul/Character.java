@@ -4,20 +4,39 @@ import java.util.ArrayList;
 
 public class Character extends Coordinate {
 	private static String name; //consider revising this to work with scanner input
-	private static int breath, life, levelReached, carryCapacity, recyclingUpgrade;
+	private static int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade;
 	private static ArrayList<Collectables> inventory;
 
-	public Character(String name, int xPos, int yPos){ //Incorporate scanner name thingy (later)
+	public Character(String name, int xPos, int yPos, int breath){
 		super(xPos, yPos);
-		breath = 8;
+		this.breath = breath;
+        this.name = name;
+		amountOfBreathLeft = breath;
 		life = 100;
 		levelReached = 0;   //Note all numbers are
-                recyclingUpgrade = 0;
-                this.name = name;
+        recyclingUpgrade = 0;
 		carryCapacity = 3;
 		inventory = new ArrayList<>();
 	}
 
+	// Checks if the player is on the surface to get air
+	// Else remove on from breathLeft and then check if they died.
+	public boolean UpdateBreath(){
+		if(getCoordinateY() == 0){
+			amountOfBreathLeft = breath;
+			return false;
+		} else {
+			--amountOfBreathLeft;
+			if(amountOfBreathLeft <= 0){
+				// They are dead
+				life = 0;
+				return true;
+			} else{
+				return false;
+			}
+		}
+
+	}
 	// Name
 	public static String getName(){
 		return name;
@@ -25,10 +44,11 @@ public class Character extends Coordinate {
 
 	// Breath
 	public int getBreath(){
-		return breath;
+		return amountOfBreathLeft;
 	}
 	public void setBreath(int breath){
 		this.breath = breath;
+		amountOfBreathLeft = breath;
 	}
 
 	// Life
@@ -56,8 +76,13 @@ public class Character extends Coordinate {
 	}
 
 	// addToInventory
-	public void addToInventory(Collectables collectable){
-		inventory.add(collectable);
+	public boolean addToInventory(Collectables collectable){
+		if(inventory.size()<carryCapacity){
+			inventory.add(collectable);
+			return true;
+		} else{
+			return false;
+		}
 	}
 
 	// removeFromInventory
@@ -87,5 +112,5 @@ public class Character extends Coordinate {
     public static void setRecyclingUpgrade(int aRecyclingUpgrade) {
         recyclingUpgrade = aRecyclingUpgrade;
     }
-        
+
 }

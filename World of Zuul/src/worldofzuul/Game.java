@@ -21,7 +21,8 @@ public class Game //attributes
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
-	player1 = new Character(name, (getLimitX()/2), 1);                          //Makes a new character, feeding the name to the contructor
+										// X , Y , Breath
+		player1 = new Character(name, (getLimitX()/2), 1, 14);                      //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -47,34 +48,34 @@ public class Game //attributes
 
     public String uppercaseName (String name) {
     name = name.trim();        //Trim to get rid of white space (both in before and after the string)
-    
+
     ArrayList<String> nameArray = new ArrayList<>();
-    
-    
+
+
     //While the name contains a space, fetch all the segments in between the spaces
-    while (name.contains(" ")){         
+    while (name.contains(" ")){
         int cutAt = name.indexOf(" ");                  //indexOf(" ") gives an int correcsponding to where the first space is in the string
         nameArray.add(name.substring(0,cutAt));         //So the first "name" must be from 0 to where the space occurs
-        name = name.substring(cutAt+1);                 //Now we cut at this point + 1, because we dont want to include the space 
+        name = name.substring(cutAt+1);                 //Now we cut at this point + 1, because we dont want to include the space
     }
     //Since the name was trimmed originally, the last "name" can't be found by looking for the space character
-    nameArray.add(name);                
+    nameArray.add(name);
     //Reset name, as we are going to have it contain the uppercased version instead
     name = "";
 
-    
+
     //For the entire nameArray, set name to the i'th arrayElement with first letter uppercased and rest lowercased
         for (int i = 0; i<nameArray.size(); i++){
         name += nameArray.get(i).substring(0,1).toUpperCase() + nameArray.get(i).substring(1).toLowerCase() + " ";
     }
-    
-    //The above method, adds an additional space at the end, we remove this here.    
+
+    //The above method, adds an additional space at the end, we remove this here.
     name = name.trim();
-    
-    
+
+
     return name;
     }
-    
+
 	public static Boat getBoat(){
 		return boat;
 	}
@@ -222,6 +223,8 @@ public class Game //attributes
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+
+        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
         System.out.println("Thank you for playing.  Good bye.");
     }
 
@@ -237,7 +240,7 @@ public class Game //attributes
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
+        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
     }
 
     private boolean processCommand(Command command)
@@ -270,7 +273,7 @@ public class Game //attributes
 
 	private void cheat(Command command){
         if(!command.hasSecondWord()) { //if the command does not have second word
-            System.out.println("What kind of cheat?, it taks on arg?");
+            System.out.println("What kind of cheat?, it taks one arg?");
             return;
         }
 		String cheat = command.getSecondWord();
@@ -321,7 +324,7 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-            Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
+            Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
 			//return update(); tilføj senere spørg kevin
         }
         else {
@@ -359,13 +362,23 @@ public class Game //attributes
 			if(currentRoom.getCollectablesLeft().get(i).getCoordinateX() == player1.getCoordinateX() &&
 					currentRoom.getCollectablesLeft().get(i).getCoordinateY() == player1.getCoordinateY())
 			{
-				player1.addToInventory(currentRoom.getCollectablesLeft().get(i));
+				// Checks if the player has room in inventory and then add it to players inventory.
+				// Else Print don't have room
+				if(player1.addToInventory(currentRoom.getCollectablesLeft().get(i))){
 				System.out.println("You Picked up: " + currentRoom.getCollectablesLeft().get(i).getName());
 				currentRoom.removeFromCollectablesLeft(i);
 				--i;
+				} else {
+					System.out.println("You dont have any more room.");
+					System.out.println("Your inventory size: " + player1.getCarryCapacity() + "/" + player1.getCarryCapacity());
+				}
 			}
 		}
 
+		// Updates player breath and if it return true you are dead.
+		if(player1.UpdateBreath()){
+			return true;
+		}
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
 			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
@@ -381,7 +394,7 @@ public class Game //attributes
 				}
 			}
 		}
-                Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
+        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife() , player1.getBreath(), currentRoom);
 		return false;
 	}
 
