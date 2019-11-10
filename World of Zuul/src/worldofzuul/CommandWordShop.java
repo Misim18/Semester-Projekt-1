@@ -1,4 +1,5 @@
 package worldofzuul;
+//blueprint for the commandWords the user can use in the shop "room".
 
 public enum CommandWordShop
 {

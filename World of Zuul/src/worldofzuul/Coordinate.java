@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package worldofzuul;
 
 /**
@@ -18,30 +13,22 @@ public abstract class Coordinate {
 		this.coordinateY = coordinateY;
 	}
 
-	/**
-	 * @return the coordinateX
-	 */
+	
 	public int getCoordinateX() {
 		return this.coordinateX;
 	}
 
-	/**
-	 * @param coordinateX the coordinateX to set
-	 */
+	
 	public void setCoordinateX(int coordinateX) {
 		this.coordinateX = coordinateX;
 	}
 
-	/**
-	 * @return the coordinateY
-	 */
+	
 	public int getCoordinateY() {
 		return this.coordinateY;
 	}
 
-	/**
-	 * @param coordinateY the coordinateY to set
-	 */
+	
 	public void setCoordinateY(int coordinateY) {
 		this.coordinateY = coordinateY;
 	}
@@ -51,7 +38,7 @@ public abstract class Coordinate {
 		this.coordinateY = yPos;
 
 	}
-
+        // used in the text based game.
 	@Override
 	public String toString(){
 		return "\n" +
