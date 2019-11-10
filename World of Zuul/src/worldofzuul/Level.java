@@ -2,6 +2,8 @@
 package worldofzuul;
 
 
+
+
 public class Level {
     
     private int levelSizeX;
@@ -57,6 +59,7 @@ public class Level {
     public void setAmountOfActiveHostiles(int amountOfActiveHostiles) {
         this.amountOfActiveHostiles = amountOfActiveHostiles;    
     }   
+    
     
     
 }

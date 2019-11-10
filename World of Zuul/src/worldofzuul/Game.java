@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game //attributes
@@ -19,8 +20,8 @@ public class Game //attributes
         Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
-        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); //Makes the first letter uppercase and the rest lowercase (just flair)
-	player1 = new Character(name, (getLimitX()/2), 1);                                    //Makes a new character, feeding the name to the contructor
+        name = uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
+	player1 = new Character(name, (getLimitX()/2), 1);                          //Makes a new character, feeding the name to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -44,20 +45,50 @@ public class Game //attributes
 //    }
     }
 
+    public String uppercaseName (String name) {
+    name = name.trim();        //Trim to get rid of white space (both in before and after the string)
+    
+    ArrayList<String> nameArray = new ArrayList<>();
+    
+    
+    //While the name contains a space, fetch all the segments in between the spaces
+    while (name.contains(" ")){         
+        int cutAt = name.indexOf(" ");                  //indexOf(" ") gives an int correcsponding to where the first space is in the string
+        nameArray.add(name.substring(0,cutAt));         //So the first "name" must be from 0 to where the space occurs
+        name = name.substring(cutAt+1);                 //Now we cut at this point + 1, because we dont want to include the space 
+    }
+    //Since the name was trimmed originally, the last "name" can't be found by looking for the space character
+    nameArray.add(name);                
+    //Reset name, as we are going to have it contain the uppercased version instead
+    name = "";
+
+    
+    //For the entire nameArray, set name to the i'th arrayElement with first letter uppercased and rest lowercased
+        for (int i = 0; i<nameArray.size(); i++){
+        name += nameArray.get(i).substring(0,1).toUpperCase() + nameArray.get(i).substring(1).toLowerCase() + " ";
+    }
+    
+    //The above method, adds an additional space at the end, we remove this here.    
+    name = name.trim();
+    
+    
+    return name;
+    }
+    
 	public static Boat getBoat(){
 		return boat;
 	}
 
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
-        setLimitX(5+Character.getLevelReached()*2);                         //Sets the new limitX
-        setLimitY(9+Character.getLevelReached()*2);                         //Sets the new limitX
+        setLimitX(5+2*Character.getLevelReached());                         //Sets the new limitX
+        setLimitY(7+2*Character.getLevelReached());                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
         boat.placeBoat((getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
-        createInitialCollectables(0+0*Character.getLevelReached());         //Creates the amount of Collectables fed into the method
-        createInitialHostiles(7+3*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
+        createInitialCollectables((5+2*Character.getLevelReached())-Character.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
+        createInitialHostiles(3+1*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
     }
 
@@ -102,10 +133,6 @@ public class Game //attributes
         for (int x = 0; x < gameCollectables.length; x++)
     {
         gameCollectables[x] = new Collectables();
-    }
-
-        for (int x = 0; x < gameCollectables.length; x++)
-    {
         Room.addToCollectablesLeft(gameCollectables[x]);
     }
 
@@ -137,39 +164,39 @@ public class Game //attributes
     }
 }
 
-//Sets east exits
+//Sets right exits
     for (int y = 0; y < getLimitY(); y++)
 {
     for (int x = 0; x < getLimitX()-1; x++)
     {
-        grid[y][x].setExit("east", grid[y][x+1]);
+        grid[y][x].setExit("right", grid[y][x+1]);
     }
 }
 
-//Sets west exits
+//Sets left exits
     for (int y = 0; y < getLimitY(); y++)
 {
     for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not
     {
-        grid[y][x].setExit("west", grid[y][x-1]);
+        grid[y][x].setExit("left", grid[y][x-1]);
     }
 }
 
-//Sets south exits
-    for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row south exit
+//Sets down exits
+    for (int y = 0; y < getLimitY()-1; y++) //y goes to max limit - 1, as to not give bottom row down exit
 {
     for (int x = 0; x < getLimitX(); x++)
     {
-        grid[y][x].setExit("south", grid[y+1][x]);
+        grid[y][x].setExit("down", grid[y+1][x]);
     }
 }
 
-//Sets north exits
-    for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give north exit on top row
+//Sets up exits
+    for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give up exit on top row
 {
     for (int x = 0; x < getLimitX(); x++)
     {
-        grid[y][x].setExit("north", grid[y-1][x]);
+        grid[y][x].setExit("up", grid[y-1][x]);
     }
 }
 
@@ -220,7 +247,7 @@ public class Game //attributes
 
         CommandWord commandWord = command.getCommandWord();
         System.out.println();
-        
+
         if(commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");  //Whenever the commandWord is set to .UNKNOWN prints this message, used to communicate to the player that the input wasn't understood.
             return false;
@@ -232,11 +259,45 @@ public class Game //attributes
         else if (commandWord == CommandWord.GO) {
             wantToQuit = goRoom(command);
         }
+		else if(commandWord == CommandWord.CHEAT) {
+			cheat(command);
+		}
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
         return wantToQuit;
     }
+
+	private void cheat(Command command){
+        if(!command.hasSecondWord()) { //if the command does not have second word
+            System.out.println("What kind of cheat?, it taks on arg?");
+            return;
+        }
+		String cheat = command.getSecondWord();
+		switch(cheat){
+			case "list":
+				System.out.println("cheat motherload");
+				System.out.println("cheat getAllItem");
+				System.out.println("cheat nextlevel");
+				break;
+			case "motherload":
+				System.out.println("Here are 999,999 thousend of dollars to sims xD ");
+				update();
+				break;
+			case "getAllItem":
+				for(Collectables item : currentRoom.getCollectablesLeft()){
+					player1.addToInventory(item);
+				}
+				currentRoom.clearCollectablesLeft();
+				update();
+				break;
+			case "nextLevel":
+				nextLevel();
+				break;
+			default:
+				System.out.println("This: " + cheat + "is not implementet yet");
+      }
+	}
 
     private void printHelp()
     {
@@ -260,21 +321,20 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-            System.out.println(currentRoom.getHostilesActive());
-            System.out.println(currentRoom.getCollectablesLeft());
+            Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), currentRoom);
 			//return update(); tilføj senere spørg kevin
         }
         else {
             currentRoom = nextRoom;
 			return update();
-                        
+
         }
 		return false;
     }
 
-	private boolean update(){ 
+	private boolean update(){
 		currentRoom.updateHostiles();
-		
+
 		// Set the player coordinates
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
@@ -305,7 +365,7 @@ public class Game //attributes
 				--i;
 			}
 		}
-                
+
 		// Check if the hostiles hits the player.
 		for(Hostiles hostile : currentRoom.getHostilesActive()){
 			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
