@@ -1,11 +1,11 @@
 package worldofzuul;
 
 public class Hostiles extends Coordinate {
-private int DirectionX;
-private int DirectionY;
+private int DirectionX; //Hostiles moving horizontal
+private int DirectionY; //Hostiles moving vertical
 private int Damage;
-private int MoveSpeedX;
-private int MoveSpeedY;
+private int MoveSpeedX; //This can be timed with the corresponding direction value.
+private int MoveSpeedY; //This can be timed with the corresponding direction value.
 
 public Hostiles()
     {
@@ -76,6 +76,7 @@ public Hostiles()
         do{
             counter = 0;
         for (int i = 0; i<Room.getHostilesActive().size(); i++){
+            //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
             if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
                 startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
                 run = true;
@@ -91,13 +92,13 @@ public Hostiles()
         
         return startPositionY;
     }
-
+        // for the text based UI.
 	@Override
 	public String toString(){
 		return "Damage: " + Damage + "; Dir:" + DirectionX +
 			"; x:" + getCoordinateX() +
 			"; y:" + getCoordinateY();
 	}
-
+ 
 
 }
