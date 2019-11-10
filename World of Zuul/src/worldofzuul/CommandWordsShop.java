@@ -7,6 +7,7 @@ public class CommandWordsShop
     private HashMap<String, CommandWordShop> validCommandsShop;
 
     public CommandWordsShop()
+    //Takes the commanwords from the CommandWordShop Class, and puts them in the hashmap.
     {
         validCommandsShop = new HashMap<String, CommandWordShop>();
         for(CommandWordShop command : CommandWordShop.values()) {
@@ -17,6 +18,7 @@ public class CommandWordsShop
     }
 
     public CommandWordShop getCommandWordShop(String commandWordShop)
+    // to see whether the command is a valid or invalid one..
     {
         CommandWordShop command = validCommandsShop.get(commandWordShop);
         if(command != null) {
@@ -33,6 +35,7 @@ public class CommandWordsShop
     }
 
     public void showAll() 
+    // portraying the available commands.
     {
         for(String command : validCommandsShop.keySet()) {
             System.out.print(command + "  ");
