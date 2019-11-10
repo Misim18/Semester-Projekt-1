@@ -15,9 +15,9 @@ public class Game //attributes
 
     public Game() //Constructor
     {
-        //Shopping.goToShop(); Når vi vil kalde shoppen
+        //Shopping.goToShop();                                                      //for when we wish to call the shop.
 
-        Scanner s = new Scanner(System.in);                                         //Initialises new scanner object
+        Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
         Story.introLine();                                                          //calls the introLine method in Story
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
@@ -125,7 +125,7 @@ public class Game //attributes
 		}
     }
 
-    private void createInitialCollectables(int amountOfCollectables) //Creates and int number of Collectables and loads them into the collectablesLeft ArrayList in Room
+    private void createInitialCollectables(int amountOfCollectables) //Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
     {
 
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
