@@ -16,7 +16,7 @@ public class CommandWords
             }
         }
     }
-    // to see whether the command is a valid or invalid one.
+    // to see whether the command is a valid or invalid one..
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);

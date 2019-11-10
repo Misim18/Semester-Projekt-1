@@ -1,6 +1,6 @@
 package worldofzuul;
 
-// blueprint for the commandWords the player can use in the game.
+// blueprint for the commandWords the player can use in the game..
 public enum CommandWord
 {
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), CHEAT("cheat");

@@ -34,7 +34,7 @@ public class Boat extends Coordinate {
 		boatInventory.add(temp);
 	}
 
-	public ArrayList<Collectables> getBoatInventory(){ // Should be either removed or modified.
+	public ArrayList<Collectables> getBoatInventory(){ // Should be either removed or modified..
 		return boatInventory;
 	}
 
