@@ -71,6 +71,8 @@ public class Character extends Coordinate {
 	public static int getCarryCapacity(){
 		return carryCapacity;
 	}
+
+	// This is not used yey -- Kevin 11-11-2019
 	public static void setCarryCapacity(int carryCapacityIn){
 		carryCapacity = carryCapacityIn;
 	}
@@ -85,23 +87,13 @@ public class Character extends Coordinate {
 		}
 	}
 
-	// removeFromInventory
-	public void removeFromInventory(Collectables collectable){
-		inventory.remove(collectable);
 
-	}
-
-	// dumpInventory
+	// getInventory
 	public static ArrayList<Collectables> getInventory(){
 		return inventory;
 	}
 
-        // dumpInventory this might need to change
-	public static ArrayList<Collectables> dumpInventory(){
-		return inventory;
-	}
-
-        public static void clearInventory(){
+    public static void clearInventory(){
 		inventory.clear();
 	}
 
@@ -109,6 +101,7 @@ public class Character extends Coordinate {
         return recyclingUpgrade;
     }
 
+	// This is not used yet 11-11-2019
     public static void setRecyclingUpgrade(int aRecyclingUpgrade) {
         recyclingUpgrade = aRecyclingUpgrade;
     }

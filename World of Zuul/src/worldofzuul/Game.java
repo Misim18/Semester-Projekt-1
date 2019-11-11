@@ -325,7 +325,6 @@ public class Game //attributes
         if (nextRoom == null) {
             System.out.println("There is no door!");
             Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
-			//return update(); tilføj senere spørg kevin
         }
         else {
             currentRoom = nextRoom;
@@ -343,7 +342,7 @@ public class Game //attributes
 
 		// Check it player is on boat:
 		if(boat.getCoordinateY() == player1.getCoordinateY()){
-				for(Collectables item : player1.dumpInventory()){
+				for(Collectables item : player1.getInventory()){
 					boat.addToBoatInventory(item);
 				}
                                 player1.clearInventory();
