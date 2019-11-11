@@ -1,22 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
+ * 
  */
 package worldofzuul;
 
 public class Shark extends Hostiles {
-    private static int lastSharkMovespeed; //bruges til at holde styr på rækkefølgen af tildelt movespeed pr oprettet objekt.
+    private static int lastSharkMovespeed; //Used for keeping track of the order in whitch movespeed is giving pr. created object.
 
     public Shark() {
         super();
-        super.setDamage(100); //initialiserer damage fra Hostile klassen
-        setSharkDirectionX(); //initialiserer directionX fra Hostile klassen.
-        setSharkDirectionY(); //initialiserer directionY fra Hostile klassen.
-        //setSharkMovespeedX(); //initialiserer moveSpeedX fra Hostile klassen.
-        setSharkMovespeedY(); //initialiserer moveSpeedY fra Hostile klassen.
-        setSharkStartPositionX(); //initialiserer spawnLocationX fra Hostile klassen.
-        setSharkStartPositionY(); //initialiserer spawnLocationY fra Hostile klassen.
+        super.setDamage(100); //Initializes the damage attribute from the Hostiles super class.
+        setSharkDirectionX(); //Initializes the directionX attribute from the Hostiles super class.
+        setSharkDirectionY(); //Initializes the directionY attribute from the Hostiles super class.
+        //setSharkMovespeedX(); //Initializes the movespeed attribute from the Hostiles super class, but is currently not in use, since Direction attribute is used instead.
+        setSharkMovespeedY(); //Initializes the movespeedY attribute from the Hostiles super class, but is currently not really usefull, since the movespeed this direction is 0.
+        setSharkStartPositionX(); //Initializes a starting position on the x-axis of the grid.
+        setSharkStartPositionY(); //Initializes a starting position on the y-axis of the grid.
     }
 
 

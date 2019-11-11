@@ -11,7 +11,7 @@ private String[] randLineArray = new String[10];
 public Story(){
 }
 
-public void fillArray(){ //facts fra poster billede.
+public void fillArray(){ //is to be filled with catching phrases involving the facts about plastic items from our poster.
 randLineArray[0] = "2,412,151";
 randLineArray[1] = "1,739,743";
 randLineArray[2] = "1,569,135";
@@ -28,7 +28,7 @@ public String getLine(){
     return Line;
 }
 
-public void getRandLine(){ //currently un-used
+public void getRandLine(){ //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
     fillArray();
     int temp =(int) Math.round(Math.random()*9);
     System.out.println(randLineArray[temp]);
@@ -38,7 +38,7 @@ public void getRandLine(){ //currently un-used
 public static void introLine(){
     System.out.println("Hello, you are about to begin the game.");
     System.out.println("Please begin by entering your name, followed by hitting Enter. ");
-    System.out.print("> ");
+    System.out.print(" ");
 }
 
 public static void tutorial(){
