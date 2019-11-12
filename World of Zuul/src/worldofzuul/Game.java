@@ -160,9 +160,7 @@ public class Game //attributes
 {
     for (int x = 0; x < getLimitX(); x++)
     {
-        grid[y][x] = new Room("x"+x+"y"+y);
-        grid[y][x].setCoordinateX(x); //Can we delete these
-        grid[y][x].setCoordinateY(y); //- by adding all the relevant information to current room, we only have to check that.
+        grid[y][x] = new Room(x, y, "x"+x+"y"+y);
     }
 }
 
@@ -202,7 +200,7 @@ public class Game //attributes
     }
 }
 
-//Can be used for printing info about rooms (Troubleshooting)
+////Can be used for printing info about rooms (Troubleshooting)
 //
 //        for (int y = 0; y < getLimitY(); y++) {
 //            for (int x = 0; x < getLimitX(); x++) {
@@ -212,7 +210,7 @@ public class Game //attributes
 //            }
 //        }
 
-        currentRoom = grid[1][getLimitX()/2]; //Change to grid[0][limitX/2]
+        currentRoom = grid[1][getLimitX()/2]; 
     }
 
     public void play()

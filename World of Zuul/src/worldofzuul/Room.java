@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class Room {
+public class Room extends Coordinate {
 
     private String description;
     private HashMap<String, Room> exits;
@@ -14,9 +14,9 @@ public class Room {
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
     private static ArrayList<Collectables> collectablesLeft = new ArrayList<>();
 
-    public Room(String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
+    public Room (int x, int y, String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {
-        //super(x,y)
+        super(x,y); 
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -45,22 +45,6 @@ public class Room {
 
     public Room getExit(String direction) {
         return exits.get(direction);
-    }
-
-    public int getCoordinateX() { //Can potentially be removed
-        return CoordinateX;
-    }
-
-    public void setCoordinateX(int CoordinateX) { //Can potentially be removed
-        this.CoordinateX = CoordinateX;
-    }
-
-    public int getCoordinateY() { //Can potentially be removed
-        return CoordinateY;
-    }
-
-    public void setCoordinateY(int CoordinateY) { //Can potentially be removed
-        this.CoordinateY = CoordinateY;
     }
 
     public static ArrayList<Hostiles> getHostilesActive() {
