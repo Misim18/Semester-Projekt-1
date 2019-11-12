@@ -9,8 +9,6 @@ public class Room extends Coordinate {
 
     private String description;
     private HashMap<String, Room> exits;
-    private int CoordinateX;
-    private int CoordinateY;
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
     private static ArrayList<Collectables> collectablesLeft = new ArrayList<>();
 
