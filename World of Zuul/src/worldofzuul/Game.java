@@ -91,6 +91,7 @@ public class Game //attributes
         createInitialCollectables((5+2*Character.getLevelReached())-Character.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3+1*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
         Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
+        Character.setRewards(Character.getRewards()+2);                 //gives rewards to character for upgrades
     }
 
     public static int getLimitY() {

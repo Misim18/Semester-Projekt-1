@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Character extends Coordinate {
 	private static String name; //consider revising this to work with scanner input
-	private static int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade;
+	private static int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade, rewards;
 	private static ArrayList<Collectables> inventory;
 
 	public Character(String name, int xPos, int yPos, int breath){
 		super(xPos, yPos);
 		this.breath = breath;
-        this.name = name;
+                this.name = name;
 		amountOfBreathLeft = breath;
 		life = 100;
 		levelReached = 0;   //Note all numbers are
-        recyclingUpgrade = 0;
+                recyclingUpgrade = 0;
 		carryCapacity = 3;
 		inventory = new ArrayList<>();
 	}
@@ -46,10 +46,18 @@ public class Character extends Coordinate {
 	public int getBreath(){
 		return amountOfBreathLeft;
 	}
-	public void setBreath(int breath){
-		this.breath = breath;
+	public static void setBreath(int breathIn){
+		breath = breathIn;
 		amountOfBreathLeft = breath;
 	}
+
+        public static int getRewards() {
+            return rewards;
+        }
+
+        public static void setRewards(int rewardsIn) {
+            rewards = rewardsIn;
+        }
 
 	// Life
 	public int getLife(){

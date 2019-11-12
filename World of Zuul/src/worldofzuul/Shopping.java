@@ -14,15 +14,6 @@ import java.util.Scanner;
 public class Shopping {
     
     private static ParserShop parser;
-    private static int rewards = 2; //ændre dette til at hænge sammen med de rewards vi rent faktisk får
-    private static int fakeCarryCapacity = 3; //bruges kun til test, slet efter da den findes i Character
-    //disse mutator og accessor bruges kun til test da de allerede findes i Character
-    	public static int getFakeCarryCapacity(){
-		return fakeCarryCapacity;
-	}
-	public static void setFakeCarryCapacity(int fakeCarryCapacityIn){
-		fakeCarryCapacity = fakeCarryCapacityIn;
-	}
     
     public static void goToShop() {
         
@@ -36,7 +27,7 @@ public class Shopping {
         
 
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");
-        System.out.println("Du har " + rewards + " rewards at gøre godt med");
+        System.out.println("Du har " + Character.getRewards() + " rewards at gøre godt med");
         parser = new ParserShop();
         
         parser.showShopCommands();
@@ -63,26 +54,26 @@ public class Shopping {
         if (commandWord == CommandWordShop.HELP) { //If CommandWord is set to help, printHelp (See below)
             printShopHelp();
         }
-        else if (commandWord == CommandWordShop.BREATH) {
-            if (rewards > 0) {
-                Shopping.setFakeCarryCapacity(Shopping.getFakeCarryCapacity()+1); //erstat denne med breathupgrade metode istedet
-                System.out.println("Your breath has been upgraded to" + Shopping.getFakeCarryCapacity()); //erstat denne med breathupgrade metode istedet
-                rewards = rewards - 1;
-                System.out.println("You now have " + rewards + " rewards left");
+        /*else if (commandWord == CommandWordShop.BREATH) {
+            if (Character.getRewards() > 0) {
+                Character.setBreath(Character.getBreath()+1); 
+                System.out.println("Your breath has been upgraded to " + Character.getBreath()); 
+                Character.setRewards(Character.getRewards()-1);
+                System.out.println("You now have " + Character.getRewards() + " rewards left");
             }
-            else if (rewards == 0){ 
+            else if (Character.getRewards() == 0){ 
                 System.out.println("You have spent all of your rewards");
                 System.out.println("You better nextlevel it");
             }
-        } 
+        } */
         else if (commandWord == CommandWordShop.INVENTORY) {
-            if (rewards > 0) {
-                Shopping.setFakeCarryCapacity(Shopping.getFakeCarryCapacity()+1);
-                System.out.println("Your inventory capacity has been upgraded to " + Shopping.getFakeCarryCapacity()); 
-                rewards = rewards - 1;
-                System.out.println("You now have " + rewards + " rewards left");
+            if (Character.getRewards() > 0) {
+                Character.setCarryCapacity(Character.getCarryCapacity()+1);
+                System.out.println("Your inventory capacity has been upgraded to " + Character.getCarryCapacity()); 
+                Character.setRewards(Character.getRewards()-1);
+                System.out.println("You now have " + Character.getRewards() + " rewards left");
             }
-            else if (rewards == 0){ 
+            else if (Character.getRewards() == 0){ 
                 System.out.println("You have spent all of your rewards"); 
                 System.out.println("You better nextlevel it");
             }
