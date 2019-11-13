@@ -6,21 +6,19 @@
 package worldofzuul;
 
 public class Shark extends Hostiles {
-    private static int lastSharkMovespeed; //Used for keeping track of the order in whitch movespeed is giving pr. created object.
+    //private static int lastSharkMovespeed; //Used for keeping track of the order in whitch movespeed is giving pr. created object.
 
     public Shark() {
         super();
         super.setDamage(100); //Initializes the damage attribute from the Hostiles super class.
-        setSharkDirectionX(); //Initializes the directionX attribute from the Hostiles super class.
-        setSharkDirectionY(); //Initializes the directionY attribute from the Hostiles super class.
-        //setSharkMovespeedX(); //Initializes the movespeed attribute from the Hostiles super class, but is currently not in use, since Direction attribute is used instead.
-        setSharkMovespeedY(); //Initializes the movespeedY attribute from the Hostiles super class, but is currently not really usefull, since the movespeed this direction is 0.
-        setSharkStartPositionX(); //Initializes a starting position on the x-axis of the grid.
-        setSharkStartPositionY(); //Initializes a starting position on the y-axis of the grid.
+        this.setDirectionX(); //Initializes the directionX attribute from the Hostiles super class.
+        this.setDirectionY(); //Initializes the directionY attribute from the Hostiles super class.
+        this.setStartPositionX(); //Initializes a starting position on the x-axis of the grid.
+        this.setStartPositionY(); //Initializes a starting position on the y-axis of the grid.
     }
 
 
-    public void setSharkDirectionX() {
+    public void setDirectionX() {
         if (super.getCoordinateX() == 0) {
             super.setDirectionX(1);
         } else if (super.getCoordinateX() == Game.getLimitX()) {
@@ -30,58 +28,75 @@ public class Shark extends Hostiles {
         }
     }
     
-    public void setSharkDirectionY() {
+    public void setDirectionY() {
         super.setDirectionY(0);
     }
 
-//    public void setSharkMovespeedX() {
-//        switch (Character.getLevelReached()) {
-//            case 0:
-//                lastSharkMovespeed = 1;
-//                break;
-//            case 1:
-//                if (lastSharkMovespeed == 2) {
-//                    lastSharkMovespeed = 1;
-//                } else if (lastSharkMovespeed == 1) {
-//                    lastSharkMovespeed = 2;
-//                }   super.setMoveSpeedX(lastSharkMovespeed);
-//                super.setMoveSpeedX(1);
-//                break;
-//            default:
-//                super.setMoveSpeedX((int) Math.ceil(Math.random() * 3));
-//                break;
-//        }
-//    }
+    public void setMovespeedX(){
+        super.setMoveSpeedX(1);
+    }
     
     public void setSharkMovespeedY() {
         super.setMoveSpeedY(0);
     }
     
-    public void setSharkStartPositionX(){
-        super.setStartPositionX();
+    @Override
+    //math.round maintains the same chance for all grids, an explicit casting would simply floor
+    public void setStartPositionX(){
+        int temp = (int)Math.round(Math.random()*Game.getLimitX());
+        int startPositionX;
         
+        if(temp < (double)Game.getLimitX()/2){
+            startPositionX = -1;
+                    }
+        else {startPositionX = Game.getLimitX();} 
+        
+        super.setCoordinateX(startPositionX);
         
     }
     
-    public void setSharkStartPositionY(){
-        super.setStartPositionY();
+    @Override
+    //math.round maintains the same chance for all grids, an explicit casting would simply floor
+    public void setStartPositionY() {
+        //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
+        boolean run = true;
+        int counter;
+        //Makes sure Hostiles are never spawned on the same y position 
+        //(Note: Endless loop if number of hostiles > limitY-2)
+        do{
+            counter = 0;
+        for (int i = 0; i<Room.getHostilesActive().size(); i++){
+            //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
+            if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
+                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
+                run = true;
+                break;
+            }
+            else{counter++;}
+        }
+        if (counter == Room.getHostilesActive().size()){
+        run = false;    
+        }
+        
+        }while (run);
+        
+        super.setCoordinateY(startPositionY);
     }
     
-    public int checkSharkCoordinateX(){
-        return super.getCoordinateX();
-    }
-    
-    public int checkSharkCoordinateY(){
-        return super.getCoordinateY();
-    }
-    
-    public void updateSharkCoordinateX(int currentCoordinateX){
-        int newCoordinateX = currentCoordinateX + super.getMoveSpeedX();
+    @Override
+    public void moveX(){
+        int currentCoordinateX = super.getCoordinateX();
+        int newCoordinateX = currentCoordinateX + super.getDirectionX()*super.getMoveSpeedX();
         super.setCoordinateX(newCoordinateX);
     }
     
-    public void updateSharkCoordinateY(int currentCoordinateY){
-        int newCoordinateY = currentCoordinateY + super.getMoveSpeedY();
+    @Override
+    public void moveY(){
+        int currentCoordinateY = super.getCoordinateY();
+        int newCoordinateY = currentCoordinateY + super.getDirectionY()*super.getMoveSpeedY();
         super.setCoordinateY(newCoordinateY);
     }
+    
+    
 }

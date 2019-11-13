@@ -1,6 +1,6 @@
 package worldofzuul;
 
-public class Hostiles extends Coordinate {
+public abstract class Hostiles extends Coordinate {
 private int DirectionX; //Hostiles moving horizontal
 private int DirectionY; //Hostiles moving vertical
 private int Damage;
@@ -10,8 +10,6 @@ private int MoveSpeedY; //This can be timed with the corresponding direction val
 public Hostiles()
     {
     super(0,0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
-    this.setCoordinateX(setStartPositionX()); //sets the coordinates to the returned value of setStartPositionX (method)
-    this.setCoordinateY(setStartPositionY()); //sets the coordinates to the returned value of setStartPositionY (method)
     
     }
 
@@ -55,51 +53,32 @@ public Hostiles()
         this.Damage = Damage;
     }
 
-    //math.round maintains the same chance for all grids, an explicit casting would simply floor
-    public int setStartPositionX() {
+    
+    public void setStartPositionX() {
+        //insert code in subClass
+    }
+    
+    
+    public void setStartPositionY() {
+        //insert code in subClass
+    }
+    
+    public void moveX(){
         
-        int temp = (int)Math.round(Math.random()*Game.getLimitX());
+    }
+    
+    public void moveY(){
         
-        int startPositionX;
-        if(temp < Game.getLimitX()/2){startPositionX = -1;}
-        else {startPositionX = Game.getLimitX();}
-
-        return startPositionX;
     }
 
-    //math.round maintains the same chance for all grids, an explicit casting would simply floor
-    public int setStartPositionY() {
-        //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
-        boolean run = true;
-        int counter;
-        //Makes sure Hostiles are never spawned on the same y position 
-        //(Note: Endless loop if number of hostiles > limitY-2)
-        do{
-            counter = 0;
-        for (int i = 0; i<Room.getHostilesActive().size(); i++){
-            //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
-            if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
-                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-3))+2;  
-                run = true;
-                break;
-            }
-            else{counter++;}
-        }
-        if (counter == Room.getHostilesActive().size()){
-        run = false;    
-        }
-        
-        }while (run);
-        
-        return startPositionY;
-    }
+    
+    
         // for the text based UI.
 	@Override
 	public String toString(){
-		return "Damage: " + Damage + "; Dir:" + DirectionX +
-			"; x:" + getCoordinateX() +
-			"; y:" + getCoordinateY();
+		return "Damage: " + this.Damage + "; Dir:" + this.DirectionX +
+			"; x:" + super.getCoordinateX() +
+			"; y:" + super.getCoordinateY();
 	}
  
 
