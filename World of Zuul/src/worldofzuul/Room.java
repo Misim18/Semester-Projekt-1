@@ -3,7 +3,7 @@ package worldofzuul;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Iterator; //unused import?
 
 public class Room extends Coordinate {
 
@@ -34,7 +34,7 @@ public class Room extends Coordinate {
 
     private String getExitString() {
         String returnString = "Exits:";     //First word of the 'returnString'
-        Set<String> keys = exits.keySet();  //Creates a set of strings called keys, and is equal to Set is a collection that can't contain dublicates
+        Set<String> keys = exits.keySet();  //Creates a set of Strings called keys, and is equal to the entire key-set for exits (HashMap)
         for (String exit : keys) {           //Adds all the exits for the room to the 'returnString'
             returnString += " " + exit;
         }
