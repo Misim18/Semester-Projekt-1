@@ -26,7 +26,7 @@ public class Shark extends Hostiles {
         if(temp < (double)Game.getLimitX()/2){
             startPositionX = -1;
                     }
-        else {startPositionX = Game.getLimitX();} 
+        else {startPositionX = Game.getLimitX()+1;} 
         
         super.setCoordinateX(startPositionX);
         
