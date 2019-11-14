@@ -16,14 +16,15 @@ public class Collectables extends Coordinate {
     }
 
     public static final void initializeItemNames() {
-        itemNames = new String[7];
+        itemNames = new String[8];
         itemNames[0] = "Food Wrapper";
-        itemNames[1] = "Plastic Bottle";
-        itemNames[2] = "Plastic Bottle Cap";
-        itemNames[3] = "Plastic Bag";
-        itemNames[4] = "Straw";
-        itemNames[5] = "Plastic Take Away Container";
+        itemNames[1] = "Plastic Straw";
+        itemNames[2] = "Plastic Fork / Knife / Spoon";
+        itemNames[3] = "Plastic Bottle";
+        itemNames[4] = "Plastic Bottle Cap";
+        itemNames[5] = "Plastic Bag";
         itemNames[6] = "Plastic Lid";
+        itemNames[7] = "Plastic Cup / Plate";
 
 //        //used for verifying content of itemNames
 //        for (int x = 0; x < getItemNames().length; x++)
@@ -60,10 +61,50 @@ public class Collectables extends Coordinate {
         return startPositionY;
     }
 
-    public String setRandomName() {
-        int temp = (int) Math.round(Math.random() * (getItemNames().length - 1)); //minus one, because arrays are 0 indexed (see next line)
+//    public String setRandomName() {
+//        int temp = (int) Math.round(Math.random() * (getItemNames().length - 1)); //minus one, because arrays are 0 indexed (see next line)
+//
+//        return getItemNamesElement(temp);
+//    }
+
+        public String setRandomName() {
+        int foodWrap = 3728712;
+        int strawStir = 3668871;
+        int forkKnifeSpoon = 1968065;
+        int plasticBottle = 1754908;
+        int bottleCap = 1390232;
+        int plasticBag = (964541 + 938929);
+        int plasticLid = 729892;
+        int plasticCupPlate = 656276;
+
+        int TotalTrash = foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid + plasticCupPlate;
+
+        int temp = (int) Math.round(Math.random() * TotalTrash); //minus one, because arrays are 0 indexed (see next line)
+
+        if (isBetween(temp, 0, foodWrap)) {
+            temp = 0;
+        } else if (isBetween(temp, foodWrap, foodWrap + strawStir)) {
+            temp = 1;
+        } else if (isBetween(temp, foodWrap + strawStir, foodWrap + strawStir + forkKnifeSpoon)) {
+            temp = 2;
+        } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon, foodWrap + strawStir + forkKnifeSpoon + plasticBottle)) {
+            temp = 3;
+        } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon + plasticBottle, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap)) {
+            temp = 4;
+        } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag)) {
+            temp = 5;
+        } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid)) {
+            temp = 6;
+        } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid + plasticCupPlate)) {
+            temp = 7;
+        } 
 
         return getItemNamesElement(temp);
+    }
+    
+    //dependency for the above method
+    public static boolean isBetween(int x, int lower, int upper) {
+        return (lower <= x && x <= upper);
     }
 
     @Override
