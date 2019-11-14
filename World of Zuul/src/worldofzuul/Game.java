@@ -152,14 +152,14 @@ public class Game //attributes
 //            }
 //        }
 
-        currentRoom = grid[1][getLimitX()/2]; 
+        currentRoom = grid[1][getLimitX()/2];
     }
 
     public void play()
     {
         Text.printWelcome(player1);
         Text.printInfo(player1, currentRoom);
-        
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -269,19 +269,9 @@ public class Game //attributes
 		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
 		// Check it player is on boat:
-		if(boat.getCoordinateY() == player1.getCoordinateY()){
-				for(Collectables item : player1.getInventory()){
-					boat.addToBoatInventory(item);
-				}
-                                player1.clearInventory();
-				if(currentRoom.getNumberOfCollectablesLeft() <= 0){
-					System.out.println("There are no more items left");
-					Shopping.goToShop(player1);
-					nextLevel();
-				} else{
-				System.out.println("There are still more items left: " +
-						currentRoom.getNumberOfCollectablesLeft());
-				}
+		if(boat.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())){
+			nextLevel();
+			Shopping.goToShop(player1);
 		}
 
 		// Check if player is on item, then player pickup

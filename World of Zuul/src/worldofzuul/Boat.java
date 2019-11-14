@@ -94,6 +94,25 @@ public class Boat extends Coordinate {
         this.plasticReductionUpgrades = plasticReductionUpgrades;
     }
 
+	public boolean playerOnBoat(Character player, int collectablesleft){
+		if (getCoordinateY() == player.getCoordinateY()) {
+			for (Collectables item : player.getInventory()) {
+				addToBoatInventory(item);
+			}
+			player.clearInventory();
+			if (collectablesleft <= 0) {
+				System.out.println("There are no more items left");
+				return true;
+			} else {
+				System.out.println("There are still more items left: "
+						+ collectablesleft);
+				return false;
+			}
+		}
+		return false;
+
+	}
+
     @Override
     public String toString() {
         return "Error toString on boat object";
