@@ -10,7 +10,7 @@ public class Collectables extends Coordinate {
         super(0, 0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
         this.setCoordinateX(setRandomPositionX()); //sets the coordinates to the returned value of setRandomPositionX (method)
         this.setCoordinateY(setRandomPositionY()); //sets the coordinates to the returned value of setRandomPositionY (method)
-        this.checkDoublePlaceing();
+        this.checkDoublePlaceing();         //checks if there's already a collectable on this position, if so - rolls some new ones untill there isn't
         this.name = setRandomName();  //How it should be
         this.weight = 1; //this CAN be made interactive based on the name of the collectable
     }
