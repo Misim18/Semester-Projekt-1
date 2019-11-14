@@ -11,12 +11,9 @@ public class Game //attributes
     private static int limitX;
     private static Boat boat;
     private Character player1;
-    private static String[] itemNames;
 
     public Game() //Constructor
     {
-        //Shopping.goToShop();                                                      //for when we wish to call the shop.
-
         Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
         Text.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
@@ -24,25 +21,8 @@ public class Game //attributes
 	player1 = new Character(name, (getLimitX()/2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
-        initializeItemNames();                                                      //Calls the initializeItemNames method
+        Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         nextLevel();                                                                //Calls the nextLevel method
-    }
-
-    public final void initializeItemNames () {
-        itemNames = new String[7];
-        itemNames[0] = "Food Wrapper";
-        itemNames[1] = "Plastic Bottle";
-        itemNames[2] = "Plastic Bottle Cap";
-        itemNames[3] = "Plastic Bag";
-        itemNames[4] = "Straw";
-        itemNames[5] = "Plastic Take Away Container";
-        itemNames[6] = "Plastic Lid";
-
-//        //used for verifying content of itemNames
-//        for (int x = 0; x < getItemNames().length; x++)
-//    {
-//        System.out.println(getItemNames()[x]);
-//    }
     }
 
     public String uppercaseName (String name) {
@@ -110,13 +90,6 @@ public class Game //attributes
         this.limitX = limitX;
     }
 
-    public static String[] getItemNames() { //Returns the entire array
-    return itemNames;
-    }
-
-    public static String getItemNamesElement(int x) { //Returns the x'th array element
-    return itemNames[x];
-    }
 
     private void createInitialHostiles(int amountOfActiveHostiles) //Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
     {
