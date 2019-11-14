@@ -10,7 +10,7 @@ public class Game //attributes
     private static int limitY;
     private static int limitX;
     private static Boat boat;
-	private Character player1;
+    private Character player1;
     private static String[] itemNames;
 
     public Game() //Constructor
@@ -18,18 +18,17 @@ public class Game //attributes
         //Shopping.goToShop();                                                      //for when we wish to call the shop.
 
         Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
-        Story.introLine();                                                          //calls the introLine method in Story
+        Text.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
-										// X , Y , Breath
-		player1 = new Character(name, (getLimitX()/2), 1, 14);                      //Makes a new character, feeding the name to the contructor
+	player1 = new Character(name, (getLimitX()/2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         boat = new Boat();                                                          //Creates a new boat
         initializeItemNames();                                                      //Calls the initializeItemNames method
         nextLevel();                                                                //Calls the nextLevel method
     }
 
-    public void initializeItemNames () {
+    public final void initializeItemNames () {
         itemNames = new String[7];
         itemNames[0] = "Food Wrapper";
         itemNames[1] = "Plastic Bottle";
@@ -76,22 +75,22 @@ public class Game //attributes
     return name;
     }
 
-	public static Boat getBoat(){
+	public Boat getBoat(){
 		return boat;
 	}
 
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
-        setLimitX(5+2*Character.getLevelReached());                         //Sets the new limitX
-        setLimitY(7+2*Character.getLevelReached());                         //Sets the new limitX
+        setLimitX(5+2*player1.getLevelReached());                         //Sets the new limitX
+        setLimitY(7+2*player1.getLevelReached());                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
         boat.placeBoat((getLimitX()/2), 0);                       //Places the boat at y = 0, x = middle
         boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
-        createInitialCollectables((5+2*Character.getLevelReached())-Character.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
-        createInitialHostiles(3+1*Character.getLevelReached());             //Creates the amount of Hostiles fed into the method
-        Character.setLevelReached(Character.getLevelReached()+1);           //Increments levelReached
-        Character.setRewards(Character.getRewards()+2);                 //gives rewards to character for upgrades
+        createInitialCollectables((5+2*player1.getLevelReached())-player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
+        createInitialHostiles(3+1*player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
+        player1.setLevelReached(player1.getLevelReached()+1);           //Increments levelReached
+        player1.setRewards(player1.getRewards()+2);                 //gives rewards to character for upgrades
     }
 
     public static int getLimitY() {
@@ -215,37 +214,24 @@ public class Game //attributes
 
     public void play()
     {
-        printWelcome();
-
+        Text.printWelcome(player1);
+        Text.printInfo(player1, currentRoom);
+        
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
 
-        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
+        Text.printInfo(player1, currentRoom);
         System.out.println("Thank you for playing.  Good bye.");
     }
 
-    private void printWelcome()
-    {
-        System.out.println();
-        System.out.println("Welcome to OceanClear " + Character.getName() + ". We are happy you are here. Let's get started.");
-        System.out.println("OceanClear is a game about cleaning the ocean.");
-        System.out.println();
-
-        Story.tutorial();
-
-        System.out.println();
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println();
-        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
-    }
 
     private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
-		clearScreen();
+		Text.clearScreen();
 
         CommandWord commandWord = command.getCommandWord();
         System.out.println();
@@ -323,7 +309,7 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-            Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife(), player1.getBreath(), currentRoom);
+            Text.printInfo(player1, currentRoom);
         }
         else {
             currentRoom = nextRoom;
@@ -347,7 +333,7 @@ public class Game //attributes
                                 player1.clearInventory();
 				if(currentRoom.getNumberOfCollectablesLeft() <= 0){
 					System.out.println("There are no more items left");
-					Shopping.goToShop();
+					Shopping.goToShop(player1);
 					nextLevel();
 				} else{
 				System.out.println("There are still more items left: " +
@@ -392,14 +378,8 @@ public class Game //attributes
 				}
 			}
 		}
-        Story.printInfo(currentRoom.getHostilesActive(), currentRoom.getCollectablesLeft(), player1.getLife() , player1.getBreath(), currentRoom);
+        Text.printInfo(player1, currentRoom);
 		return false;
-	}
-
-	// got it from https://stackoverflow.com/questions/2979383/java-clear-the-console 08-11-19
-	public static void clearScreen() {
-    	System.out.print("\033[H\033[2J");
-    	System.out.flush();
 	}
 
     private boolean quit(Command command) //quit command, med fejl på quit + second word

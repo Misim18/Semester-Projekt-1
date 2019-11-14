@@ -6,7 +6,6 @@
 package worldofzuul;
 
 public class Shark extends Hostiles {
-    //private static int lastSharkMovespeed; //Used for keeping track of the order in whitch movespeed is giving pr. created object.
 
     public Shark() {
         super();
@@ -62,9 +61,9 @@ public class Shark extends Hostiles {
     }
     
     public void setDirectionX() {
-        if (super.getCoordinateX() == 0) {
+        if (super.getCoordinateX() == -1) {
             super.setDirectionX(1);
-        } else if (super.getCoordinateX() == Game.getLimitX()) {
+        } else if (super.getCoordinateX() == Game.getLimitX()+1) {
             super.setDirectionX(-1);
         } else {
             System.out.println("Something went wrong with adding the direction");
@@ -97,5 +96,12 @@ public class Shark extends Hostiles {
         super.setCoordinateY(newCoordinateY);
     }
     
+         // for the text based UI.
+	@Override
+	public String toString(){
+		return "Shark - Damage:" + super.getDamage() + "; Dir:" + super.getDirectionX() +
+			"; x:" + super.getCoordinateX() +
+			"; y:" + super.getCoordinateY();
+	}
     
 }

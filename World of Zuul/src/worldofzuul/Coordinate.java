@@ -38,11 +38,8 @@ public abstract class Coordinate {
 		this.coordinateY = yPos;
 
 	}
-        // used in the text based game.
-	@Override
-	public String toString(){
-		return "\n" +
-			"x:" + getCoordinateX() +
-			" y:" + getCoordinateY();
-	}
-}
+        
+        @Override
+        public abstract String toString();
+        
+        }

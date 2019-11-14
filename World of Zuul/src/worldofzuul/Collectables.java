@@ -42,9 +42,9 @@ public class Collectables extends Coordinate {
 
     @Override
     public String toString() {
-        return "x:" + getCoordinateX() + " y:" + getCoordinateY() + " Name:" + name;
+        return name + " - x:" + getCoordinateX() + " y:" + getCoordinateY();
     }
-
+    
     public void checkDoublePlaceing() {
         int xPosition = this.getCoordinateX();
         int yPosition = this.getCoordinateY();

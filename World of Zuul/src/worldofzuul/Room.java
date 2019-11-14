@@ -95,4 +95,9 @@ public class Room extends Coordinate {
         collectablesLeft.clear();
     }
 
+        @Override
+    public String toString(){
+        return "Should this be implemented?";
+    }
+    
 }
