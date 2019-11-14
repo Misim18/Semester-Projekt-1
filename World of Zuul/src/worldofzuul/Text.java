@@ -115,7 +115,34 @@ public class Text {
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
+    public static String uppercaseName(String name) {
+        name = name.trim();        //Trim to get rid of white space (both in before and after the string)
+
+        ArrayList<String> nameArray = new ArrayList<>();
+
+        //While the name contains a space, fetch all the segments in between the spaces
+        while (name.contains(" ")) {
+            int cutAt = name.indexOf(" ");                  //indexOf(" ") gives an int correcsponding to where the first space is in the string
+            nameArray.add(name.substring(0, cutAt));         //So the first "name" must be from 0 to where the space occurs
+            name = name.substring(cutAt + 1);                 //Now we cut at this point + 1, because we dont want to include the space
+        }
+        //Since the name was trimmed originally, the last "name" can't be found by looking for the space character
+        nameArray.add(name);
+        //Reset name, as we are going to have it contain the uppercased version instead
+        name = "";
+
+        //For the entire nameArray, set name to the i'th arrayElement with first letter uppercased and rest lowercased
+        for (int i = 0; i < nameArray.size(); i++) {
+            name += nameArray.get(i).substring(0, 1).toUpperCase() + nameArray.get(i).substring(1).toLowerCase() + " ";
+        }
+
+        //The above method, adds an additional space at the end, we remove this here.
+        name = name.trim();
+
+        return name;
+    }
+
     // got it from https://stackoverflow.com/questions/2979383/java-clear-the-console 08-11-19
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
