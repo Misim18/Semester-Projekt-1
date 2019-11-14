@@ -94,6 +94,9 @@ public class Boat extends Coordinate {
         this.plasticReductionUpgrades = plasticReductionUpgrades;
     }
 
+	// Checks if the player is on boat and then emptys player inventory to boat.
+	// return false: you are still missing some items.
+	// return true: you have collected all items.
 	public boolean playerOnBoat(Character player, int collectablesleft){
 		if (getCoordinateY() == player.getCoordinateY()) {
 			for (Collectables item : player.getInventory()) {

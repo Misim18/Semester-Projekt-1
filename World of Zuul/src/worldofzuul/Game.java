@@ -262,59 +262,6 @@ public class Game //attributes
 		return false;
     }
 
-	private boolean update(){
-		currentRoom.updateHostiles();
-
-		// Set the player coordinates
-		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
-
-		// Check it player is on boat:
-		if(boat.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())){
-			nextLevel();
-			Shopping.goToShop(player1);
-		}
-
-		// Check if player is on item, then player pickup
-		for(int i=0; i <currentRoom.getCollectablesLeft().size(); i++){
-			if(currentRoom.getCollectablesLeft().get(i).getCoordinateX() == player1.getCoordinateX() &&
-					currentRoom.getCollectablesLeft().get(i).getCoordinateY() == player1.getCoordinateY())
-			{
-				// Checks if the player has room in inventory and then add it to players inventory.
-				// Else Print don't have room
-				if(player1.addToInventory(currentRoom.getCollectablesLeft().get(i))){
-				System.out.println("You Picked up: " + currentRoom.getCollectablesLeft().get(i).getName());
-				currentRoom.removeFromCollectablesLeft(i);
-				--i;
-				} else {
-					System.out.println("You dont have any more room.");
-					System.out.println("Your inventory size: " + player1.getCarryCapacity() + "/" + player1.getCarryCapacity());
-				}
-			}
-		}
-
-		// Updates player breath and if it return true you are dead.
-		if(player1.UpdateBreath()){
-			return true;
-		}
-		// Check if the hostiles hits the player.
-		for(Hostiles hostile : currentRoom.getHostilesActive()){
-			if(hostile.getCoordinateX() == player1.getCoordinateX() &&
-					hostile.getCoordinateY() == player1.getCoordinateY())
-			{
-				// Damage the player
-				player1.setLife(player1.getLife() - hostile.getDamage());
-				// Checks if the player is dead
-				if(player1.getLife()<=0){
-					System.out.println("Player Health: " + player1.getLife());
-					System.out.println("You are dead");
-					return true;
-				}
-			}
-		}
-        Text.printInfo(player1, currentRoom);
-		return false;
-	}
-
     private boolean quit(Command command) //quit command, med fejl på quit + second word
     {
         if(command.hasSecondWord()) {
@@ -325,4 +272,38 @@ public class Game //attributes
             return true;
         }
     }
+
+	// return true to end game.
+	private boolean update(){
+		currentRoom.updateHostiles();
+
+		// Set the player coordinates
+		player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
+
+		// Check it player is on boat:
+		// it returns true if there is no more items.
+		if(boat.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())){
+			nextLevel();
+			Shopping.goToShop(player1);
+		}
+
+		// Check if player is on item, then player pickup
+		player1.OnItem(currentRoom.getCollectablesLeft());
+
+		// Updates player breath and if it return true you are dead.
+		if(player1.UpdateBreath()){
+			return true;
+		}
+
+		// Check if the hostiles hits the player.
+		if(player1.hitHostile(currentRoom.getHostilesActive())){
+			// return true if player is dead
+			return true;
+		}
+
+		// print where player, collectables, and hostiles
+		Text.printInfo(player1, currentRoom);
+		return false;
+	}
+
 }
