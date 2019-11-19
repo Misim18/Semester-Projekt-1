@@ -9,8 +9,7 @@ public abstract class Hostiles extends Coordinate {
     private int MoveSpeedY; //This can be timed with the corresponding direction value.
 
     public Hostiles() {
-        super(0, 0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
-
+        super(); // Sets the coordinate to x0, y0
     }
 
     public int getDirectionX() {

@@ -7,7 +7,7 @@ public class Collectables extends Coordinate {
     private static String[] itemNames;
 
     public Collectables() {
-        super(0, 0); //This seems to be nessesary as super wouldn't take a method returning an int, as an argument
+        super(); // it is the possion to x0, y0
         this.setCoordinateX(setRandomPositionX()); //sets the coordinates to the returned value of setRandomPositionX (method)
         this.setCoordinateY(setRandomPositionY()); //sets the coordinates to the returned value of setRandomPositionY (method)
         this.checkDoublePlaceing();
@@ -77,7 +77,7 @@ public class Collectables extends Coordinate {
 
         boolean run = true;
         int counter;
-        //Makes sure Hostiles are never spawned on the same y position 
+        //Makes sure Hostiles are never spawned on the same y position
         //(Note: Endless loop if number of hostiles > limitY-2)
         do {
             counter = 0;

@@ -1,7 +1,7 @@
 /*
- * 
- * 
- * 
+ *
+ *
+ *
  */
 package worldofzuul;
 
@@ -21,45 +21,45 @@ public class Shark extends Hostiles {
     public void setStartPositionX(){
         int startPositionX;
         int temp = (int)Math.round(Math.random()*Game.getLimitX());
-        
+
         if(temp < (double)Game.getLimitX()/2){
             startPositionX = -1;
                     }
-        else {startPositionX = Game.getLimitX()+1;} 
-        
+        else {startPositionX = Game.getLimitX()+1;}
+
         super.setCoordinateX(startPositionX);
-        
+
     }
-    
+
     @Override
     //math.round keeps the same chance for all outcomes.
     public void setStartPositionY() {
         //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
+        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
         boolean run = true;
         int counter;
-        //Makes sure Hostiles are never spawned on the same y position 
+        //Makes sure Hostiles are never spawned on the same y position
         //(Note: Endless loop if number of hostiles > limitY-2)
         do{
             counter = 0;
         for (int i = 0; i<Room.getHostilesActive().size(); i++){
             //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
             if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
-                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;  
+                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
                 run = true;
                 break;
             }
             else{counter++;}
         }
         if (counter == Room.getHostilesActive().size()){
-        run = false;    
+        run = false;
         }
-        
+
         }while (run);
-        
+
         super.setCoordinateY(startPositionY);
     }
-    
+
     public void setDirectionX() {
         if (super.getCoordinateX() == -1) {
             super.setDirectionX(1);
@@ -69,33 +69,33 @@ public class Shark extends Hostiles {
             System.out.println("Something went wrong with adding the direction");
         }
     }
-    
+
     public void setDirectionY() {
         super.setDirectionY(0);
     }
-    
+
     public void setMovespeedX(){
         super.setMoveSpeedX(1);
     }
-    
+
     public void setSharkMovespeedY() {
         super.setMoveSpeedY(0);
     }
-    
+
     @Override
     public void moveX(){
         int currentCoordinateX = super.getCoordinateX();
         int newCoordinateX = currentCoordinateX + super.getDirectionX()*super.getMoveSpeedX();
         super.setCoordinateX(newCoordinateX);
     }
-    
+
     @Override
     public void moveY(){
         int currentCoordinateY = super.getCoordinateY();
         int newCoordinateY = currentCoordinateY + super.getDirectionY()*super.getMoveSpeedY();
         super.setCoordinateY(newCoordinateY);
     }
-    
+
          // for the text based UI.
 	@Override
 	public String toString(){
@@ -103,5 +103,5 @@ public class Shark extends Hostiles {
 			"; x:" + super.getCoordinateX() +
 			"; y:" + super.getCoordinateY();
 	}
-    
+
 }

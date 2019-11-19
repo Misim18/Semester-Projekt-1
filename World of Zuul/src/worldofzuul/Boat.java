@@ -2,7 +2,7 @@ package worldofzuul;
 
 import java.util.ArrayList;
 
-public class Boat extends Coordinate {
+public class Boat extends Room {
 
     private ArrayList<Collectables> boatInventory = new ArrayList<>();
     private int levelTrashCollected;
@@ -12,8 +12,9 @@ public class Boat extends Coordinate {
     private int breathUpgrades;
     private int plasticReductionUpgrades;
 
-    public Boat() {
-        super((Game.getLimitX() / 2), 0); //Middle x value, and top y value on the grid.
+
+    public Boat(int x, int y, String description) {
+        super(x, y, description); //Middle x value, and top y value on the grid.
         levelTrashCollected = 0;
         totalTrashCollected = 0;
         money = 0;
@@ -22,6 +23,10 @@ public class Boat extends Coordinate {
         plasticReductionUpgrades = 0;
 
     }
+
+	public Boat(){
+		this(0, 0, "Boat that does not know where it is");
+	}
 
     public void placeBoat(int x, int y) {
         this.setCoordinateX(x);
