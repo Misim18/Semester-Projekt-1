@@ -1,4 +1,4 @@
-package worldofzuul;
+package gameLogic;
 
 // blueprint for the commandWords the player can use in the game..
 public enum CommandWord

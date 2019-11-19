@@ -1,4 +1,4 @@
-package worldofzuul;
+package gameLogic;
 
 public class Start {
     

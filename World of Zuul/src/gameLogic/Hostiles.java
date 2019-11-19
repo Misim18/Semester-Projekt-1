@@ -1,4 +1,4 @@
-package worldofzuul;
+package gameLogic;
 
 public abstract class Hostiles extends Coordinate {
 

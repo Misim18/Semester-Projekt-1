@@ -3,7 +3,7 @@
  *
  *
  */
-package worldofzuul;
+package gameLogic;
 
 public class Shark extends Hostiles {
 

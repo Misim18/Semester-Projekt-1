@@ -1,4 +1,4 @@
-package worldofzuul;
+package gameLogic;
 
 import java.util.ArrayList;
 
