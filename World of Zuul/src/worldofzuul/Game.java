@@ -12,6 +12,7 @@ public class Game //attributes
 	private static Boat boat;
 	private Character player1;
 	private Room[][] grid;
+	private Shopping shop;
 
 	public Game() //Constructor
 	{
@@ -22,6 +23,7 @@ public class Game //attributes
 		player1 = new Character(name, (getLimitX()/2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
 		parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
 		boat = new Boat();                                                          //Creates a new boat
+		shop = new Shopping();
 		Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
 		nextLevel();                                                                //Calls the nextLevel method
 	}
@@ -293,7 +295,7 @@ public class Game //attributes
 		// it returns true if there is no more items.
 		if(boat.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())){
 			nextLevel();
-			Shopping.goToShop(player1);
+			shop.goToShop(player1);
 		}
 
 		// Check if player is on item, then player pickup

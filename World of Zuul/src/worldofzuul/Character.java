@@ -91,9 +91,9 @@ public class Character extends Coordinate {
         return this.amountOfBreathLeft;
     }
 
-    public void setBreath(int breathIn) {
-        this.breath = breathIn;
-        this.amountOfBreathLeft = breath;
+    public void upgradeBreath() {
+        breath++;
+        amountOfBreathLeft = breath;
     }
 
     public int getRewards() {

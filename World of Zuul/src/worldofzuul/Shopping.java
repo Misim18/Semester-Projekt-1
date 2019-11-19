@@ -12,26 +12,22 @@ import java.util.Scanner;
  * @author mikai
  */
 public class Shopping {
-    
-    private static ParserShop parser;
-    
-    public static void goToShop(Character player1) {
-        
+	private ParserShop parser = new ParserShop();
+
+    public void goToShop(Character player1) {
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");
         System.out.println("You have " + player1.getRewards() + " rewards to spent");
-        parser = new ParserShop();
-        
         parser.showShopCommands();
-        
+
         boolean finished = false;
         while (! finished) {
             CommandShop command = parser.getCommand();
             finished = processShopCommand(player1, command);
         }
-        
+
     }
-    
-    private static boolean processShopCommand(Character player1, CommandShop command) 
+
+    private boolean processShopCommand(Character player1, CommandShop command)
     {
         boolean wantToNextLevel = false;
 
@@ -47,25 +43,25 @@ public class Shopping {
         }
         else if (commandWord == CommandWordShop.BREATH) {
             if (player1.getRewards() > 0) {
-                player1.setBreath(player1.getBreath()+1); 
-                System.out.println("Your breath has been upgraded to " + player1.getBreath()); 
+                player1.upgradeBreath();
+                System.out.println("Your breath has been upgraded to " + player1.getBreath());
                 player1.setRewards(player1.getRewards()-1);
                 System.out.println("You now have " + player1.getRewards() + " rewards left");
             }
-            else if (player1.getRewards() == 0){ 
+            else if (player1.getRewards() == 0){
                 System.out.println("You have spent all of your rewards");
                 System.out.println("You better nextlevel it");
             }
-        } 
+        }
         else if (commandWord == CommandWordShop.INVENTORY) {
             if (player1.getRewards() > 0) {
                 player1.setCarryCapacity(player1.getCarryCapacity()+1);
-                System.out.println("Your inventory capacity has been upgraded to " + player1.getCarryCapacity()); 
+                System.out.println("Your inventory capacity has been upgraded to " + player1.getCarryCapacity());
                 player1.setRewards(player1.getRewards()-1);
                 System.out.println("You now have " + player1.getRewards() + " rewards left");
             }
-            else if (player1.getRewards() == 0){ 
-                System.out.println("You have spent all of your rewards"); 
+            else if (player1.getRewards() == 0){
+                System.out.println("You have spent all of your rewards");
                 System.out.println("You better nextlevel it");
             }
         } else if (commandWord == CommandWordShop.NEXTLEVEL) {
@@ -73,13 +69,13 @@ public class Shopping {
         }
         return wantToNextLevel;
     }
-    
-    private static void printShopHelp() 
+
+    private void printShopHelp()
     {
         System.out.println("Your command words are:");
         parser.showShopCommands();
     }
 
-    
-    
+
+
 }
