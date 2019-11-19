@@ -12,7 +12,6 @@ public class Boat extends Room {
     private int breathUpgrades;
     private int plasticReductionUpgrades;
 
-
     public Boat(int x, int y, String description) {
         super(x, y, description); //Middle x value, and top y value on the grid.
         levelTrashCollected = 0;
@@ -24,9 +23,9 @@ public class Boat extends Room {
 
     }
 
-	public Boat(){
-		this(0, 0, "Boat that does not know where it is");
-	}
+    public Boat() {
+        this(0, 0, "Boat that does not know where it is");
+    }
 
     public void placeBoat(int x, int y) {
         this.setCoordinateX(x);
@@ -99,27 +98,27 @@ public class Boat extends Room {
         this.plasticReductionUpgrades = plasticReductionUpgrades;
     }
 
-	// Checks if the player is on boat and then emptys player inventory to boat.
-	// return false: you are still missing some items.
-	// return true: you have collected all items.
-	public boolean playerOnBoat(Character player, int collectablesleft){
-		if (getCoordinateY() == player.getCoordinateY()) {
-			for (Collectables item : player.getInventory()) {
-				addToBoatInventory(item);
-			}
-			player.clearInventory();
-			if (collectablesleft <= 0) {
-				System.out.println("There are no more items left");
-				return true;
-			} else {
-				System.out.println("There are still more items left: "
-						+ collectablesleft);
-				return false;
-			}
-		}
-		return false;
+    // Checks if the player is on boat and then emptys player inventory to boat.
+    // return false: you are still missing some items.
+    // return true: you have collected all items.
+    public boolean playerOnBoat(Character player, int collectablesleft) {
+        if (getCoordinateY() == player.getCoordinateY()) {
+            for (Collectables item : player.getInventory()) {
+                addToBoatInventory(item);
+            }
+            player.clearInventory();
+            if (collectablesleft <= 0) {
+                System.out.println("There are no more items left");
+                return true;
+            } else {
+                System.out.println("There are still more items left: "
+                        + collectablesleft);
+                return false;
+            }
+        }
+        return false;
 
-	}
+    }
 
     @Override
     public String toString() {

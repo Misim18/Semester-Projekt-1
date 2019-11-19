@@ -12,9 +12,9 @@ public class Room extends Coordinate {
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
     private static ArrayList<Collectables> collectablesLeft = new ArrayList<>();
 
-    public Room (int x, int y, String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
+    public Room(int x, int y, String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {
-        super(x,y);
+        super(x, y);
         this.description = description;
         exits = new HashMap<String, Room>();
     }
@@ -95,8 +95,8 @@ public class Room extends Coordinate {
         collectablesLeft.clear();
     }
 
-        @Override
-    public String toString(){
+    @Override
+    public String toString() {
         return "Should this be implemented?";
     }
 

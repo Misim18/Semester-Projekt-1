@@ -1,11 +1,7 @@
-
 package gameLogic;
 
-
-
-
 public class Level {
-    
+
     private int levelSizeX;
     private int levelSizeY;
     private int reward;
@@ -13,13 +9,13 @@ public class Level {
     private int amountOfActiveHostiles;
 
     public Level(int levelReached) {
-        this.levelSizeX = 10*levelReached;
-        this.levelSizeY = 10*levelReached;
-        this.reward = 1+1*levelReached;
-        this.amountOfCollectables = 5*levelReached;
-        this.amountOfActiveHostiles = 3+3*levelReached;
-    } 
-  
+        this.levelSizeX = 10 * levelReached;
+        this.levelSizeY = 10 * levelReached;
+        this.reward = 1 + 1 * levelReached;
+        this.amountOfCollectables = 5 * levelReached;
+        this.amountOfActiveHostiles = 3 + 3 * levelReached;
+    }
+
     public int getLevelSizeX() {
         return levelSizeX;
     }
@@ -51,15 +47,13 @@ public class Level {
     public void setAmountOfCollectables(int amountOfCollectables) {
         this.amountOfCollectables = amountOfCollectables;
     }
-    
+
     public int getAmountOfActiveHostiles() {
         return amountOfActiveHostiles;
     }
 
     public void setAmountOfActiveHostiles(int amountOfActiveHostiles) {
-        this.amountOfActiveHostiles = amountOfActiveHostiles;    
-    }   
-    
-    
-    
+        this.amountOfActiveHostiles = amountOfActiveHostiles;
+    }
+
 }

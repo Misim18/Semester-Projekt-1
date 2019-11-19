@@ -66,8 +66,7 @@ public class Collectables extends Coordinate {
 //
 //        return getItemNamesElement(temp);
 //    }
-
-        public String setRandomName() {
+    public String setRandomName() {
         int foodWrap = 3728712;
         int strawStir = 3668871;
         int forkKnifeSpoon = 1968065;
@@ -97,11 +96,11 @@ public class Collectables extends Coordinate {
             temp = 6;
         } else if (isBetween(temp, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid, foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid + plasticCupPlate)) {
             temp = 7;
-        } 
+        }
 
         return getItemNamesElement(temp);
     }
-    
+
     //dependency for the above method
     public static boolean isBetween(int x, int lower, int upper) {
         return (lower <= x && x <= upper);

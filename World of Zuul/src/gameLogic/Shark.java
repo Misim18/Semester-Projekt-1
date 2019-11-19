@@ -18,14 +18,15 @@ public class Shark extends Hostiles {
 
     @Override
     //math.round keeps the same chance for all outcomes.
-    public void setStartPositionX(){
+    public void setStartPositionX() {
         int startPositionX;
-        int temp = (int)Math.round(Math.random()*Game.getLimitX());
+        int temp = (int) Math.round(Math.random() * Game.getLimitX());
 
-        if(temp < (double)Game.getLimitX()/2){
+        if (temp < (double) Game.getLimitX() / 2) {
             startPositionX = -1;
-                    }
-        else {startPositionX = Game.getLimitX()+1;}
+        } else {
+            startPositionX = Game.getLimitX() + 1;
+        }
 
         super.setCoordinateX(startPositionX);
 
@@ -35,27 +36,28 @@ public class Shark extends Hostiles {
     //math.round keeps the same chance for all outcomes.
     public void setStartPositionY() {
         //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
-        int startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
+        int startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 2)) + 2;
         boolean run = true;
         int counter;
         //Makes sure Hostiles are never spawned on the same y position
         //(Note: Endless loop if number of hostiles > limitY-2)
-        do{
+        do {
             counter = 0;
-        for (int i = 0; i<Room.getHostilesActive().size(); i++){
-            //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
-            if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY){
-                startPositionY = (int)Math.round(Math.random()*(Game.getLimitY()-2))+2;
-                run = true;
-                break;
+            for (int i = 0; i < Room.getHostilesActive().size(); i++) {
+                //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
+                if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY) {
+                    startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 2)) + 2;
+                    run = true;
+                    break;
+                } else {
+                    counter++;
+                }
             }
-            else{counter++;}
-        }
-        if (counter == Room.getHostilesActive().size()){
-        run = false;
-        }
+            if (counter == Room.getHostilesActive().size()) {
+                run = false;
+            }
 
-        }while (run);
+        } while (run);
 
         super.setCoordinateY(startPositionY);
     }
@@ -63,7 +65,7 @@ public class Shark extends Hostiles {
     public void setDirectionX() {
         if (super.getCoordinateX() == -1) {
             super.setDirectionX(1);
-        } else if (super.getCoordinateX() == Game.getLimitX()+1) {
+        } else if (super.getCoordinateX() == Game.getLimitX() + 1) {
             super.setDirectionX(-1);
         } else {
             System.out.println("Something went wrong with adding the direction");
@@ -74,7 +76,7 @@ public class Shark extends Hostiles {
         super.setDirectionY(0);
     }
 
-    public void setMovespeedX(){
+    public void setMovespeedX() {
         super.setMoveSpeedX(1);
     }
 
@@ -83,25 +85,25 @@ public class Shark extends Hostiles {
     }
 
     @Override
-    public void moveX(){
+    public void moveX() {
         int currentCoordinateX = super.getCoordinateX();
-        int newCoordinateX = currentCoordinateX + super.getDirectionX()*super.getMoveSpeedX();
+        int newCoordinateX = currentCoordinateX + super.getDirectionX() * super.getMoveSpeedX();
         super.setCoordinateX(newCoordinateX);
     }
 
     @Override
-    public void moveY(){
+    public void moveY() {
         int currentCoordinateY = super.getCoordinateY();
-        int newCoordinateY = currentCoordinateY + super.getDirectionY()*super.getMoveSpeedY();
+        int newCoordinateY = currentCoordinateY + super.getDirectionY() * super.getMoveSpeedY();
         super.setCoordinateY(newCoordinateY);
     }
 
-         // for the text based UI.
-	@Override
-	public String toString(){
-		return "Shark - Damage:" + super.getDamage() + "; Dir:" + super.getDirectionX() +
-			"; x:" + super.getCoordinateX() +
-			"; y:" + super.getCoordinateY();
-	}
+    // for the text based UI.
+    @Override
+    public String toString() {
+        return "Shark - Damage:" + super.getDamage() + "; Dir:" + super.getDirectionX()
+                + "; x:" + super.getCoordinateX()
+                + "; y:" + super.getCoordinateY();
+    }
 
 }
