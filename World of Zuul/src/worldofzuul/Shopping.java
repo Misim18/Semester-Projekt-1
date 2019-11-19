@@ -17,17 +17,8 @@ public class Shopping {
     
     public static void goToShop(Character player1) {
         
-//       RYK CARACTER TIL SHOP RUM FØRST EFTER 1 ITERATION       
-//        SHOW COMMANDWORDSFORSHOP MED PARSER
-//        
-//        GET INPUT OF UPGRADE
-//                UPGRADE THE SELECTED UPGRADE
-//        
-//        WRITE NEXT TO NEW LEVEL
-        
-
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");
-        System.out.println("Du har " + player1.getRewards() + " rewards at gøre godt med");
+        System.out.println("You have " + player1.getRewards() + " rewards to spent");
         parser = new ParserShop();
         
         parser.showShopCommands();
@@ -78,7 +69,7 @@ public class Shopping {
                 System.out.println("You better nextlevel it");
             }
         } else if (commandWord == CommandWordShop.NEXTLEVEL) {
-            wantToNextLevel = nextLevel(command);
+            wantToNextLevel = true;
         }
         return wantToNextLevel;
     }
@@ -88,17 +79,7 @@ public class Shopping {
         System.out.println("Your command words are:");
         parser.showShopCommands();
     }
-    
-    private static boolean nextLevel(CommandShop command) //ligesom quit command
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Next what?");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
     
     
 }
