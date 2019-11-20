@@ -110,10 +110,8 @@ public class Game //attributes
         }
 
         //Sets right exits
-        System.out.println("LimitX:" + getLimitX() + " LimitY:" + getLimitY());
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 0; x < getLimitX() - 1; x++) {
-                System.out.println("Y:" + y + " X:" + x);
                 grid[y][x].setExit("right", grid[y][x + 1]);
             }
         }
