@@ -1,4 +1,4 @@
-name: Java CI
+name: World_of_Zuul
 
 on: [push]
 
