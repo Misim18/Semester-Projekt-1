@@ -10,8 +10,8 @@ public class Game //attributes
     private Room currentRoom;
     private static int limitY;
     private static int limitX;
-    private static Boat boat;
     private Character player1;
+    private Room boat;
     private Room[][] grid;
     private Shopping shop;
 
@@ -23,22 +23,18 @@ public class Game //attributes
         name = Text.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
         player1 = new Character(name, (getLimitX() / 2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
-        boat = new Boat();                                                          //Creates a new boat
+        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
         shop = new Shopping();
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         nextLevel();                                                                //Calls the nextLevel method
     }
 
-    public Boat getBoat() {
-        return boat;
-    }
 
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5 + 2 * player1.getLevelReached());                         //Sets the new limitX
         setLimitY(7 + 2 * player1.getLevelReached());                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
-        boat.placeBoat((getLimitX() / 2), 0);                       //Places the boat at y = 0, x = middle
-        boat.setLevelTrashCollected(0);                                     //Resets levelTrashCollected attribute in Boat
+		System.out.println(boat);
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
         createInitialCollectables((5 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
@@ -96,12 +92,13 @@ public class Game //attributes
         //Creates a new two-dimensional room array, with limitY "slots" of limitX elements
         grid = new Room[getLimitY()][getLimitX()];
 
-        //Creates the grid
+        //Creates the grid and places the boat in the top row and in the middle.
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 0; x < getLimitX(); x++) {
                 if (x == getLimitX() / 2 && y == 0) {
-                    grid[y][x] = new Boat(x, y, "now in the boat room, with the coordinates: x:" + x + " y:" + y);
-                } else if (y == 0) {
+                    grid[y][x] = boat;
+					boat.setCoordinate_X_Y(getLimitX() / 2, 0);
+				} else if (y == 0) {
                     grid[y][x] = new Room(x, y, "now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 } else {
                     grid[y][x] = new Room(x, y, "now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
@@ -269,9 +266,9 @@ public class Game //attributes
 
         // Check it player is on boat:
         // it returns true if there is no more items.
-        if (boat.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())) {
-            nextLevel();
+        if (currentRoom.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())) {
             shop.goToShop(player1);
+            nextLevel();
         }
 
         // Check if player is on item, then player pickup
@@ -290,6 +287,7 @@ public class Game //attributes
 
         // print where player, collectables, and hostiles
         Text.printInfo(player1, currentRoom);
+
         return false;
     }
 

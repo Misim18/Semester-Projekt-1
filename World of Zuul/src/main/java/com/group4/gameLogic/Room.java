@@ -2,6 +2,7 @@ package gameLogic;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator; //unused import?
 
@@ -28,9 +29,14 @@ public class Room extends Coordinate {
         return description;
     }
 
+
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
+
+    public boolean playerOnBoat(Character player, int collectablesleft) {
+		return false;
+	}
 
     private String getExitString() {
         String returnString = "Exits:";     //First word of the 'returnString'
@@ -97,7 +103,7 @@ public class Room extends Coordinate {
 
     @Override
     public String toString() {
-        return "Should this be implemented?";
+        return description;
     }
 
 }
