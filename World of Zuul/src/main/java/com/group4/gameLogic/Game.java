@@ -59,18 +59,16 @@ public class Game //attributes
         this.limitX = limitX;
     }
 
-    private void createInitialHostiles(int amountOfActiveHostiles) //Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
-    {
+	//Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
+    private void createInitialHostiles(int amountOfActiveHostiles) {
         for (int x = 0; x < amountOfActiveHostiles; x++) {
             Room.addToHostilesActive(new Shark());
         }
     }
 
-    private void createInitialCollectables(int amountOfCollectables) //Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
-    {
-
+	//Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
+    private void createInitialCollectables(int amountOfCollectables) {
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
-
         for (int x = 0; x < gameCollectables.length; x++) {
             gameCollectables[x] = new Collectables();
             Room.addToCollectablesLeft(gameCollectables[x]);
