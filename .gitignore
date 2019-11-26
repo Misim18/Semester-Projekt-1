@@ -15,6 +15,12 @@
 *.1
 *.log
 
+
+ctags
+tags
+.classpath
+.project
+/World of Zuul/.settings/
 /World of Zuul/nbproject/private/
 /World of Zuul/build/
 /World of Zuul/src/worldofzuul/ctags
