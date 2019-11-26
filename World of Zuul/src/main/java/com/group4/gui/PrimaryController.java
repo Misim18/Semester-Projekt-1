@@ -8,13 +8,10 @@ package com.group4.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TitledPane;
 
 /**
  * FXML Controller class
@@ -23,75 +20,67 @@ import javafx.scene.control.TitledPane;
  */
 public class PrimaryController implements Initializable {
 
-    @FXML
-    private TitledPane ColorPicker;
-    @FXML
-    private RadioButton rbBlue;
-    @FXML
-    private RadioButton rbRed;
-    @FXML
-    private RadioButton rbGreen;
-    @FXML
-    private RadioButton rbBlack;
-    @FXML
-    private RadioButton rbSmall;
-    @FXML
-    private RadioButton rbMedium;
-    @FXML
-    private RadioButton rbBig;
-    @FXML
-    private Button bUndo;
-    @FXML
-    private Button bClear;
-    @FXML
-    private Label handleHejLabel;
 
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
+
+    @FXML
+    private Button bUp;
+
+    @FXML
+    private Button bDown;
+
+    @FXML
+    private Button bLeft;
+
+    @FXML
+    private Button bRight;
+
+    @FXML
+    private Button bSave;
+
+    @FXML
+    private Button bLoad;
+
+    @FXML
+    private Button bQuit;
+
+    @FXML
+    void handleDownButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleLeftButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleLoadButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleQuitButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleRightButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleSaveButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleUpButtonAction(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-
-    @FXML
-    private void handleBlueRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleRedRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleGreenRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleBlackRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleSamllRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleMediumRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleBigRadioButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleUndoButtonAction(ActionEvent event) {
-			handleHejLabel.setText("Kevin");
-
-    }
-
-    @FXML
-    private void handleClearButtonAction(ActionEvent event) {
-    }
 }

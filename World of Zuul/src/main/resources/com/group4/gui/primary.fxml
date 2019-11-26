@@ -1,62 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group4.gui.PrimaryController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group4.gui.PrimaryController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="123.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="10.0" prefWidth="477.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="271.0" minHeight="10.0" prefHeight="269.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="195.0" prefWidth="470.0" GridPane.rowIndex="1" />
+      <GridPane prefHeight="58.0" prefWidth="470.0" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="185.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="285.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <TitledPane fx:id="ColorPicker" animated="false" prefHeight="150.0" prefWidth="123.0" text="ColorPicker">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="121.0">
-                     <children>
-                        <RadioButton fx:id="rbBlue" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleBlueRadioButtonAction" text="Blue" />
-                        <RadioButton fx:id="rbRed" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleRedRadioButtonAction" prefWidth="93.0" text="Red" />
-                        <RadioButton fx:id="rbGreen" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleGreenRadioButtonAction" text="Green" />
-                        <RadioButton fx:id="rbBlack" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBlackRadioButtonAction" text="Black" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </TitledPane>
-            <TitledPane animated="false" prefHeight="116.0" prefWidth="123.0" text="Pen size">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="121.0">
-                     <children>
-                        <RadioButton fx:id="rbSmall" layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSamllRadioButtonAction" text="Small" />
-                        <RadioButton fx:id="rbMedium" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleMediumRadioButtonAction" prefWidth="93.0" text="Medium" />
-                        <RadioButton fx:id="rbBig" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleBigRadioButtonAction" text="Big" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-            <Button fx:id="bUndo" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="25.0" prefWidth="165.0" text="Undo">
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin></Button>
-            <Button fx:id="bClear" mnemonicParsing="false" onAction="#handleClearButtonAction" prefHeight="25.0" prefWidth="145.0" text="Clear">
-               <VBox.margin>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin></Button>
-            <Label fx:id="handleHejLabel" text="Label" />
+            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="73.0" prefWidth="285.0" GridPane.columnIndex="1">
+               <children>
+                  <Button id="bUp" fx:id="bUp" layoutX="29.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleUpButtonAction" text="⬆" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="0.0" />
+                  <Button id="bDown" fx:id="bDown" layoutX="29.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleDownButtonAction" text="⬇" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="50.0" />
+                  <Button id="bLeft" fx:id="bLeft" layoutY="27.0" mnemonicParsing="false" onAction="#handleLeftButtonAction" text="⬅" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                  <Button id="bRight" fx:id="bRight" layoutX="58.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleRightButtonAction" text="➡" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="25.0" />
+                  <Label layoutX="100.0" layoutY="18.0" text="Health" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="25.0" />
+                  <Label id="labelHealth" layoutX="100.0" layoutY="43.0" prefWidth="29.0" text="100" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
+                  <Label layoutX="142.0" layoutY="18.0" text="Level" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="25.0" />
+                  <Label id="labelLevel" layoutX="147.0" layoutY="43.0" text="3" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="35.0" />
+                  <Button fx:id="bSave" layoutX="187.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="bLoad" layoutX="236.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLoadButtonAction" text="Load" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="bQuit" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0" />
+               </children>
+            </AnchorPane>
          </children>
-      </VBox>
-      <AnchorPane prefHeight="400.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      </GridPane>
    </children>
 </GridPane>
