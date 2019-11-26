@@ -1,4 +1,4 @@
-package gameLogic;
+package com.group4.gameLogic;
 
 // blueprint for the commandWords the player can use in the game..
 public enum CommandWord {

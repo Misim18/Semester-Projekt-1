@@ -16,7 +16,7 @@
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-package gameLogic;
+package com.group4.gameLogic;
 
 public class Command {
 

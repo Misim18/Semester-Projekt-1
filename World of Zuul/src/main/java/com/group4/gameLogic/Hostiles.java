@@ -1,4 +1,4 @@
-package gameLogic;
+package com.group4.gameLogic;
 
 public abstract class Hostiles extends Coordinate {
 

@@ -3,7 +3,7 @@
  *
  *
  */
-package gameLogic;
+package com.group4.gameLogic;
 
 public class Shark extends Hostiles {
 
