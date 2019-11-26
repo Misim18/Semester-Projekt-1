@@ -1,12 +1,12 @@
 package com.group4.gui;
 
+import gameLogic.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
+import javafx.stage.Stage;
 
 /**
  * JavaFX App
@@ -16,7 +16,7 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -34,5 +34,6 @@ public class App extends Application {
     public static void load(String[] args) {
         launch(args);
     }
+
 
 }
