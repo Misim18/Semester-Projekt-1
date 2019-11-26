@@ -47,17 +47,12 @@ public class Text {
         System.out.println("OceanClear is a game about cleaning the ocean.");
         System.out.println();
 
-        Text.tutorial();
 
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
     }
 
-    public static void tutorial() {
-        System.out.println("This is where we'd give you the tutorial.");
-        System.out.println("IF WE HAD/WANTED ONE! 🤔");//nice FOP refrence xD
-    }
 
     public static void printAfterMoved(Boat boat) {
         ArrayList<Coordinate> listOfElements = new ArrayList<>();
