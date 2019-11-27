@@ -224,7 +224,7 @@ public class Game //attributes
         parser.showCommands();
     }
 
-    private boolean goRoom(Command command) {
+    public boolean goRoom(Command command) {
         if (!command.hasSecondWord()) { //if the command does not have second word
             System.out.println("Go where?");
             return false;
