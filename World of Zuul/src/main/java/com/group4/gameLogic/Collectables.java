@@ -10,7 +10,7 @@ public class Collectables extends Coordinate {
         super(); // it is the possion to x0, y0
         this.setCoordinateX(setRandomPositionX()); //sets the coordinates to the returned value of setRandomPositionX (method)
         this.setCoordinateY(setRandomPositionY()); //sets the coordinates to the returned value of setRandomPositionY (method)
-        this.checkDoublePlaceing();         //checks if there's already a collectable on this position, if so - rolls some new ones untill there isn't
+        //this.checkDoublePlaceing();         //checks if there's already a collectable on this position, if so - rolls some new ones untill there isn't
         this.name = setRandomName();  //How it should be
         this.weight = 1; //this CAN be made interactive based on the name of the collectable
     }
@@ -78,7 +78,7 @@ public class Collectables extends Coordinate {
 
         int TotalTrash = foodWrap + strawStir + forkKnifeSpoon + plasticBottle + bottleCap + plasticBag + plasticLid + plasticCupPlate;
 
-        int temp = (int) Math.round(Math.random() * TotalTrash); //minus one, because arrays are 0 indexed (see next line)
+        int temp = (int) Math.round(Math.random() * TotalTrash);
 
         if (isBetween(temp, 0, foodWrap)) {
             temp = 0;
@@ -98,10 +98,36 @@ public class Collectables extends Coordinate {
             temp = 7;
         }
 
-        return getItemNamesElement(temp);
+        switch (temp) {
+            case 2:
+                temp = (int) Math.round(Math.random() * 2);
+
+                switch (temp) {
+                    case 0:
+                        return "Plastic Fork";
+                    case 1:
+                        return "Plastic Knife";
+                    case 2:
+                        return "Plastic Spoon";
+                    default:
+                        break;
+                }
+            case 7:
+                temp = (int) Math.round(Math.random());
+
+                switch (temp) {
+                    case 0:
+                        return "Plastic Cup";
+                    case 1:
+                        return "Plastic Plate";
+                    default:
+                        break;
+                }
+            default:
+                return getItemNamesElement(temp);
+        }
     }
 
-    //dependency for the above method
     public static boolean isBetween(int x, int lower, int upper) {
         return (lower <= x && x <= upper);
     }
