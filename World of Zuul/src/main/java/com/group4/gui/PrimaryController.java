@@ -10,8 +10,6 @@ import java.util.ResourceBundle;
 
 import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
-import com.group4.gameLogic.CommandWords;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,7 +66,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     void handleQuitButtonAction(ActionEvent event) {
-
+		App.game.processCommand(new Command(CommandWord.QUIT, null));
     }
 
 

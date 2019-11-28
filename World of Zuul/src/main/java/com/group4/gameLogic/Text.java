@@ -54,12 +54,17 @@ public class Text {
     }
 
 
-    public static void printAfterMoved(Boat boat) {
+    public static void printAfterMoved(Boat boat, int itemCount, Room[][] room) {
         ArrayList<Coordinate> listOfElements = new ArrayList<>();
 
-        for (int i = 0; i < Room.getCollectablesLeft().size(); i++) {
-            listOfElements.add(Room.getCollectablesLeft().get(i));
-        }
+		for (Room[] room1 : room) {
+			for (Room room11 : room1) {
+				if (room11.getCollectable() != null) {
+					listOfElements.add(room11.getCollectable());
+				}
+			}
+		}
+
         for (int i = 0; i < Room.getHostilesActive().size(); i++) {
             listOfElements.add(Room.getHostilesActive().get(i));
         }
@@ -79,19 +84,23 @@ public class Text {
             System.out.println("a " + type + " is at the coordinates: x" + xCoordinate + " Y" + yCoordinate);
         }
 
-        System.out.println("Collectables left: " + Room.getCollectablesLeft().size());
+        System.out.println("Collectables left: " + itemCount);
         System.out.println("Trash collected in this level: " + boat.getLevelTrashCollected());
         System.out.println("Total trash collected: " + boat.getTotalTrashCollected());
         System.out.println("");
     }
 
-    public static void printInfo(Character player1, Room currentRoom) {
+    public static void printInfo(Character player1, Room[][] room, Room currentRoom) {
 
         System.out.println();
         System.out.println("Collectables: ");
-        for (Collectables collectable : Room.getCollectablesLeft()) {
-            System.out.println(collectable);
-        }
+		for (Room[] room1 : room) {
+			for (Room room11 : room1) {
+				if (room11.getCollectable() != null) {
+					System.out.println(room11.getCollectable());
+				}
+			}
+		}
         System.out.println();
         System.out.println("Hostiles: ");
         for (Hostiles hostile : Room.getHostilesActive()) {
