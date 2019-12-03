@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 import java.io.IOException;
 
 import com.group4.gameLogic.Game;
@@ -29,6 +32,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         scene = new Scene(loadFXML("primary"), 1280, 800);
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+      if(key.getCode()==KeyCode.KP_DOWN) {
+          System.out.println("You pressed enter");
+      		}
+		});
         stage.setScene(scene);
         stage.show();
     }
