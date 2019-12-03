@@ -25,8 +25,8 @@ public class Character extends Coordinate {
     public void incrementCollectablesData(String type) {
         if (this.collectablesData.get(type) == null) {
             this.collectablesData.put(type, 1);
-        } else if (this.collectablesData.get(type) != null) {
-            this.collectablesData.put(type, this.collectablesData.get(type) + 1);
+        }else {
+            this.collectablesData.put(type, (this.collectablesData.get(type) + 1));
         }
     }
 
@@ -54,22 +54,15 @@ public class Character extends Coordinate {
     }
 
     // check if character has the same coordinate as collectables and then pick it up.
-    public void OnItem(ArrayList<Collectables> collectables) {
-        for (int i = 0; i < collectables.size(); i++) {
-            if (collectables.get(i).getCoordinateX() == getCoordinateX()
-                    && collectables.get(i).getCoordinateY() == getCoordinateY()) {
-                // Checks if the player has room in inventory and then add it to players inventory.
-                // Else Print don't have room
-                if (addToInventory(collectables.get(i))) {
-                    System.out.println("You Picked up: " + collectables.get(i).getName());
-                    collectables.remove(i);
-                    --i;
-                } else {
-                    System.out.println("You dont have any more room.");
-                    System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
-                }
-            }
-        }
+    public void OnItem(Room[][] itemInRoom) {
+		if(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable() != null ){
+			if(addToInventory(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable())){
+				itemInRoom[getCoordinateY()][getCoordinateX()].clearCollectable();
+			} else {
+				System.out.println("You dont have any more room.");
+				System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
+			}
+		}
     }
 
     // check if character has the same coorddinnate as hostile and then take damage.

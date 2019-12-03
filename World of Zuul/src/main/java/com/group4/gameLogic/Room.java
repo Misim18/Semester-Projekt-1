@@ -2,7 +2,6 @@ package com.group4.gameLogic;
 
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator; //unused import?
 
@@ -11,7 +10,7 @@ public class Room extends Coordinate {
     private String description;
     private HashMap<String, Room> exits;
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
-    private static ArrayList<Collectables> collectablesLeft = new ArrayList<>();
+	Collectables item;
 
     public Room(int x, int y, String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
     {
@@ -88,25 +87,19 @@ public class Room extends Coordinate {
         }
     }
 
-    public static ArrayList<Collectables> getCollectablesLeft() {
-        return collectablesLeft;
-    }
 
-    public static int getNumberOfCollectablesLeft() {
-        return collectablesLeft.size();
-    }
+	public void addCollectable(Collectables item){
+		this.item = item;
+	}
 
-    public static void addToCollectablesLeft(Collectables collectable) {
-        collectablesLeft.add(collectable);
-    }
+	public Collectables getCollectable(){
+		return item;
+	}
 
-    public static void removeFromCollectablesLeft(int index) {
-        collectablesLeft.remove(index);
-    }
+	public void clearCollectable(){
+		this.item = null;
+	}
 
-    public static void clearCollectablesLeft() {
-        collectablesLeft.clear();
-    }
 
     @Override
     public String toString() {
