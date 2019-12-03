@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group4.gui;
+
+import com.group4.gameLogic.Game;
 
 /**
  *
@@ -11,6 +8,7 @@ package com.group4.gui;
  */
 public class Main {
     public static void main(String[] args) {
-        App.load(args);
+		App.injectGame(new Game());
+        App.startFX(args);
     }
 }
