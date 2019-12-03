@@ -29,15 +29,14 @@ public class Game //attributes
         nextLevel();                                                                //Calls the nextLevel method
     }
 
-
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5 + 2 * player1.getLevelReached());                         //Sets the new limitX
         setLimitY(7 + 2 * player1.getLevelReached());                         //Sets the new limitX
         createRooms();                                                      //Creates the playable grid
-		System.out.println(boat);
+        System.out.println(boat);
         Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
-        createInitialCollectables((5 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
+        createInitialCollectables((15 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3 + 1 * player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
         player1.setLevelReached(player1.getLevelReached() + 1);           //Increments levelReached
         player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
@@ -59,14 +58,14 @@ public class Game //attributes
         this.limitX = limitX;
     }
 
-	//Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
+    //Creates and int number of hostiles and loads them into the activeHostiles ArrayList in Room
     private void createInitialHostiles(int amountOfActiveHostiles) {
         for (int x = 0; x < amountOfActiveHostiles; x++) {
             Room.addToHostilesActive(new Shark());
         }
     }
 
-	//Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
+    //Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
     private void createInitialCollectables(int amountOfCollectables) {
         Collectables[] gameCollectables = new Collectables[amountOfCollectables];
         for (int x = 0; x < gameCollectables.length; x++) {
@@ -95,8 +94,8 @@ public class Game //attributes
             for (int x = 0; x < getLimitX(); x++) {
                 if (x == getLimitX() / 2 && y == 0) {
                     grid[y][x] = boat;
-					boat.setCoordinate_X_Y(getLimitX() / 2, 0);
-				} else if (y == 0) {
+                    boat.setCoordinate_X_Y(getLimitX() / 2, 0);
+                } else if (y == 0) {
                     grid[y][x] = new Room(x, y, "now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 } else {
                     grid[y][x] = new Room(x, y, "now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
@@ -187,7 +186,7 @@ public class Game //attributes
 
     private void cheat(Command command) {
         if (!command.hasSecondWord()) { //if the command does not have second word
-            System.out.println("What kind of cheat?, it taks one arg?");
+            System.out.println("What kind of cheat?, type \"cheat list\" for help");
             return;
         }
         String cheat = command.getSecondWord();
@@ -195,7 +194,8 @@ public class Game //attributes
             case "list":
                 System.out.println("cheat motherload");
                 System.out.println("cheat getAllItem");
-                System.out.println("cheat nextlevel");
+                System.out.println("cheat nextLevel");
+                System.out.println("cheat goToShop");
                 break;
             case "motherload":
                 System.out.println("Here are 999,999 thousend of dollars to sims xD ");
@@ -203,7 +203,7 @@ public class Game //attributes
                 break;
             case "getAllItem":
                 for (Collectables item : currentRoom.getCollectablesLeft()) {
-                    player1.addToInventory(item);
+                    player1.addToInventoryCheat(item);
                 }
                 currentRoom.clearCollectablesLeft();
                 update();
@@ -211,8 +211,11 @@ public class Game //attributes
             case "nextLevel":
                 nextLevel();
                 break;
+            case "goToShop":
+                shop.goToShop(player1);
+                break;
             default:
-                System.out.println("This: " + cheat + "is not implementet yet");
+                System.out.println("This: " + cheat + " is not implementet yet");
         }
     }
 
@@ -265,6 +268,8 @@ public class Game //attributes
         // Check it player is on boat:
         // it returns true if there is no more items.
         if (currentRoom.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())) {
+            currentRoom.countCollectableTypes(player1);
+            currentRoom.printCollectablesData(player1);
             shop.goToShop(player1);
             nextLevel();
         }

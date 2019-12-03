@@ -1,12 +1,14 @@
 package com.group4.gameLogic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Character extends Coordinate {
 
     private String name; //consider revising this to work with scanner input
     private int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade, rewards;
     private ArrayList<Collectables> inventory;
+    private HashMap<String, Integer> collectablesData = new HashMap<String, Integer>();
 
     public Character(String name, int xPos, int yPos, int breath) {
         super(xPos, yPos);
@@ -20,6 +22,18 @@ public class Character extends Coordinate {
         this.inventory = new ArrayList<>();
     }
 
+    public void incrementCollectablesData(String type) {
+        if (this.collectablesData.get(type) == null) {
+            this.collectablesData.put(type, 1);
+        } else if (this.collectablesData.get(type) != null) {
+            this.collectablesData.put(type, this.collectablesData.get(type) + 1);
+        }
+    }
+
+    public HashMap getCollectablesData(){
+     return this.collectablesData;   
+    }
+    
     // Checks if the player is on the surface to get air
     // Else remove on from breathLeft and then check if they died.
     public boolean UpdateBreath() {
@@ -137,6 +151,10 @@ public class Character extends Coordinate {
         } else {
             return false;
         }
+    }
+
+    public void addToInventoryCheat(Collectables collectable) {
+        this.inventory.add(collectable);
     }
 
     // getInventory

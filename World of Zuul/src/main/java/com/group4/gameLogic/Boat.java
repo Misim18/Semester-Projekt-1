@@ -1,6 +1,7 @@
 package com.group4.gameLogic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Boat extends Room {
 
@@ -20,7 +21,6 @@ public class Boat extends Room {
         carryCapacityUpgrades = 0;
         breathUpgrades = 0;
         plasticReductionUpgrades = 0;
-
     }
 
     public Boat() {
@@ -101,7 +101,7 @@ public class Boat extends Room {
     // Checks if the player is on boat and then emptys player inventory to boat.
     // return false: you are still missing some items.
     // return true: you have collected all items.
-	@Override
+    @Override
     public boolean playerOnBoat(Character player, int collectablesleft) {
         if (getCoordinateY() == player.getCoordinateY()) {
             for (Collectables item : player.getInventory()) {
@@ -121,6 +121,24 @@ public class Boat extends Room {
 
     }
 
+    @Override
+    public void countCollectableTypes(Character player) {
+        String itemName;
+        for (Collectables item : getBoatInventory()) {
+            itemName = item.getName();
+
+            player.incrementCollectablesData(itemName);
+            }
+        }
+
+    @Override
+    public void printCollectablesData(Character player){
+        for (var i : player.getCollectablesData().keySet()){
+        System.out.println(i + ": " + player.getCollectablesData().get(i));
+    }
+    }
+    
+   
     @Override
     public String toString() {
         return "Boat - x:" + getCoordinateX() + " y:" + getCoordinateY();

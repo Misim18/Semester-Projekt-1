@@ -29,7 +29,14 @@ public class Room extends Coordinate {
         return description;
     }
 
-
+    public void countCollectableTypes(Character player){
+    System.out.println("You have called countCollectableTypes on a non-boat room");
+    }
+    
+    public void printCollectablesData(Character player){
+    System.out.println("You have called printCollectableData on a non-boat room");
+    }
+    
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
