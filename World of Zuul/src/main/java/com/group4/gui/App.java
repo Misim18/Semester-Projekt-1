@@ -5,14 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
+
+import com.group4.gameLogic.Game;
+
 import javafx.stage.Stage;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
+	static Game game;
     private static Scene scene;
+
+	public static void injectGame(Game game1){
+		game = game1;
+	}
+
+	public static Game getGame(){
+		return game;
+	}
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -30,7 +42,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void load(String[] args) {
+    public static void startFX(String[] args) {
         launch(args);
     }
 

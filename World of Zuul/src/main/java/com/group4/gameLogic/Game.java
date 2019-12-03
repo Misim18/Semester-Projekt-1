@@ -33,14 +33,13 @@ public class Game //attributes
     public void nextLevel() {                                               //Java said it might be a good idea to make this final, as to never be overwritten.
         setLimitX(5 + 2 * player1.getLevelReached());                         //Sets the new limitX
         setLimitY(7 + 2 * player1.getLevelReached());                         //Sets the new limitX
-        createRooms();                                                      //Creates the playable grid
-		System.out.println(boat);
-        Room.clearCollectablesLeft();                                       //Resets the ArrayList containing CollectablesLeft, this isn't really needed is it?
         Room.clearHostilesActive();                                         //Resets the ArrayList containing HostilesActive
+		createRooms();
         createInitialCollectables((5 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3 + 1 * player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
         player1.setLevelReached(player1.getLevelReached() + 1);           //Increments levelReached
         player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
+                                                              //Creates the playable grid System.out.println(boat);
     }
 
     public static int getLimitY() {
@@ -66,23 +65,25 @@ public class Game //attributes
         }
     }
 
-	//Creates an int number of Collectables and loads them into the collectablesLeft ArrayList in Room
+	//Creates an int number of Collectables and loads them into the Room(grid).
     private void createInitialCollectables(int amountOfCollectables) {
-        Collectables[] gameCollectables = new Collectables[amountOfCollectables];
-        for (int x = 0; x < gameCollectables.length; x++) {
-            gameCollectables[x] = new Collectables();
-            Room.addToCollectablesLeft(gameCollectables[x]);
+		// count is used for so it dose not create a infinite loop
+		int count =0;
+        for (int x=0; x < amountOfCollectables; x++) {
+			Collectables temp = new Collectables();
+			System.out.println("X:" + temp.getCoordinateX() + " Y:" + temp.getCoordinateY());
+			// check it the Room is emphty and then put the item in
+			// else it count one less and tries again. it can do that 10 times.
+			if(grid[temp.getCoordinateY()][temp.getCoordinateX()].getCollectable() == null){
+				grid[temp.getCoordinateY()][temp.getCoordinateX()].addCollectable(temp);
+			} else {
+				x--;
+				count++;
+				if(count >= amountOfCollectables + 10){
+					x = + amountOfCollectables +1;
+				}
+			}
         }
-
-        //            //Troubleshooting
-        //             for (int x = 0; x < gameCollectables.length; x++)
-        //    {
-        //        System.out.println("Collectables #" + x);
-        //        System.out.println(gameCollectables[x].getCoordinateX());
-        //        System.out.println(gameCollectables[x].getCoordinateY());
-        //        System.out.println(gameCollectables[x].getName());
-        //    }
-        //
     }
 
     private void createRooms() //Sets up the rooms in the game
@@ -149,7 +150,7 @@ public class Game //attributes
 
     public void play() {
         Text.printWelcome(player1);
-        Text.printInfo(player1, currentRoom);
+        Text.printInfo(player1, grid, currentRoom);
 
         boolean finished = false;
         while (!finished) {
@@ -157,11 +158,11 @@ public class Game //attributes
             finished = processCommand(command);
         }
 
-        Text.printInfo(player1, currentRoom);
+        Text.printInfo(player1, grid, currentRoom);
         System.out.println("Thank you for playing.  Good bye.");
     }
 
-    private boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         boolean wantToQuit = false;
         Text.clearScreen();
 
@@ -202,11 +203,11 @@ public class Game //attributes
                 update();
                 break;
             case "getAllItem":
-                for (Collectables item : currentRoom.getCollectablesLeft()) {
-                    player1.addToInventory(item);
-                }
-                currentRoom.clearCollectablesLeft();
-                update();
+//                for (Collectables item : currentRoom.getCollectablesLeft()) {
+//                    player1.addToInventory(item);
+//                }
+//                currentRoom.clearCollectablesLeft();
+//                update();
                 break;
             case "nextLevel":
                 nextLevel();
@@ -224,7 +225,7 @@ public class Game //attributes
         parser.showCommands();
     }
 
-    private boolean goRoom(Command command) {
+    public boolean goRoom(Command command) {
         if (!command.hasSecondWord()) { //if the command does not have second word
             System.out.println("Go where?");
             return false;
@@ -236,7 +237,7 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-            Text.printInfo(player1, currentRoom);
+            Text.printInfo(player1, grid, currentRoom);
         } else {
             currentRoom = nextRoom;
             return update();
@@ -245,7 +246,7 @@ public class Game //attributes
         return false;
     }
 
-    private boolean quit(Command command) //quit command, med fejl på quit + second word
+    public boolean quit(Command command) //quit command, med fejl på quit + second word
     {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -257,20 +258,20 @@ public class Game //attributes
 
     // return true to end game.
     private boolean update() {
-        currentRoom.updateHostiles();
-
+        Room.updateHostiles();
+		int itemLefts = itemLeft();
         // Set the player coordinates
         player1.setCoordinate_X_Y(currentRoom.getCoordinateX(), currentRoom.getCoordinateY());
 
         // Check it player is on boat:
         // it returns true if there is no more items.
-        if (currentRoom.playerOnBoat(player1, currentRoom.getNumberOfCollectablesLeft())) {
+        if (currentRoom.playerOnBoat(player1, itemLefts)) {
             shop.goToShop(player1);
             nextLevel();
         }
 
         // Check if player is on item, then player pickup
-        player1.OnItem(currentRoom.getCollectablesLeft());
+        player1.OnItem(grid);
 
         // Updates player breath and if it return true you are dead.
         if (player1.UpdateBreath()) {
@@ -278,15 +279,27 @@ public class Game //attributes
         }
 
         // Check if the hostiles hits the player.
-        if (player1.hitHostile(currentRoom.getHostilesActive())) {
+        if (player1.hitHostile(Room.getHostilesActive())) {
             // return true if player is dead
             return true;
         }
 
         // print where player, collectables, and hostiles
-        Text.printInfo(player1, currentRoom);
+        Text.printInfo(player1, grid, currentRoom);
 
         return false;
     }
+
+	private int itemLeft(){
+		int count = 0;
+		for(int i=0; i<grid.length; i++){
+			for(int j=0; j<grid[i].length; j++){
+				if(grid[i][j].getCollectable() != null){
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 
 }
