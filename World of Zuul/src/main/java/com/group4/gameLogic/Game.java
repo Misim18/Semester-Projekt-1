@@ -1,5 +1,7 @@
 package com.group4.gameLogic;
 
+import com.group4.myData.Load;
+import com.group4.myData.Save;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +16,8 @@ public class Game //attributes
     private Room boat;
     private Room[][] grid;
     private Shopping shop;
+    private Save save;
+    private Load load;
 
     public Game() //Constructor
     {
@@ -23,6 +27,8 @@ public class Game //attributes
         name = Text.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
         player1 = new Character(name, (getLimitX() / 2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
+        load = new Load();
+        save = new Save();
         boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
         shop = new Shopping();
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
@@ -180,6 +186,12 @@ public class Game //attributes
             cheat(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
+        } else if (commandWord == CommandWord.SAVE) {
+            save.SaveGame(player1);
+            System.out.println("Saved game");
+        } else if (commandWord == CommandWord.LOAD) {
+            load.LoadGame(player1);
+            System.out.println("Loaded game");
         }
         return wantToQuit;
     }
