@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Load {
 
-    File myFile = new File("C:\\Users\\mikai\\OneDrive\\Documentos\\NetBeansProjects\\Semester-Projekt-1\\Semester-Projekt-1\\data.txt");
+    File myFile = new File("data.txt");
 
     Scanner reader;
 
