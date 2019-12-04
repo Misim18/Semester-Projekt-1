@@ -89,6 +89,10 @@ public class Character extends Coordinate {
     public String getName() {
         return this.name;
     }
+    
+    public void setName(String nameIn) {
+        this.name = nameIn;
+    }
 
     // Breath
     public int getBreath() {
@@ -153,6 +157,10 @@ public class Character extends Coordinate {
     // getInventory
     public ArrayList<Collectables> getInventory() {
         return this.inventory;
+    }
+
+    public void setInventory(ArrayList<Collectables> inventory) {
+        this.inventory = inventory;
     }
 
     public void clearInventory() {

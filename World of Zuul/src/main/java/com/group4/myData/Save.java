@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.group4.myData;
+import com.group4.gameLogic.Character;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,18 +18,20 @@ import java.util.logging.Logger;
  */
 public class Save {
 
-    File myFile = new File("data.txt");
+    File myFile = new File("C:\\Users\\Shark Gaming\\Desktop\\data.txt"); //Data file placement
 
     PrintWriter pw;
 
-    public void SaveGame(Character player) {
+    public void SaveGame(Character player1) {
         try {
             this.pw = new PrintWriter(myFile);
-            pw.println("Saved data from your game:");
-            //pw.println("Character Level: " + player.getLevelReached());
+            //Remember the save order has to be the same as the load order
+            pw.println(player1.getLevelReached()); //stores level reached into the data file
+            pw.println(player1.getRewards()); //stores rewards left into the data file
+            pw.println(player1.getName()); //stores name into the data file
             pw.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Save.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("File was not found");
         }
     }
 
