@@ -189,9 +189,15 @@ public class Game //attributes
         } else if (commandWord == CommandWord.SAVE) {
             save.SaveGame(player1);
             System.out.println("Saved game");
+			System.out.println("Player Name: "+player1.getName());
+			System.out.println("Player Rewards: "+player1.getRewards());
+			System.out.println("Player LevelReached: "+player1.getLevelReached());
         } else if (commandWord == CommandWord.LOAD) {
             load.LoadGame(player1);
             System.out.println("Loaded game");
+			System.out.println("Player Name: "+player1.getName());
+			System.out.println("Player Rewards: "+player1.getRewards());
+			System.out.println("Player LevelReached: "+player1.getLevelReached());
         }
         return wantToQuit;
     }
