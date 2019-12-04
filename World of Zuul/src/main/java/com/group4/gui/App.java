@@ -34,8 +34,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 		window = stage;
-        scene = new Scene(loadFXML("game"));
-		window.setTitle("game");
+        scene = new Scene(loadFXML("start"));
+		window.setTitle("start");
 		window.setOnCloseRequest(e -> closeGame());
 		//window.setTitle("Hello World");
         window.setScene(scene);
@@ -81,6 +81,10 @@ public class App extends Application {
             if (key.getCode() == KeyCode.T) {
                 System.out.println("You presed T");
 				toggleUI();
+            }
+            if (key.getCode() == KeyCode.C) {
+                System.out.println("You presed C");
+				game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
             }
 
         });

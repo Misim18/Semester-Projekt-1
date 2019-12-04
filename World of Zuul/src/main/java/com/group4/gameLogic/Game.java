@@ -1,5 +1,6 @@
 package com.group4.gameLogic;
 
+import com.group4.gui.App;
 import com.group4.myData.Load;
 import com.group4.myData.Save;
 import java.util.ArrayList;
@@ -12,25 +13,32 @@ public class Game //attributes
     private Room currentRoom;
     private static int limitY;
     private static int limitX;
-    private Character player1;
+	private int option;
     private Room boat;
     private Room[][] grid;
-    private Shopping shop;
     private Save save;
     private Load load;
+    public Character player1;
+    public Shopping shop;
 
-    public Game() //Constructor
+    public Game(int option) //Constructor
     {
+		// option: 1=text 2=gui
+		this.option = option;
+		if(option == 1){
         Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
         Text.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = Text.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
         player1 = new Character(name, (getLimitX() / 2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
+		} else if(option == 2){
+			player1 = new Character((getLimitX() / 2), 1, 14);
+		}
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         load = new Load();
         save = new Save();
         boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
-        shop = new Shopping();
+        shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         nextLevel();                                                                //Calls the nextLevel method
     }
@@ -281,7 +289,13 @@ public class Game //attributes
         if (currentRoom.playerOnBoat(player1, itemsLeft)) {
             currentRoom.countCollectableTypes(player1);
             currentRoom.printCollectablesData(player1);
-            shop.goToShop(player1);
+			if(option == 1){
+            	shop.goToShop(player1);
+			} else if(option == 2){
+				//shop.injectPlayer(player1);
+				App.toggleUI();
+
+			}
             nextLevel();
         }
 

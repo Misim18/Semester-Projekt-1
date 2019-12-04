@@ -2,13 +2,10 @@ package com.group4.gui;
 
 import com.group4.gameLogic.Game;
 
-/**
- *
- * @author kkmp
- */
 public class Main {
     public static void main(String[] args) {
-		App.injectGame(new Game());
+		// new Game(2 = gui)
+		App.injectGame(new Game(2));
         App.startFX(args);
     }
 }

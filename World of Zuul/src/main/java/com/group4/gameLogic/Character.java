@@ -22,6 +22,9 @@ public class Character extends Coordinate {
         this.inventory = new ArrayList<>();
     }
 
+	public Character(int xPos, int yPos, int breath){
+		this("ThisIsAPlaceHolderForUI", xPos, yPos, breath);
+	}
     public void incrementCollectablesData(String type) {
         if (this.collectablesData.get(type) == null) {
             this.collectablesData.put(type, 1);
@@ -31,9 +34,9 @@ public class Character extends Coordinate {
     }
 
     public HashMap getCollectablesData(){
-     return this.collectablesData;   
+		return this.collectablesData;
     }
-    
+
     // Checks if the player is on the surface to get air
     // Else remove on from breathLeft and then check if they died.
     public boolean UpdateBreath() {
@@ -89,7 +92,7 @@ public class Character extends Coordinate {
     public String getName() {
         return this.name;
     }
-    
+
     public void setName(String nameIn) {
         this.name = nameIn;
     }
