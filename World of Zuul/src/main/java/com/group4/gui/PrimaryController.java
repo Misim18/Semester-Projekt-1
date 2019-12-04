@@ -36,6 +36,17 @@ public class PrimaryController implements Initializable {
     private Button bLoad;
     @FXML
     private Button bQuit;
+    
+        // Save and Load commands implement
+    @FXML
+    void handleSaveButtonAction() {
+        App.game.goRoom(new Command(CommandWord.SAVE, "save"));
+    }
+    
+    @FXML
+    void handleLoadButtonAction() {
+        App.game.goRoom(new Command(CommandWord.LOAD, "load"));
+    }
 
 	// GO commands implement
     @FXML
