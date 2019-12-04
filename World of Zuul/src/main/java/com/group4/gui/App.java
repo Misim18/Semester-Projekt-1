@@ -8,19 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
 import java.io.IOException;
-
 import com.group4.gameLogic.Game;
-
 import javafx.stage.Stage;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-    private static Scene scene;
 	private static Stage window;
+    static Scene scene;
     static Game game;
 
     public static void injectGame(Game game1) {
@@ -39,7 +36,6 @@ public class App extends Application {
 		window.setOnCloseRequest(e -> closeGame());
 		//window.setTitle("Hello World");
         window.setScene(scene);
-        addKeyEventScene();
         window.show();
     }
 
@@ -56,39 +52,6 @@ public class App extends Application {
         launch(args);
     }
 
-    public void addKeyEventScene() {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode() == KeyCode.S) {
-                System.out.println("You pressed down");
-                App.game.goRoom(new Command(CommandWord.GO, "down"));
-            }
-            if (key.getCode() == KeyCode.W) {
-                System.out.println("You pressed up");
-                App.game.goRoom(new Command(CommandWord.GO, "up"));
-            }
-            if (key.getCode() == KeyCode.A) {
-                System.out.println("You pressed left");
-                App.game.goRoom(new Command(CommandWord.GO, "left"));
-            }
-            if (key.getCode() == KeyCode.D) {
-                System.out.println("You pressed right");
-                App.game.goRoom(new Command(CommandWord.GO, "right"));
-            }
-            if (key.getCode() == KeyCode.Q) {
-                System.out.println("You presed Q");
-				closeGame();
-            }
-            if (key.getCode() == KeyCode.T) {
-                System.out.println("You presed T");
-				toggleUI();
-            }
-            if (key.getCode() == KeyCode.C) {
-                System.out.println("You presed C");
-				game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
-            }
-
-        });
-    }
 
 	public static void closeGame(){
 		window.close();

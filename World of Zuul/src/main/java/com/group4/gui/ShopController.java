@@ -38,5 +38,9 @@ public class ShopController {
 		App.toggleUI();
     }
 
+	@FXML
+    public void initialize() {
+
+	}
 }
 
