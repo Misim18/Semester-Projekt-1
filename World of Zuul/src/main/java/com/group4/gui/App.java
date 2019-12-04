@@ -19,9 +19,9 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
-    static Game game;
     private static Scene scene;
+	private Stage window;
+    static Game game;
 
     public static void injectGame(Game game1) {
         game = game1;
@@ -33,10 +33,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        scene = new Scene(loadFXML("primary"), 1280, 800);
-        stage.setScene(scene);
+		window = stage;
+        scene = new Scene(loadFXML("game"));
+		window.setTitle("game");
+		window.setOnCloseRequest(e -> closeGame());
+		//window.setTitle("Hello World");
+        window.setScene(scene);
         addKeyEventScene();
-        stage.show();
+        window.show();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -70,7 +74,37 @@ public class App extends Application {
                 System.out.println("You pressed right");
                 App.game.goRoom(new Command(CommandWord.GO, "right"));
             }
+            if (key.getCode() == KeyCode.Q) {
+                System.out.println("You presed Q");
+				closeGame();
+            }
+            if (key.getCode() == KeyCode.T) {
+                System.out.println("You presed T");
+				toggleUI();
+            }
+
         });
     }
 
+	public void closeGame(){
+		window.close();
+	}
+
+	public void toggleUI(){
+		try {
+			System.out.println("Window title" + window.getTitle());
+			if(window.getTitle() == "game"){
+				scene.setRoot(loadFXML("shop"));
+				window.setTitle("shop");
+			} else {
+				scene.setRoot(loadFXML("game"));
+				window.setTitle("game");
+			}
+
+		} catch (Exception e) {
+			//TODO: handle exception
+			System.out.println("Can't change root scene");
+			closeGame();
+		}
+	}
 }

@@ -21,7 +21,7 @@ import javafx.scene.control.Button;
  *
  * @author kkmp
  */
-public class PrimaryController implements Initializable {
+public class GameController implements Initializable {
     @FXML
     private Button bUp;
     @FXML

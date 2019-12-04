@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class SecondaryController {
+public class ShopController {
     @FXML // fx:id="bBuyInventoryUpgrade"
     private Button bBuyInventoryUpgrade; // Value injected by FXMLLoader
 
