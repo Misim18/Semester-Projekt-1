@@ -36,56 +36,44 @@ public class GameController implements Initializable {
     private Button bLoad;
     @FXML
     private Button bQuit;
-    
-        // Save and Load commands implement
-    @FXML
-    void handleSaveButtonAction() {
-        App.game.goRoom(new Command(CommandWord.SAVE, "save"));
-    }
-    
-    @FXML
-    void handleLoadButtonAction() {
-        App.game.goRoom(new Command(CommandWord.LOAD, "load"));
-    }
+
 
 	// GO commands implement
     @FXML
     void handleUpButtonAction(ActionEvent event) {
-		App.game.goRoom(new Command(CommandWord.GO, "up"));
+		App.game.processCommand(new Command(CommandWord.GO, "up"));
     }
 
     @FXML
     void handleDownButtonAction(ActionEvent event) {
-		App.game.goRoom(new Command(CommandWord.GO, "down"));
+		App.game.processCommand(new Command(CommandWord.GO, "down"));
     }
 
     @FXML
     void handleLeftButtonAction(ActionEvent event) {
-		App.game.goRoom(new Command(CommandWord.GO, "left"));
+		App.game.processCommand(new Command(CommandWord.GO, "left"));
     }
 
     @FXML
     void handleRightButtonAction(ActionEvent event) {
-		App.game.goRoom(new Command(CommandWord.GO, "right"));
+		App.game.processCommand(new Command(CommandWord.GO, "right"));
     }
 
 
     @FXML
     void handleLoadButtonAction(ActionEvent event) {
+        App.game.processCommand(new Command(CommandWord.LOAD, null ));
+    }
 
+    @FXML
+    void handleSaveButtonAction(ActionEvent event) {
+        App.game.processCommand(new Command(CommandWord.SAVE, null));
     }
 
     @FXML
     void handleQuitButtonAction(ActionEvent event) {
-		App.game.processCommand(new Command(CommandWord.QUIT, null));
+		App.closeGame();
     }
-
-
-    @FXML
-    void handleSaveButtonAction(ActionEvent event) {
-
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

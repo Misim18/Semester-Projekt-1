@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
     private static Scene scene;
-	private Stage window;
+	private static Stage window;
     static Game game;
 
     public static void injectGame(Game game1) {
@@ -86,11 +86,11 @@ public class App extends Application {
         });
     }
 
-	public void closeGame(){
+	public static void closeGame(){
 		window.close();
 	}
 
-	public void toggleUI(){
+	public static void toggleUI(){
 		try {
 			System.out.println("Window title" + window.getTitle());
 			if(window.getTitle() == "game"){
@@ -102,7 +102,6 @@ public class App extends Application {
 			}
 
 		} catch (Exception e) {
-			//TODO: handle exception
 			System.out.println("Can't change root scene");
 			closeGame();
 		}

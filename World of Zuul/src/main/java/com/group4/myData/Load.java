@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class Load {
 
-    File myFile = new File("C:\\Users\\Shark Gaming\\Desktop\\data.txt"); //Data file placement
+    File myFile = new File("data.txt"); //Data file placement
 
     Scanner reader;
 
