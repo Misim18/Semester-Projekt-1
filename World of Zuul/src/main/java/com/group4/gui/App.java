@@ -1,13 +1,9 @@
 package com.group4.gui;
 
-import com.group4.gameLogic.Command;
-import com.group4.gameLogic.CommandWord;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import com.group4.gameLogic.Game;
 import javafx.stage.Stage;
@@ -17,6 +13,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 	private static Stage window;
+	private static boolean firstTime = false;
     static Scene scene;
     static Game game;
 
@@ -71,6 +68,19 @@ public class App extends Application {
 		} catch (Exception e) {
 			System.out.println("Can't change root scene");
 			closeGame();
+		}
+	}
+
+
+	// Used for GameController to check if it have been
+	// init on time before.
+	public static boolean firstTimeInit(){
+		if(!firstTime){
+			firstTime = true;
+			return true;
+		} else {
+			return false;
+
 		}
 	}
 }

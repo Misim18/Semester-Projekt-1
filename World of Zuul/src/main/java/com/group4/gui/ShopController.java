@@ -3,6 +3,7 @@ package com.group4.gui;
 
 import com.group4.gameLogic.CommandShop;
 import com.group4.gameLogic.CommandWordShop;
+import com.group4.gameLogic.Text;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +41,7 @@ public class ShopController {
 
 	@FXML
     public void initialize() {
+		textFieldPirate.setText(Text.RandomFact());
 
 	}
 }

@@ -28,6 +28,10 @@ public class Text {
         return Line;
     }
 
+	public static String RandomFact(){
+		return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Maks 52 character per line";
+	}
+
     public void getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
         fillArray();
         int temp = (int) Math.round(Math.random() * 9);

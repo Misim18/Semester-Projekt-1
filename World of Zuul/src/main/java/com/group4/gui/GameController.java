@@ -3,13 +3,18 @@ package com.group4.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.group4.gameLogic.Collectables;
 import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +24,9 @@ public class GameController implements Initializable {
     @FXML
     private TextArea console;
     private PrintStream ps ;
+	@FXML
+    private ListView<Collectables> listViewInventory;
+	private ObservableList<Collectables> inventory;
 
     @FXML
     private Button bUp;
@@ -39,7 +47,17 @@ public class GameController implements Initializable {
 	@FXML
 	private Label labelLevel;
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+		ps = new PrintStream(new Console(console));
+		System.setOut(ps);
+        System.setErr(ps);
+		inventory = FXCollections.observableArrayList();
+		updateUI();
+		if(App.firstTimeInit()){
+			addKeyEventScene();
+		}
+    }
 	// GO commands implement
     @FXML
     void handleUpButtonAction(ActionEvent event) {
@@ -81,52 +99,45 @@ public class GameController implements Initializable {
 		App.closeGame();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-		addKeyEventScene();
-		ps = new PrintStream(new Console(console));
-		System.setOut(ps);
-        System.setErr(ps);
-		updateUI();
-    }
 
 	public void updateUI(){
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
+		updateInventory();
 	}
 
     public void addKeyEventScene() {
         App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.S) {
-                System.out.println("You pressed down");
                 App.game.goRoom(new Command(CommandWord.GO, "down"));
             }
             if (key.getCode() == KeyCode.W) {
-                System.out.println("You pressed up");
                 App.game.goRoom(new Command(CommandWord.GO, "up"));
             }
             if (key.getCode() == KeyCode.A) {
-                System.out.println("You pressed left");
                 App.game.goRoom(new Command(CommandWord.GO, "left"));
             }
             if (key.getCode() == KeyCode.D) {
-                System.out.println("You pressed right");
                 App.game.goRoom(new Command(CommandWord.GO, "right"));
             }
             if (key.getCode() == KeyCode.Q) {
-                System.out.println("You presed Q");
 				App.closeGame();
             }
             if (key.getCode() == KeyCode.T) {
-                System.out.println("You presed T");
 				App.toggleUI();
             }
             if (key.getCode() == KeyCode.C) {
-                System.out.println("You presed C");
 				App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
             }
 			updateUI();
         });
     }
+
+	// Needs to be made more performent. right now is not good.
+	public void updateInventory(){
+		inventory.clear();
+		inventory.addAll(App.game.player1.getInventory());
+		listViewInventory.setItems(inventory);
+
+	}
 }
