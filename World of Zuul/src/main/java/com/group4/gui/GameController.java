@@ -135,9 +135,18 @@ public class GameController implements Initializable {
 
 	// Needs to be made more performent. right now is not good.
 	public void updateInventory(){
-		inventory.clear();
-		inventory.addAll(App.game.player1.getInventory());
-		listViewInventory.setItems(inventory);
+		if(App.game.player1.inventoryUpdated()){
+			inventory.clear();
+			//inventory.addAll(App.game.player1.getInventory());
+			for (Collectables collectables : App.game.player1.getInventory()) {
+				inventory.add(collectables);
+				System.out.println(inventory);
+			}
+			listViewInventory.setItems(inventory);
+		System.out.println("Inventory updated");
+		} else {
+			System.out.println("Inventory not updated");
+		}
 
 	}
 }

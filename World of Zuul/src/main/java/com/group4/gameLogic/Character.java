@@ -9,6 +9,7 @@ public class Character extends Coordinate {
     private int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade, rewards;
     private ArrayList<Collectables> inventory;
     private HashMap<String, Integer> collectablesData = new HashMap<String, Integer>();
+	private boolean inventoryUpdated = false;
 
     public Character(String name, int xPos, int yPos, int breath) {
         super(xPos, yPos);
@@ -61,12 +62,26 @@ public class Character extends Coordinate {
 		if(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable() != null ){
 			if(addToInventory(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable())){
 				itemInRoom[getCoordinateY()][getCoordinateX()].clearCollectable();
+				inventoryUpdated = true;
 			} else {
 				System.out.println("You dont have any more room.");
 				System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
 			}
 		}
     }
+
+	public boolean inventoryUpdated(){
+		if(inventoryUpdated){
+			inventoryUpdated = false;
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+	public void setInventoryUpdated(boolean inventoryUpdated){
+		this.inventoryUpdated = inventoryUpdated;
+	}
 
     // check if character has the same coorddinnate as hostile and then take damage.
     // return true if dead else return false.
