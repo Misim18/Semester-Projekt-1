@@ -9,20 +9,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 
 public class StartController {
 
     @FXML
     private TextField textFieldPlayerName;
-
     @FXML
-    private TextField textFieldPlayerStat1;
-
+    private Text textLevel;
     @FXML
-    private TextField textFieldPlayerStat2;
-
+    private Text textRewards;
     @FXML
-    private TextField textFieldPlayerStat3;
+    private Text textBreath;
+    @FXML
+    private Text textInventory;
 
     @FXML
     private Button bLoad;
@@ -42,6 +42,10 @@ public class StartController {
     void handleLoadButtonAction(ActionEvent event) {
 		App.game.processCommand(new Command(CommandWord.LOAD, null));
 		textFieldPlayerName.setText(App.game.player1.getName());
+		textLevel.setText(""+App.game.player1.getLevelReached());
+		textRewards.setText(""+App.game.player1.getRewards());
+		textBreath.setText(""+App.game.player1.getBreath());
+		textInventory.setText(""+App.game.player1.getCarryCapacity());
     }
 
     @FXML

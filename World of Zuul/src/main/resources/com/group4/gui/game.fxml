@@ -32,7 +32,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listViewInventory" prefHeight="200.0" prefWidth="200.0" />
             <AnchorPane prefHeight="73.0" prefWidth="564.0" GridPane.columnIndex="1">
                <children>
                   <Button id="bUp" fx:id="bUp" layoutX="29.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleUpButtonAction" text="⬆" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="0.0" />
