@@ -14,9 +14,9 @@ public class Character extends Coordinate {
 	private ObservableList<Collectables> inventory;
     private HashMap<String, Integer> collectablesData = new HashMap<String, Integer>();
 
-    public Character(String name, int xPos, int yPos, int breath) {
+    public Character(String name, int xPos, int yPos) {
         super(xPos, yPos);
-        this.breath = breath;
+        this.breath = 14;
         this.name = name;
         this.amountOfBreathLeft = breath;
         this.life = 100;
@@ -26,8 +26,8 @@ public class Character extends Coordinate {
 		this.inventory = FXCollections.observableArrayList();
     }
 
-	public Character(int xPos, int yPos, int breath){
-		this("ThisIsAPlaceHolderForUI", xPos, yPos, breath);
+	public Character(int xPos, int yPos){
+		this("ThisIsAPlaceHolderForUI", xPos, yPos);
 	}
     public void incrementCollectablesData(String type) {
         if (this.collectablesData.get(type) == null) {
@@ -44,11 +44,11 @@ public class Character extends Coordinate {
     // Checks if the player is on the surface to get air
     // Else remove on from breathLeft and then check if they died.
     public boolean UpdateBreath() {
+        this.amountOfBreathLeft--;
         if (getCoordinateY() == 0) {
             this.amountOfBreathLeft = breath;
             return false;
         } else {
-            this.amountOfBreathLeft--;
             if (this.amountOfBreathLeft <= 0) {
                 // They are dead
                 life = 0;
@@ -84,8 +84,6 @@ public class Character extends Coordinate {
                 life -= hostile.getDamage();
                 // Checks if the player is dead
                 if (getLife() <= 0) {
-                    System.out.println("Player Health: " + getLife());
-                    System.out.println("You are dead");
                     return true;
                 }
             }

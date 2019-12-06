@@ -52,20 +52,12 @@ public abstract class Hostiles extends Coordinate {
         this.Damage = Damage;
     }
 
-    public void setStartPositionX() {
-        //insert code in subClass
-    }
+    public abstract void setStartPositionX(); //insert code in subClass
 
-    public void setStartPositionY() {
-        //insert code in subClass
-    }
+    public abstract void setStartPositionY(); //insert code in subClass
 
-    public void moveX() {
+    public abstract void moveX(); //insert code in subClass
 
-    }
-
-    public void moveY() {
-
-    }
+    public abstract void moveY(); //insert code in subClass
 
 }
