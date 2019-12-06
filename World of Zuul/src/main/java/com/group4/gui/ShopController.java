@@ -8,7 +8,7 @@ import com.group4.gameLogic.Text;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class ShopController {
     @FXML // fx:id="bBuyInventoryUpgrade"
@@ -21,7 +21,7 @@ public class ShopController {
     private Button bNextLevel; // Value injected by FXMLLoader
 
     @FXML // fx:id="textFieldPirate"
-    private TextField textFieldPirate; // Value injected by FXMLLoader
+    private TextArea textFieldPirate; // Value injected by FXMLLoader
 
     @FXML
     void handleBuyBreathUpgradeButtonAction(ActionEvent event) {

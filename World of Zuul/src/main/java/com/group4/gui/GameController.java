@@ -26,7 +26,6 @@ public class GameController implements Initializable {
     private PrintStream ps ;
 	@FXML
     private ListView<Collectables> listViewInventory;
-	private ObservableList<Collectables> inventory;
 
     @FXML
     private Button bUp;
@@ -52,7 +51,7 @@ public class GameController implements Initializable {
 		ps = new PrintStream(new Console(console));
 		System.setOut(ps);
         System.setErr(ps);
-		inventory = FXCollections.observableArrayList();
+		listViewInventory.setItems(App.game.player1.getInventory());
 		updateUI();
 		if(App.firstTimeInit()){
 			addKeyEventScene();
@@ -103,7 +102,6 @@ public class GameController implements Initializable {
 	public void updateUI(){
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
-		updateInventory();
 	}
 
     public void addKeyEventScene() {
@@ -133,20 +131,4 @@ public class GameController implements Initializable {
         });
     }
 
-	// Needs to be made more performent. right now is not good.
-	public void updateInventory(){
-		if(App.game.player1.inventoryUpdated()){
-			inventory.clear();
-			//inventory.addAll(App.game.player1.getInventory());
-			for (Collectables collectables : App.game.player1.getInventory()) {
-				inventory.add(collectables);
-				System.out.println(inventory);
-			}
-			listViewInventory.setItems(inventory);
-		System.out.println("Inventory updated");
-		} else {
-			System.out.println("Inventory not updated");
-		}
-
-	}
 }

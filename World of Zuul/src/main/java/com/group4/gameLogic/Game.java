@@ -228,8 +228,6 @@ public class Game //attributes
                 break;
             case "getAllItem":
                 cheatAddItems();
-                update();
-				player1.setInventoryUpdated(true);
                 break;
             case "nextLevel":
                 nextLevel();

@@ -3,13 +3,16 @@ package com.group4.gameLogic;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Character extends Coordinate {
 
     private String name; //consider revising this to work with scanner input
     private int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade, rewards;
-    private ArrayList<Collectables> inventory;
+	private ObservableList<Collectables> inventory;
     private HashMap<String, Integer> collectablesData = new HashMap<String, Integer>();
-	private boolean inventoryUpdated = false;
 
     public Character(String name, int xPos, int yPos, int breath) {
         super(xPos, yPos);
@@ -20,7 +23,7 @@ public class Character extends Coordinate {
         this.levelReached = 0;   //Note all numbers are
         this.recyclingUpgrade = 0;
         this.carryCapacity = 3;
-        this.inventory = new ArrayList<>();
+		this.inventory = FXCollections.observableArrayList();
     }
 
 	public Character(int xPos, int yPos, int breath){
@@ -62,7 +65,6 @@ public class Character extends Coordinate {
 		if(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable() != null ){
 			if(addToInventory(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable())){
 				itemInRoom[getCoordinateY()][getCoordinateX()].clearCollectable();
-				inventoryUpdated = true;
 			} else {
 				System.out.println("You dont have any more room.");
 				System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
@@ -70,18 +72,7 @@ public class Character extends Coordinate {
 		}
     }
 
-	public boolean inventoryUpdated(){
-		if(inventoryUpdated){
-			inventoryUpdated = false;
-			return true;
-		} else {
-			return false;
-		}
 
-	}
-	public void setInventoryUpdated(boolean inventoryUpdated){
-		this.inventoryUpdated = inventoryUpdated;
-	}
 
     // check if character has the same coorddinnate as hostile and then take damage.
     // return true if dead else return false.
@@ -173,11 +164,11 @@ public class Character extends Coordinate {
     }
 
     // getInventory
-    public ArrayList<Collectables> getInventory() {
+    public ObservableList<Collectables> getInventory() {
         return this.inventory;
     }
 
-    public void setInventory(ArrayList<Collectables> inventory) {
+    public void setInventory(ObservableList<Collectables> inventory) {
         this.inventory = inventory;
     }
 

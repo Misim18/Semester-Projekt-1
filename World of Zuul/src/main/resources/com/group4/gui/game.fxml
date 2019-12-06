@@ -42,7 +42,7 @@
                   <Label layoutX="100.0" layoutY="18.0" text="Health" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="25.0" />
                   <Label fx:id="labelHealth" layoutX="100.0" layoutY="43.0" prefWidth="29.0" text="100" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
                   <Label layoutX="142.0" layoutY="18.0" text="Level" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="25.0" />
-                  <Label fx:id="labelLevel" layoutX="147.0" layoutY="43.0" text="3" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="35.0" />
+                  <Label fx:id="labelLevel" layoutX="147.0" layoutY="43.0" text="1" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="35.0" />
                   <Button fx:id="bSave" layoutX="187.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="0.0" />
                   <Button fx:id="bLoad" layoutX="236.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLoadButtonAction" text="Load" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button fx:id="bQuit" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0" />
