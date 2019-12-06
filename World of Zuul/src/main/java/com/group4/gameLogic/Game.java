@@ -11,6 +11,7 @@ public class Game //attributes
 
     private Parser parser;
     private Room currentRoom;
+    private Room oldRoom;
     private static int limitY;
     private static int limitX;
 	private int option;
@@ -57,6 +58,10 @@ public class Game //attributes
 
     public Room[][] getGrid(){
         return grid;
+    }
+    
+    public Room getOldRoom(){
+        return oldRoom;
     }
     
     public static int getLimitY() {
@@ -266,6 +271,7 @@ public class Game //attributes
             System.out.println("There is no door!");
             Text.printInfo(player1, grid, currentRoom);
         } else {
+            oldRoom = currentRoom;
             currentRoom = nextRoom;
             return update();
 
