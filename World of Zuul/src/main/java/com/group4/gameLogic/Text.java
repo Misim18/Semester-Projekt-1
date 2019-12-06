@@ -66,42 +66,6 @@ public class Text {
         System.out.println();
     }
 
-    public static void printAfterMoved(Boat boat, int itemCount, Room[][] room) {
-        ArrayList<Coordinate> listOfElements = new ArrayList<>();
-
-        for (Room[] room1 : room) {
-            for (Room room11 : room1) {
-                if (room11.getCollectable() != null) {
-                    listOfElements.add(room11.getCollectable());
-                }
-            }
-        }
-
-        for (int i = 0; i < Room.getHostilesActive().size(); i++) {
-            listOfElements.add(Room.getHostilesActive().get(i));
-        }
-
-        for (Coordinate Element : listOfElements) {
-            int xCoordinate = Element.getCoordinateX();
-            int yCoordinate = Element.getCoordinateY();
-            String type;
-            if (Element instanceof Hostiles) {
-                type = "hostile";
-            } else if (Element instanceof Collectables) {
-                type = "collectable";
-            } else {
-                type = "";
-            }
-
-            System.out.println("a " + type + " is at the coordinates: x" + xCoordinate + " Y" + yCoordinate);
-        }
-
-        System.out.println("Collectables left: " + itemCount);
-        System.out.println("Trash collected in this level: " + boat.getLevelTrashCollected());
-        System.out.println("Total trash collected: " + boat.getTotalTrashCollected());
-        System.out.println("");
-    }
-
     public static void printInfo(Character player1, Room[][] room, Room currentRoom) {
 
         System.out.println();
