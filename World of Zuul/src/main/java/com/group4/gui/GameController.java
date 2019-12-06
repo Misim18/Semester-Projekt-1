@@ -105,7 +105,10 @@ public class GameController implements Initializable {
         labelHealth.setText("" + App.game.player1.getLife());
 
         //PlacePlayer(currentRoom(x,y));
-        //Place.EmptyGrid(OldRoom(x,y));
+        if (App.game.getOldRoom() != null) {
+            //Place.EmptyGrid(App.game.getOldRoom().getCoordinateX(),App.game.getOldRoom().getCoordinateY()); 
+        }
+
         for (int i = 0; i < Room.getHostilesActive().size(); i++) {
             if (Room.getHostilesActive().get(i).getCoordinateX() <= App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateY() <= App.game.getLimitY()) {
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
@@ -117,7 +120,8 @@ public class GameController implements Initializable {
             if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
                 //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
             } else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
-                //Place (correct) Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
+                String type = App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
+                //Place ("type") Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
             } else {
                 //Do nothing?
             }
