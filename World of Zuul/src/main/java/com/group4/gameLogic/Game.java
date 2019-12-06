@@ -30,9 +30,9 @@ public class Game //attributes
         Text.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = Text.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
-        player1 = new Character(name, (getLimitX() / 2), 1, 14);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
+        player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
 		} else if(option == 2){
-			player1 = new Character((getLimitX() / 2), 1, 14);
+			player1 = new Character((getLimitX() / 2), 1);
 		}
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         load = new Load();
@@ -55,6 +55,10 @@ public class Game //attributes
         //Creates the playable grid System.out.println(boat);
     }
 
+    public Room[][] getGrid(){
+        return grid;
+    }
+    
     public static int getLimitY() {
         return limitY;
     }
@@ -171,6 +175,9 @@ public class Game //attributes
         }
 
         Text.printInfo(player1, grid, currentRoom);
+        System.out.println("");
+        System.out.println(Text.causeOfDeath(player1));
+        System.out.println("");
         System.out.println("Thank you for playing.  Good bye.");
     }
 

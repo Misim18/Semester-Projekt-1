@@ -28,9 +28,19 @@ public class Text {
         return Line;
     }
 
-	public static String RandomFact(){
-		return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Maks 52 character per line";
-	}
+    public static String causeOfDeath(Character player) {
+        if (player.getLife() == 0 && player.getBreath() == 0) {
+            return "You ran out of breath and drowned! \n   Game Over!";
+        } else if (player.getLife() == 0 && player.getBreath() != 0) {
+            return "You ran head first into a shark and died! \n   Game Over!";
+        } else {
+            return "";
+        }
+    }
+
+    public static String RandomFact() {
+        return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Maks 52 character per line";
+    }
 
     public void getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
         fillArray();
@@ -51,23 +61,21 @@ public class Text {
         System.out.println("OceanClear is a game about cleaning the ocean.");
         System.out.println();
 
-
         System.out.println();
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
     }
 
-
     public static void printAfterMoved(Boat boat, int itemCount, Room[][] room) {
         ArrayList<Coordinate> listOfElements = new ArrayList<>();
 
-		for (Room[] room1 : room) {
-			for (Room room11 : room1) {
-				if (room11.getCollectable() != null) {
-					listOfElements.add(room11.getCollectable());
-				}
-			}
-		}
+        for (Room[] room1 : room) {
+            for (Room room11 : room1) {
+                if (room11.getCollectable() != null) {
+                    listOfElements.add(room11.getCollectable());
+                }
+            }
+        }
 
         for (int i = 0; i < Room.getHostilesActive().size(); i++) {
             listOfElements.add(Room.getHostilesActive().get(i));
@@ -98,13 +106,13 @@ public class Text {
 
         System.out.println();
         System.out.println("Collectables: ");
-		for (Room[] room1 : room) {
-			for (Room room11 : room1) {
-				if (room11.getCollectable() != null) {
-					System.out.println(room11.getCollectable());
-				}
-			}
-		}
+        for (Room[] room1 : room) {
+            for (Room room11 : room1) {
+                if (room11.getCollectable() != null) {
+                    System.out.println(room11.getCollectable());
+                }
+            }
+        }
         System.out.println();
         System.out.println("Hostiles: ");
         for (Hostiles hostile : Room.getHostilesActive()) {
