@@ -109,13 +109,20 @@ public class GameController implements Initializable {
         for (int i = 0; i < Room.getHostilesActive().size(); i++) {
             if (Room.getHostilesActive().get(i).getCoordinateX() <= App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateY() <= App.game.getLimitY()) {
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
-                    //Place RIGHT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY())        
+                    //Place RIGHT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());        
                 } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) {
-                    //Place LEFT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY())            
+                    //Place LEFT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());            
                 }
-            } //if (App.game.getGrid().getRoom(hostilesActive.get(i).getCoordinateX(),hostilesActive.get(i).getCoordinateY()).getCollectable == null){
-            
+            }
+            if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
+                //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+            } else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
+                //Place (correct) Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
+            } else {
+                //Do nothing?
+            }
         }
+
     }
 
     public void addKeyEventScene() {
