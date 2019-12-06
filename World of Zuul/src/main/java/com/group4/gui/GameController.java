@@ -7,7 +7,7 @@ import com.group4.gameLogic.Collectables;
 import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.Game;
-
+import com.group4.gameLogic.Room;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +48,7 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+		loadImage();
         listViewInventory.setItems(App.game.player1.getInventory());
 		updateUI();
         if (App.firstTimeInit()) {
@@ -56,7 +57,7 @@ public class GameController implements Initializable {
 		for(int i=0; i<Game.getLimitX(); i++){
 			VBox test = new VBox();
 			for (int j = 0; j <Game.getLimitY(); j++) {
-				ImageView imageViewRoom = new ImageView(image);
+				ImageView imageViewRoom = new ImageView(sharkLeft);
 				imageViewRoom.setFitWidth(80);
 				imageViewRoom.setPreserveRatio(true);
 				imageViewRoom.setSmooth(true);
@@ -163,22 +164,17 @@ public class GameController implements Initializable {
         });
     }
 
-	Image sharkRight,sharkLeft,player,foodWrapper,straw,fork,knife,spoon,bottle,bottleCap,bag,Lid,Cup;
 	public void loadImage(){
 		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
 		sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
 		playerImage = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		foodWrapper = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		straw = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		spoon = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		bottle = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		bottleCap = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		bag = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		Lid = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		Cup = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
 	}
 }
