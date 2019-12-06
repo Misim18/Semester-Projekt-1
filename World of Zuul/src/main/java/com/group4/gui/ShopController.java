@@ -26,11 +26,13 @@ public class ShopController {
     @FXML
     void handleBuyBreathUpgradeButtonAction(ActionEvent event) {
 		App.game.shop.processShopCommand(new CommandShop(CommandWordShop.BREATH, null));
+		uiUpdate();
     }
 
     @FXML
     void handleInventoryUpgradeButtonAction(ActionEvent event) {
 		App.game.shop.processShopCommand(new CommandShop(CommandWordShop.INVENTORY, null));
+		uiUpdate();
     }
 
     @FXML
@@ -42,6 +44,11 @@ public class ShopController {
 	@FXML
     public void initialize() {
 		textFieldPirate.setText(Text.RandomFact());
+		uiUpdate();
+	}
+
+	public void uiUpdate(){
+		textFieldPirate.setText(""); //FILL HERE
 
 	}
 }

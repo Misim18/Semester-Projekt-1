@@ -6,29 +6,26 @@ import java.util.ResourceBundle;
 import com.group4.gameLogic.Collectables;
 import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
-import com.group4.gameLogic.Room;
+import com.group4.gameLogic.Game;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import java.io.PrintStream;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class GameController implements Initializable {
-
-    @FXML
-    private TextArea console;
-    private PrintStream ps;
     @FXML
     private ListView<Collectables> listViewInventory;
-
+	@FXML
+	private HBox hboxRoom;
     @FXML
     private Button bUp;
     @FXML
@@ -47,18 +44,28 @@ public class GameController implements Initializable {
     private Label labelHealth;
     @FXML
     private Label labelLevel;
+	Image sharkRight,sharkLeft,playerImage,foodWrapper,straw,fork,knife,spoon,bottle,bottleCap,bag,Lid,Cup;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ps = new PrintStream(new Console(console));
-        System.setOut(ps);
-        System.setErr(ps);
         listViewInventory.setItems(App.game.player1.getInventory());
-        updateUI();
+		updateUI();
         if (App.firstTimeInit()) {
             addKeyEventScene();
         }
-    }
+		for(int i=0; i<Game.getLimitX(); i++){
+			VBox test = new VBox();
+			for (int j = 0; j <Game.getLimitY(); j++) {
+				ImageView imageViewRoom = new ImageView(image);
+				imageViewRoom.setFitWidth(80);
+				imageViewRoom.setPreserveRatio(true);
+				imageViewRoom.setSmooth(true);
+				imageViewRoom.setCache(true);
+				test.getChildren().add(imageViewRoom);
+			}
+			hboxRoom.getChildren().add(test);
+		}
+	}
     // GO commands implement
 
     @FXML
@@ -106,22 +113,22 @@ public class GameController implements Initializable {
 
         //PlacePlayer(currentRoom(x,y));
         //Place.EmptyGrid(OldRoom(x,y));
-        for (int i = 0; i < Room.getHostilesActive().size(); i++) {
-            if (Room.getHostilesActive().get(i).getCoordinateX() <= App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateY() <= App.game.getLimitY()) {
-                if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
-                    //Place RIGHT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());        
-                } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) {
-                    //Place LEFT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());            
-                }
-            }
-            if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
-                //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
-            } else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
-                //Place (correct) Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
-            } else {
-                //Do nothing?
-            }
-        }
+        //for (int i = 0; i < Room.getHostilesActive().size(); i++) {
+        //    if (Room.getHostilesActive().get(i).getCoordinateX() <= App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateY() <= App.game.getLimitY()) {
+        //        if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
+        //            //Place RIGHT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+        //        } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) {
+        //            //Place LEFT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+        //        }
+        //    }
+        //    if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
+        //        //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+        //    } else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
+        //        //Place (correct) Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
+        //    } else {
+        //        //Do nothing?
+        //    }
+        //}
 
     }
 
@@ -152,4 +159,22 @@ public class GameController implements Initializable {
         });
     }
 
+	Image sharkRight,sharkLeft,player,foodWrapper,straw,fork,knife,spoon,bottle,bottleCap,bag,Lid,Cup;
+	public void loadImage(){
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		playerImage = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+		sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+	}
 }
