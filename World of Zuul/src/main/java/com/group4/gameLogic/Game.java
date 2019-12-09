@@ -41,6 +41,7 @@ public class Game //attributes
         boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
         shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
+        Text.fillArray();
         nextLevel();                                                                //Calls the nextLevel method
     }
 

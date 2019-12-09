@@ -8,39 +8,25 @@ public class Text {
     private static String[] randLineArray;
 
     public static void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster.
-		randLineArray = new String[13];
+        randLineArray = new String[13];
         randLineArray[0] = "3,728,712 food wrappers\nwere found in the ocean in the coastal cleanup. ";
-
         randLineArray[1] = "3,668,871 Straws and Strippers\nwere found in the coastal cleanup. ";
-
         randLineArray[2] = "1,968,065 forks spoons and knifes\nwere found in the coastal cleanup. ";
-
         randLineArray[3] = "1,754,908 plastic beverage\nbottles were found in the coastal cleanup. ";
-
         randLineArray[4] = "1,390,232 plastic bottle caps\nwere found in the coastal cleanup. ";
-
         randLineArray[5] = "964,541 plastic grocery bags\nwere found in the coastal cleanup. ";
-
         randLineArray[6] = "938,929 other plastic bags\nwere found in the coastal cleanup. ";
-
         randLineArray[7] = "728,892 plastic lids\nwere foundin the coastal cleanup";
-
         randLineArray[8] = "656,276 plastic cups and plates\nwere found in the coastal cleanup. ";
-
         randLineArray[9] = "We found enough plastic beverage cans\nto make full armor for 308 superheroes! ";
-
         randLineArray[10] = "Did we find any plastic bags?\nWe found enough plastic bags to make plastic bag\ncapes for 1,056,514 superheroes. ";
-
         randLineArray[11] = "How many baloons did we find?\nEnough plastic ballons to make 17,5 superheroes fly! ";
-
         randLineArray[12] = "A total of 97,457,984 plastic items were\ncollected in the latest worldwide coastel cleanup. ";
-
     }
 
     public static String getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
-        fillArray();
-        int temp = (int) Math.round(Math.random() * randLineArray.length-1);
-		System.out.println(temp);
+        int temp = (int) Math.round(Math.random() * randLineArray.length - 1);
+        System.out.println(temp);
         return randLineArray[temp];
 
     }
@@ -101,7 +87,6 @@ public class Text {
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
-
 
     public static String uppercaseName(String name) {
         name = name.trim();        //Trim to get rid of white space (both in before and after the string)
