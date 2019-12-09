@@ -120,37 +120,42 @@ public class GameController implements Initializable {
         }
 
         //remove expired sharks
-        for (int i = 0; i<2; i++){  //To check index[0] & index[gameLimitX-1]
-            for (int y = 2; y<App.game.getLimitY(); y++){ // Given that the first two rows are shark free, no need to check
-                if (i == 0){ //at left grid boundry
-                if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == sharkLeft){ //and there's a shark going left
-                    //code to check for item
-                    setImageViewImage(0, y, emptyWater);
-                }
-            } else if (i == 1){ //at right grid boundry
-                if (((ImageView) hboxRoom.lookup("#x" + (App.game.getLimitX()-1) + "y" + y)).getImage() == sharkRight){ //and there's a shark going right
-                    //code to check for item
-                    setImageViewImage((App.game.getLimitX()-1), y, emptyWater);
+        for (int i = 0; i < 2; i++) {  //To check index[0] & index[gameLimitX-1]
+            for (int y = 2; y < App.game.getLimitY(); y++) { // Given that the first two rows are shark free, no need to check
+                if (i == 0) { //at left grid boundry
+                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == sharkLeft) { //and there's a shark going left
+                        //code to check for item
+                        setImageViewImage(0, y, emptyWater);
+                    }
+                } else if (i == 1) { //at right grid boundry
+                    if (((ImageView) hboxRoom.lookup("#x" + (App.game.getLimitX() - 1) + "y" + y)).getImage() == sharkRight) { //and there's a shark going right
+                        //code to check for item
+                        setImageViewImage((App.game.getLimitX() - 1), y, emptyWater);
+                    }
                 }
             }
-        }}
-        
-        for (int i = 0; i < Room.getHostilesActive().size() - 1; i++) {
-            if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) {
-                if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
+        }
+
+        for (int i = 0; i < Room.getHostilesActive().size() - 1; i++) { //go through all the Hostiles
+            if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) { //if the shark is INSIDE the grid
+                if (Room.getHostilesActive().get(i).getDirectionX() == 1) {  //and it's facing right
                     setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkRight);
-//Place RIGHT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
-                } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) {
+                    //Place RIGHT facing shark on it's coordinates
+                } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) { //if it's facing left
                     setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkLeft);
-//Place LEFT facing shark on grid element x(Room.getHostilesActive().get(i).getCoordinateX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+                    //Place LEFT facing shark on it's coordinates
                 }
-                if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
-                    setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), emptyWater);
-//Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
-                } else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
-                    String type = App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
-                    setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), cup);
-//Place ("type") Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
+                if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) { //if the sharks old locations DOES NOT have a collectable
+                    if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) {
+                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), emptyWater);
+                    }
+                    //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
+                } else if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) { //if the sharks old locations DOES  have a collectable
+                    if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) {
+                        String type = App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX()- Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
+                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), cup);
+                        //Place ("type") Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
+                    }
                 }
             }
         }

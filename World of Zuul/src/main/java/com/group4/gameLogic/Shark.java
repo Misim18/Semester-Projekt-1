@@ -25,7 +25,7 @@ public class Shark extends Hostiles {
         if (temp < (double) Game.getLimitX() / 2) {
             startPositionX = -1;
         } else {
-            startPositionX = Game.getLimitX() + 1;
+            startPositionX = Game.getLimitX();
         }
 
         super.setCoordinateX(startPositionX);
@@ -65,7 +65,7 @@ public class Shark extends Hostiles {
     public void setDirectionX() {
         if (super.getCoordinateX() == -1) {
             super.setDirectionX(1);
-        } else if (super.getCoordinateX() == Game.getLimitX() + 1) {
+        } else if (super.getCoordinateX() == Game.getLimitX()) {
             super.setDirectionX(-1);
         } else {
             System.out.println("Something went wrong with adding the direction");
