@@ -101,14 +101,40 @@ public class GameController implements Initializable {
     public void updateUI() {
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
-        characterLastStep = ((ImageView) hboxRoom.lookup("#x" + App.game.player1.getCoordinateX() + "y" + App.game.player1.getCoordinateY())).getImage();
 
+        //Places diver on new position);
         setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), diver);
-        //PlacePlayer(currentRoom(x,y));
-        if (App.game.getOldRoom() != null) {
-            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), characterLastStep); //This is out of order!!!
-            //Place.EmptyGrid(App.game.getOldRoom().getCoordinateX(),App.game.getOldRoom().getCoordinateY());
+
+        if (App.game.getOldRoom().getCoordinateY() == 0) {
+            if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat1);
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) {
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat2);
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) {
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat3);
+            } else {
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), straw);
+            }
+        } else {
+            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), emptyWater);
         }
+
+        //remove expired sharks
+        for (int i = 0; i<2; i++){  //To check index[0] & index[gameLimitX-1]
+            for (int y = 2; y<App.game.getLimitY(); y++){ // Given that the first two rows are shark free, no need to check
+                if (i == 0){ //at left grid boundry
+                if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == sharkLeft){ //and there's a shark going left
+                    //code to check for item
+                    setImageViewImage(0, y, emptyWater);
+                }
+            } else if (i == 1){ //at right grid boundry
+                if (((ImageView) hboxRoom.lookup("#x" + (App.game.getLimitX()-1) + "y" + y)).getImage() == sharkRight){ //and there's a shark going right
+                    //code to check for item
+                    setImageViewImage((App.game.getLimitX()-1), y, emptyWater);
+                }
+            }
+        }}
+        
         for (int i = 0; i < Room.getHostilesActive().size() - 1; i++) {
             if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) {
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {
