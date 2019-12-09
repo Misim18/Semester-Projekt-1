@@ -105,18 +105,18 @@ public class GameController implements Initializable {
         //Places diver on new position);
         setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), diver);
 
-        if (App.game.getOldRoom().getCoordinateY() == 0) {
-            if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {
+        if (App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid 
+            if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat1);
-            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) {
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat2);
-            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) {
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat3);
-            } else {
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), straw);
+            } else { //water line
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), straw); //<-- replace with water line
             }
-        } else {
-            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), emptyWater);
+        } else { //if none of the above, just put emptyWater
+            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), emptyWater); 
         }
 
         //remove expired sharks
@@ -136,7 +136,7 @@ public class GameController implements Initializable {
             }
         }
 
-        for (int i = 0; i < Room.getHostilesActive().size() - 1; i++) { //go through all the Hostiles
+        for (int i = 0; i < Room.getHostilesActive().size(); i++) { //go through all the Hostiles
             if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) { //if the shark is INSIDE the grid
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {  //and it's facing right
                     setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkRight);
@@ -145,15 +145,15 @@ public class GameController implements Initializable {
                     setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkLeft);
                     //Place LEFT facing shark on it's coordinates
                 }
+                if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) { // if the shark is "legal" aka not on it's starting pos
                 if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) { //if the sharks old locations DOES NOT have a collectable
-                    if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) {
                         setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), emptyWater);
                     }
                     //Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
-                } else if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) { //if the sharks old locations DOES  have a collectable
-                    if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) {
-                        String type = App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX()- Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
-                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), cup);
+                } else if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) { // if the shark is "legal" aka not on it's starting pos
+                    if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) { //if the sharks old locations DOES  have a collectable
+                        //String type = App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX()- Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
+                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), straw);
                         //Place ("type") Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
                     }
                 }
