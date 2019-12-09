@@ -62,9 +62,9 @@ public class Character extends Coordinate {
 
     // check if character has the same coordinate as collectables and then pick it up.
     public void OnItem(Room[][] itemInRoom) {
-		if(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable() != null ){
-			if(addToInventory(itemInRoom[getCoordinateY()][getCoordinateX()].getCollectable())){
-				itemInRoom[getCoordinateY()][getCoordinateX()].clearCollectable();
+		if(itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable() != null ){
+			if(addToInventory(itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable())){
+				itemInRoom[getCoordinateX()][getCoordinateY()].clearCollectable();
 			} else {
 				System.out.println("You dont have any more room.");
 				System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());

@@ -59,11 +59,11 @@ public class Game //attributes
     public Room[][] getGrid(){
         return grid;
     }
-    
+
     public Room getOldRoom(){
         return oldRoom;
     }
-    
+
     public static int getLimitY() {
         return limitY;
     }
@@ -95,8 +95,8 @@ public class Game //attributes
             Collectables temp = new Collectables();
             // check it the Room is empty and then put the item in
             // else it count one less and tries again. it can do that 10 times.
-            if (grid[temp.getCoordinateY()][temp.getCoordinateX()].getCollectable() == null) {
-                grid[temp.getCoordinateY()][temp.getCoordinateX()].addCollectable(temp);
+            if (grid[temp.getCoordinateX()][temp.getCoordinateY()].getCollectable() == null) {
+                grid[temp.getCoordinateX()][temp.getCoordinateY()].addCollectable(temp);
             } else {
                 x--;
                 count++;
@@ -110,18 +110,18 @@ public class Game //attributes
     private void createRooms() //Sets up the rooms in the game
     {
         //Creates a new two-dimensional room array, with limitY "slots" of limitX elements
-        grid = new Room[getLimitY()][getLimitX()];
+        grid = new Room[getLimitX()][getLimitY()];
 
         //Creates the grid and places the boat in the top row and in the middle.
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 0; x < getLimitX(); x++) {
                 if (x == getLimitX() / 2 && y == 0) {
-                    grid[y][x] = boat;
+                    grid[x][y] = boat;
                     boat.setCoordinate_X_Y(getLimitX() / 2, 0);
                 } else if (y == 0) {
-                    grid[y][x] = new Room(x, y, "now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
+                    grid[x][y] = new Room(x, y, "now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 } else {
-                    grid[y][x] = new Room(x, y, "now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
+                    grid[x][y] = new Room(x, y, "now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 }
             }
         }
@@ -129,7 +129,7 @@ public class Game //attributes
         //Sets right exits
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 0; x < getLimitX() - 1; x++) {
-                grid[y][x].setExit("right", grid[y][x + 1]);
+                grid[x][y].setExit("right", grid[x+1][y]);
             }
         }
 
@@ -137,7 +137,7 @@ public class Game //attributes
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not
             {
-                grid[y][x].setExit("left", grid[y][x - 1]);
+                grid[x][y].setExit("left", grid[x-1][y]);
             }
         }
 
@@ -145,7 +145,7 @@ public class Game //attributes
         for (int y = 0; y < getLimitY() - 1; y++) //y goes to max limit - 1, as to not give bottom row down exit
         {
             for (int x = 0; x < getLimitX(); x++) {
-                grid[y][x].setExit("down", grid[y + 1][x]);
+                grid[x][y].setExit("down", grid[x][y+1]);
             }
         }
 
@@ -153,7 +153,7 @@ public class Game //attributes
         for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give up exit on top row
         {
             for (int x = 0; x < getLimitX(); x++) {
-                grid[y][x].setExit("up", grid[y - 1][x]);
+                grid[x][y].setExit("up", grid[x][y-1]);
             }
         }
 
@@ -166,7 +166,7 @@ public class Game //attributes
         //                System.out.println(grid[y][x].getCoordinateY());
         //            }
         //        }
-        currentRoom = grid[1][getLimitX() / 2];
+        currentRoom = grid[getLimitX() / 2][1];
     }
 
     public void play() {
