@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class Text {
 
-    private String[] randLineArray = new String[10];
+    private static String[] randLineArray = new String[10];
 
     public Text() {
     }
 
-    public void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster. 
+    public static void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster.
 
         randLineArray[0] = "3,728,712 food wrappers\nwere found in the ocean in the coastal cleanup. ";
 
@@ -40,10 +40,10 @@ public class Text {
 
     }
 
-    public void getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
+    public static String getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
         fillArray();
-        int temp = (int) Math.round(Math.random() * 9);
-        System.out.println(randLineArray[temp]);
+        int temp = (int) Math.round(Math.random() * randLineArray.length);
+        return randLineArray[temp];
 
     }
 
@@ -107,7 +107,7 @@ public class Text {
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
 
     public static String uppercaseName(String name) {
         name = name.trim();        //Trim to get rid of white space (both in before and after the string)

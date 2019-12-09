@@ -48,7 +48,7 @@ public class ShopController {
 	}
 
 	public void uiUpdate(){
-		textFieldPirate.setText(""); //FILL HERE
+		textFieldPirate.setText(Text.getRandLine()); //FILL HERE
 
 	}
 }
