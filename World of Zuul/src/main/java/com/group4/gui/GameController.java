@@ -45,7 +45,7 @@ public class GameController implements Initializable {
     private Label labelHealth;
     @FXML
     private Label labelLevel;
-    Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, Lid, Cup, emptyWater;
+    Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, lid, cup, emptyWater, boat1, boat2, boat3;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -135,7 +135,7 @@ public class GameController implements Initializable {
             for (int y = 0; y < Game.getLimitY(); y++) {
                 if (y == 0) {
                     if (x == Game.getLimitX()/2 -1){
-                    ImageView imageViewRoom = new ImageView(Lid); //boat left
+                    ImageView imageViewRoom = new ImageView(boat1); //boat left
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
                     imageViewRoom.setSmooth(true);
@@ -143,7 +143,7 @@ public class GameController implements Initializable {
                     imageViewRoom.setId("x" + x + "y" + y);
                     test.getChildren().add(imageViewRoom);
                     } else if (x == Game.getLimitX()/2){
-                    ImageView imageViewRoom = new ImageView(Lid); //boat center
+                    ImageView imageViewRoom = new ImageView(boat2); //boat center
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
                     imageViewRoom.setSmooth(true);
@@ -151,7 +151,7 @@ public class GameController implements Initializable {
                     imageViewRoom.setId("x" + x + "y" + y);
                     test.getChildren().add(imageViewRoom);
                     } else if (x == Game.getLimitX()/2 + 1){
-                    ImageView imageViewRoom = new ImageView(Lid); //boat right
+                    ImageView imageViewRoom = new ImageView(boat3); //boat right
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
                     imageViewRoom.setSmooth(true);
@@ -185,10 +185,10 @@ public class GameController implements Initializable {
                     test.getChildren().add(imageViewRoom);
                 }
             }
-            ((ImageView) hboxRoom.lookup("#x" +Game.getLimitX()/2 + "y1")).setImage(diver);
-
+            
             hboxRoom.getChildren().add(test);
         }
+        ((ImageView) hboxRoom.lookup("#x" +Game.getLimitX()/2 + "y1")).setImage(diver);
 
 //        System.out.println(hboxRoom.lookup("#x3y4"));
 //        //            ((ImageView)hboxRoom.lookup("#x2y2")).setImage(straw);
@@ -233,9 +233,12 @@ public class GameController implements Initializable {
         bottle = new Image(getClass().getResource("plastic_bottle.png").toExternalForm());
         bottleCap = new Image(getClass().getResource("bottle_cap.png").toExternalForm());
         bag = new Image(getClass().getResource("plastic_bag.png").toExternalForm());
-        Lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
-        Cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
+        lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
+        cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
         emptyWater = new Image(getClass().getResource("empty_water.png").toExternalForm());
+        boat1 = new Image(getClass().getResource("boat_1.png").toExternalForm());
+        boat2 = new Image(getClass().getResource("boat_2.png").toExternalForm());
+        boat3 = new Image(getClass().getResource("boat_3.png").toExternalForm());
         } catch (Exception e){
             System.out.println("Naming is wrong" + e.toString());
         }
