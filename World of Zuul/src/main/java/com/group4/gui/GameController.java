@@ -135,54 +135,18 @@ public class GameController implements Initializable {
             for (int y = 0; y < Game.getLimitY(); y++) {
                 if (y == 0) {
                     if (x == Game.getLimitX()/2 -1){
-                    ImageView imageViewRoom = new ImageView(boat1); //boat left
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(boat1, x, y));
                     } else if (x == Game.getLimitX()/2){
-                    ImageView imageViewRoom = new ImageView(boat2); //boat center
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(boat2, x, y));
                     } else if (x == Game.getLimitX()/2 + 1){
-                    ImageView imageViewRoom = new ImageView(boat3); //boat right
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(boat3, x, y));
                     } else {
-                    ImageView imageViewRoom = new ImageView(straw); //above water
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(straw, x, y)); // above water
                     }
                 } else if (App.game.getGrid()[x][y].getCollectable() != null) { //is collectable 
-                    ImageView imageViewRoom = new ImageView(bottleCap);
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(bottleCap, x, y));
                 } else if (App.game.getGrid()[x][y].getCollectable() == null) { //no collectable
-                    ImageView imageViewRoom = new ImageView(emptyWater);
-                    imageViewRoom.setFitWidth(80);
-                    imageViewRoom.setPreserveRatio(true);
-                    imageViewRoom.setSmooth(true);
-                    imageViewRoom.setCache(true);
-                    imageViewRoom.setId("x" + x + "y" + y);
-                    test.getChildren().add(imageViewRoom);
+                    test.getChildren().add(createImageView(emptyWater, x, y));
                 }
             }
             
@@ -194,6 +158,17 @@ public class GameController implements Initializable {
 //        //            ((ImageView)hboxRoom.lookup("#x2y2")).setImage(straw);
     }
 
+    public ImageView createImageView(Image type, int x, int y){
+        ImageView imageViewRoom = new ImageView(type); 
+                    imageViewRoom.setFitHeight(619/Game.getLimitY());
+                    imageViewRoom.setPreserveRatio(true);
+                    imageViewRoom.setSmooth(true);
+                    imageViewRoom.setCache(true);
+                    imageViewRoom.setId("x" + x + "y" + y);
+       
+                    return imageViewRoom;
+    }
+    
 
     public void addKeyEventScene() {
         App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
