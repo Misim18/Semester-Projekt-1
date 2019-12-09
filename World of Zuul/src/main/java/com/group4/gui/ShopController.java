@@ -43,11 +43,11 @@ public class ShopController {
 
 	@FXML
     public void initialize() {
+		textFieldPirate.setText(Text.getRandLine()); //FILL HERE
 		uiUpdate();
 	}
 
 	public void uiUpdate(){
-		textFieldPirate.setText(Text.getRandLine()); //FILL HERE
 
 	}
 }

@@ -54,18 +54,22 @@ public class GameController implements Initializable {
 		if (App.firstTimeInit()) {
 			addKeyEventScene();
 		}
-		for(int i=0; i<Game.getLimitX(); i++){
+		for(int x=0; x<Game.getLimitX(); x++){
 			VBox test = new VBox();
-			for (int j = 0; j <Game.getLimitY(); j++) {
+			for (int y = 0; y <Game.getLimitY(); y++) {
 				ImageView imageViewRoom = new ImageView(sharkLeft);
 				imageViewRoom.setFitWidth(80);
 				imageViewRoom.setPreserveRatio(true);
 				imageViewRoom.setSmooth(true);
 				imageViewRoom.setCache(true);
+				imageViewRoom.setId("x"+x+"y"+y);
+				System.out.println(imageViewRoom.getId());
 				test.getChildren().add(imageViewRoom);
 			}
 			hboxRoom.getChildren().add(test);
 		}
+
+		System.out.println(hboxRoom.lookup("#x3y4"));
 	}
 	// GO commands implement
 
@@ -137,7 +141,7 @@ public class GameController implements Initializable {
 			}
 		}}
 
-	
+
 
 	public void addKeyEventScene() {
 		App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
