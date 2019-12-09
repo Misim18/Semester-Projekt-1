@@ -45,7 +45,7 @@ public class GameController implements Initializable {
     private Label labelHealth;
     @FXML
     private Label labelLevel;
-    Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, Lid, Cup;
+    Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, Lid, Cup, emptyWater;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,14 +134,40 @@ public class GameController implements Initializable {
             VBox test = new VBox();
             for (int y = 0; y < Game.getLimitY(); y++) {
                 if (y == 0) {
-                    ImageView imageViewRoom = new ImageView(straw);
+                    if (x == Game.getLimitX()/2 -1){
+                    ImageView imageViewRoom = new ImageView(Lid); //boat left
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
                     imageViewRoom.setSmooth(true);
                     imageViewRoom.setCache(true);
                     imageViewRoom.setId("x" + x + "y" + y);
                     test.getChildren().add(imageViewRoom);
-                } else if (App.game.getGrid()[x][y].getCollectable() != null) {
+                    } else if (x == Game.getLimitX()/2){
+                    ImageView imageViewRoom = new ImageView(Lid); //boat center
+                    imageViewRoom.setFitWidth(80);
+                    imageViewRoom.setPreserveRatio(true);
+                    imageViewRoom.setSmooth(true);
+                    imageViewRoom.setCache(true);
+                    imageViewRoom.setId("x" + x + "y" + y);
+                    test.getChildren().add(imageViewRoom);
+                    } else if (x == Game.getLimitX()/2 + 1){
+                    ImageView imageViewRoom = new ImageView(Lid); //boat right
+                    imageViewRoom.setFitWidth(80);
+                    imageViewRoom.setPreserveRatio(true);
+                    imageViewRoom.setSmooth(true);
+                    imageViewRoom.setCache(true);
+                    imageViewRoom.setId("x" + x + "y" + y);
+                    test.getChildren().add(imageViewRoom);
+                    } else {
+                    ImageView imageViewRoom = new ImageView(straw); //above water
+                    imageViewRoom.setFitWidth(80);
+                    imageViewRoom.setPreserveRatio(true);
+                    imageViewRoom.setSmooth(true);
+                    imageViewRoom.setCache(true);
+                    imageViewRoom.setId("x" + x + "y" + y);
+                    test.getChildren().add(imageViewRoom);
+                    }
+                } else if (App.game.getGrid()[x][y].getCollectable() != null) { //is collectable 
                     ImageView imageViewRoom = new ImageView(bottleCap);
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
@@ -149,8 +175,8 @@ public class GameController implements Initializable {
                     imageViewRoom.setCache(true);
                     imageViewRoom.setId("x" + x + "y" + y);
                     test.getChildren().add(imageViewRoom);
-                } else if (App.game.getGrid()[x][y].getCollectable() == null) {
-                    ImageView imageViewRoom = new ImageView(foodWrapper);
+                } else if (App.game.getGrid()[x][y].getCollectable() == null) { //no collectable
+                    ImageView imageViewRoom = new ImageView(emptyWater);
                     imageViewRoom.setFitWidth(80);
                     imageViewRoom.setPreserveRatio(true);
                     imageViewRoom.setSmooth(true);
@@ -197,6 +223,7 @@ public class GameController implements Initializable {
     }
 
     public void loadImage() {
+        try {
         sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
         sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
         diver = new Image(getClass().getResource("diver.png").toExternalForm());
@@ -205,8 +232,12 @@ public class GameController implements Initializable {
         spoon = new Image(getClass().getResource("plastic_spoon.png").toExternalForm());
         bottle = new Image(getClass().getResource("plastic_bottle.png").toExternalForm());
         bottleCap = new Image(getClass().getResource("bottle_cap.png").toExternalForm());
-        bag = new Image(getClass().getResource("plastic_bag").toExternalForm());
-        Lid = new Image(getClass().getResource("plastic_lid").toExternalForm());
-        Cup = new Image(getClass().getResource("plastic_cup").toExternalForm());
+        bag = new Image(getClass().getResource("plastic_bag.png").toExternalForm());
+        Lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
+        Cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
+        emptyWater = new Image(getClass().getResource("empty_water.png").toExternalForm());
+        } catch (Exception e){
+            System.out.println("Naming is wrong" + e.toString());
+        }
     }
 }
