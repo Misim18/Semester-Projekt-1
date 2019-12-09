@@ -108,8 +108,25 @@ public class GameController implements Initializable {
         labelHealth.setText("" + App.game.player1.getLife());
 
         //Places diver on new position);
-        setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
+        
+        
+        //setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
 
+        
+        if (App.game.player1.getCoordinateY() == 0) {  //if the player WAS on the upper grid 
+            if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
+                setImageViewImage(App.game.player1.getCoordinateX(),App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+            } else { //water line
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle Cap")); //<-- replace with water line
+            }
+        } else { //if none of the above, just put emptyWater
+            setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
+        }
+        
         if (App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid 
             if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat1"));
