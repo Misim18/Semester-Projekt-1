@@ -43,7 +43,6 @@ public class ShopController {
 
 	@FXML
     public void initialize() {
-		textFieldPirate.setText(Text.RandomFact());
 		uiUpdate();
 	}
 

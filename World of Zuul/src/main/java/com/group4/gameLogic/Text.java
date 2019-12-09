@@ -5,13 +5,10 @@ import java.util.Scanner;
 
 public class Text {
 
-    private static String[] randLineArray = new String[10];
-
-    public Text() {
-    }
+    private static String[] randLineArray;
 
     public static void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster.
-
+		randLineArray = new String[13];
         randLineArray[0] = "3,728,712 food wrappers\nwere found in the ocean in the coastal cleanup. ";
 
         randLineArray[1] = "3,668,871 Straws and Strippers\nwere found in the coastal cleanup. ";
@@ -42,7 +39,8 @@ public class Text {
 
     public static String getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
         fillArray();
-        int temp = (int) Math.round(Math.random() * randLineArray.length);
+        int temp = (int) Math.round(Math.random() * randLineArray.length-1);
+		System.out.println(temp);
         return randLineArray[temp];
 
     }
@@ -55,10 +53,6 @@ public class Text {
         } else {
             return "";
         }
-    }
-
-    public static String RandomFact() {
-        return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Max 52 characters per line";
     }
 
     public static void introLine() {
