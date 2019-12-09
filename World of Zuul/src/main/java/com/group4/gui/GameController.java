@@ -126,7 +126,7 @@ public class GameController implements Initializable {
 				}
 				System.out.println("coordinateX: "+Room.getHostilesActive().get(i).getCoordinateX());
 				System.out.println("coordinatey: "+Room.getHostilesActive().get(i).getCoordinateY());
-				}if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
+				if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) {
 					//Place EmptyGrid on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY());
 				} else if (App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) {
 					String type = App.game.getGrid()[Room.getHostilesActive().get(i).getCoordinateX()][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
@@ -135,7 +135,7 @@ public class GameController implements Initializable {
 					//Do nothing?
 				}
 			}
-		}
+		}}
 
 	
 
