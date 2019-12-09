@@ -36,7 +36,7 @@ public class Shark extends Hostiles {
     //math.round keeps the same chance for all outcomes.
     public void setStartPositionY() {
         //to keep the upper 2 grid lines shark free, prevent Hostiles from spawning higher than limitY
-        int startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 3)) + 2;
+        int startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 2)) + 2;
         boolean run = true;
         int counter;
         //Makes sure Hostiles are never spawned on the same y position
@@ -46,7 +46,7 @@ public class Shark extends Hostiles {
             for (int i = 0; i < Room.getHostilesActive().size(); i++) {
                 //checking to see if there is already a Hostile placed in the first rolled startPosition. If so, re-roll a rand startpos.
                 if (Room.getHostilesActive().get(i).getCoordinateY() == startPositionY) {
-                    startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 3)) + 2;
+                    startPositionY = (int) Math.round(Math.random() * (Game.getLimitY() - 2)) + 2;
                     run = true;
                     break;
                 } else {

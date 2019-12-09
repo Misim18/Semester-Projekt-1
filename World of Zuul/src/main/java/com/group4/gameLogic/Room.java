@@ -79,7 +79,7 @@ public class Room extends Coordinate {
         for (int i = 0; i < hostilesActive.size(); i++) { //Goes through all the active hostiles and...
             if (hostilesActive.get(i).getCoordinateX() == 0 && hostilesActive.get(i).getDirectionX() == -1) { //if they're at the left side AND are moving left, overwrite hostile
                 Room.overwriteActiveHostile(i);
-            } else if (hostilesActive.get(i).getCoordinateX() == Game.getLimitX()-1 && hostilesActive.get(i).getDirectionX() == 1) { //if they're at the right side AND are moving right, overwrite hostile
+            } else if (hostilesActive.get(i).getCoordinateX() == Game.getLimitX() && hostilesActive.get(i).getDirectionX() == 1) { //if they're at the right side AND are moving right, overwrite hostile
                 Room.overwriteActiveHostile(i);
             } else {
                 hostilesActive.get(i).setCoordinateX(hostilesActive.get(i).getCoordinateX() + hostilesActive.get(i).getDirectionX()); //Just update their position
