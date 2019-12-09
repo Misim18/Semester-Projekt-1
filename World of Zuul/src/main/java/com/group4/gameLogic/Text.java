@@ -5,27 +5,46 @@ import java.util.Scanner;
 
 public class Text {
 
-    private String Line;
     private String[] randLineArray = new String[10];
 
     public Text() {
     }
 
-    public void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster.
-        randLineArray[0] = "2,412,151";
-        randLineArray[1] = "1,739,743";
-        randLineArray[2] = "1,569,135";
-        randLineArray[3] = "1,091,107";
-        randLineArray[4] = "757,523";
-        randLineArray[5] = "746,211";
-        randLineArray[6] = "643,562";
-        randLineArray[7] = "632,874";
-        randLineArray[8] = "624,878";
-        randLineArray[9] = "580,570";
+    public void fillArray() { //is to be filled with catching phrases involving the facts about plastic items from our poster. 
+
+        randLineArray[0] = "3,728,712 food wrappers\nwere found in the ocean in the coastal cleanup. ";
+
+        randLineArray[1] = "3,668,871 Straws and Strippers\nwere found in the coastal cleanup. ";
+
+        randLineArray[2] = "1,968,065 forks spoons and knifes\nwere found in the coastal cleanup. ";
+
+        randLineArray[3] = "1,754,908 plastic beverage\nbottles were found in the coastal cleanup. ";
+
+        randLineArray[4] = "1,390,232 plastic bottle caps\nwere found in the coastal cleanup. ";
+
+        randLineArray[5] = "964,541 plastic grocery bags\nwere found in the coastal cleanup. ";
+
+        randLineArray[6] = "938,929 other plastic bags\nwere found in the coastal cleanup. ";
+
+        randLineArray[7] = "728,892 plastic lids\nwere foundin the coastal cleanup";
+
+        randLineArray[8] = "656,276 plastic cups and plates\nwere found in the coastal cleanup. ";
+
+        randLineArray[9] = "We found enough plastic beverage cans\nto make full armor for 308 superheroes! ";
+
+        randLineArray[10] = "Did we find any plastic bags?\nWe found enough plastic bags to make plastic bag\ncapes for 1,056,514 superheroes. ";
+
+        randLineArray[11] = "How many baloons did we find?\nEnough plastic ballons to make 17,5 superheroes fly! ";
+
+        randLineArray[12] = "A total of 97,457,984 plastic items were\ncollected in the latest worldwide coastel cleanup. ";
+
     }
 
-    public String getLine() {
-        return Line;
+    public void getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
+        fillArray();
+        int temp = (int) Math.round(Math.random() * 9);
+        System.out.println(randLineArray[temp]);
+
     }
 
     public static String causeOfDeath(Character player) {
@@ -39,14 +58,7 @@ public class Text {
     }
 
     public static String RandomFact() {
-        return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Maks 52 character per line";
-    }
-
-    public void getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
-        fillArray();
-        int temp = (int) Math.round(Math.random() * 9);
-        System.out.println(randLineArray[temp]);
-
+        return "Math random missing to made. \n Edit me in Text.javai. Package gameLogic \n Max 52 characters per line";
     }
 
     public static void introLine() {
