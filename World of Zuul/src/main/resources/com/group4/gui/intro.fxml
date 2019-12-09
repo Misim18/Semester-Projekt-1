@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group4.gui.IntroController">
+   <children>
+      <Button fx:id="bIUnderstandIntro" layoutX="580.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleIUnderstandIntroButtonAction" text="I understand" />
+      <TextArea fx:id="textFieldIntro" layoutX="440.0" layoutY="68.0" prefHeight="400.0" prefWidth="400.0" wrapText="true" />
+   </children>
+</Pane>
