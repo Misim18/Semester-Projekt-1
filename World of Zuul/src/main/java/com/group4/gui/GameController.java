@@ -8,9 +8,11 @@ import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.Game;
 import com.group4.gameLogic.Room;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -45,11 +47,14 @@ public class GameController implements Initializable {
     private Label labelHealth;
     @FXML
     private Label labelLevel;
-    Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, lid, cup, emptyWater, boat1, boat2, boat3, characterLastStep;
+    //Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, lid, cup, emptyWater, boat1, boat2, boat3;
+    
+    private HashMap<String, Image> imageHash = new HashMap<String, Image>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadImage();
+        //loadImage();
+        loadImage2();
         listViewInventory.setItems(App.game.player1.getInventory());
         //updateUI();
         if (App.firstTimeInit()) {
@@ -103,34 +108,40 @@ public class GameController implements Initializable {
         labelHealth.setText("" + App.game.player1.getLife());
 
         //Places diver on new position);
-        setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), diver);
+        setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
 
         if (App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid 
             if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat1);
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat1"));
             } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat2);
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat2"));
             } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), boat3);
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat3"));
             } else { //water line
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), straw); //<-- replace with water line
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("Plastic Straw")); //<-- replace with water line
             }
         } else { //if none of the above, just put emptyWater
-            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), emptyWater);
+            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
         }
 
         //remove expired sharks
         for (int i = 0; i < 2; i++) {  //To check index[0] & index[gameLimitX-1]
             for (int y = 2; y < App.game.getLimitY(); y++) { // Given that the first two rows are shark free, no need to check
                 if (i == 0) { //at left grid boundry
-                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == sharkLeft) { //and there's a shark going left
-                        //code to check for item
-                        setImageViewImage(0, y, emptyWater);
+                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkLeft")) { //and there's a shark going left
+                        if (App.game.getGrid()[0][y].getCollectable() != null) { //code to check for item
+                            setImageViewImage(0, y, imageHash.get(App.game.getGrid()[0][y].getCollectable().getName())); //<-- correct item
+                        } else {
+                            setImageViewImage(0, y, imageHash.get("emptyWater"));
+                        }
                     }
                 } else if (i == 1) { //at right grid boundry
-                    if (((ImageView) hboxRoom.lookup("#x" + (App.game.getLimitX() - 1) + "y" + y)).getImage() == sharkRight) { //and there's a shark going right
-                        //code to check for item
-                        setImageViewImage((App.game.getLimitX() - 1), y, emptyWater);
+                    if (((ImageView) hboxRoom.lookup("#x" + (App.game.getLimitX() - 1) + "y" + y)).getImage() == imageHash.get("sharkRight")) { //and there's a shark going right
+                        if (App.game.getGrid()[App.game.getLimitX() - 1][y].getCollectable() != null) { //code to check for item
+                            setImageViewImage((App.game.getLimitX() - 1), y, imageHash.get(App.game.getGrid()[App.game.getLimitX() - 1][y].getCollectable().getName())); //<-- correct item
+                        } else {
+                            setImageViewImage((App.game.getLimitX() - 1), y, imageHash.get("emptyWater"));
+                        }
                     }
                 }
             }
@@ -139,18 +150,18 @@ public class GameController implements Initializable {
         for (int i = 0; i < Room.getHostilesActive().size(); i++) { //go through all the Hostiles
             if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) { //if the shark is INSIDE the grid
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {  //and it's facing right
-                    setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkRight);
+                    setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), imageHash.get("sharkRight"));
                     //Place RIGHT facing shark on it's coordinates
                 } else if (Room.getHostilesActive().get(i).getDirectionX() == -1) { //if it's facing left
-                    setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), sharkLeft);
+                    setImageViewImage(Room.getHostilesActive().get(i).getCoordinateX(), Room.getHostilesActive().get(i).getCoordinateY(), imageHash.get("sharkLeft"));
                     //Place LEFT facing shark on it's coordinates
                 }
                 if (Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() >= 0 && Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX() < Game.getLimitX()) { // if the shark is "legal" aka not on it's starting pos
                     if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() == null) { //if the sharks old locations DOES NOT have a collectable
-                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), emptyWater);
+                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), imageHash.get("emptyWater"));
                     } else if (App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable() != null) { //if the sharks old locations DOES  have a collectable
                         //String type = App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX()- Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName();
-                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), straw);
+                        setImageViewImage((Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX()), Room.getHostilesActive().get(i).getCoordinateY(), imageHash.get(App.game.getGrid()[(Room.getHostilesActive().get(i).getCoordinateX() - Room.getHostilesActive().get(i).getDirectionX())][Room.getHostilesActive().get(i).getCoordinateY()].getCollectable().getName()));
                         //Place ("type") Collectable on grid element x((Room.getHostilesActive().get(i).getCoordinateX()-Room.getHostilesActive().get(i).getDirectionX()) & y(Room.getHostilesActive().get(i).getCoordinateY())
                     }
                 }
@@ -160,30 +171,33 @@ public class GameController implements Initializable {
 
     public void printInitialUI() {
 
+        hboxRoom.setAlignment(Pos.CENTER);
+
         for (int x = 0; x < Game.getLimitX(); x++) {
             VBox test = new VBox();
             for (int y = 0; y < Game.getLimitY(); y++) {
                 if (y == 0) {
                     if (x == Game.getLimitX() / 2 - 1) {
-                        test.getChildren().add(createImageView(boat1, x, y));
+                        test.getChildren().add(createImageView(imageHash.get("boat1"), x, y));
                     } else if (x == Game.getLimitX() / 2) {
-                        test.getChildren().add(createImageView(boat2, x, y));
+                        test.getChildren().add(createImageView(imageHash.get("boat2"), x, y));
                     } else if (x == Game.getLimitX() / 2 + 1) {
-                        test.getChildren().add(createImageView(boat3, x, y));
+                        test.getChildren().add(createImageView(imageHash.get("boat3"), x, y));
                     } else {
-                        test.getChildren().add(createImageView(straw, x, y)); // above water
+                        test.getChildren().add(createImageView(imageHash.get("Plastic Straw"), x, y)); // above water
                     }
                 } else if (App.game.getGrid()[x][y].getCollectable() != null) { //is collectable 
-                    test.getChildren().add(createImageView(bottleCap, x, y));
+                    //test.getChildren().add(createImageView(cup, x, y));
+                    test.getChildren().add(createImageView(imageHash.get(App.game.getGrid()[x][y].getCollectable().getName()), x, y));
                 } else if (App.game.getGrid()[x][y].getCollectable() == null) { //no collectable
-                    test.getChildren().add(createImageView(emptyWater, x, y));
+                    test.getChildren().add(createImageView(imageHash.get("emptyWater"), x, y));
                 }
             }
 
             hboxRoom.getChildren().add(test);
         }
 
-        setImageViewImage(Game.getLimitX() / 2, 1, diver);
+        setImageViewImage(Game.getLimitX() / 2, 1, imageHash.get("diver"));
 
     }
 
@@ -202,6 +216,10 @@ public class GameController implements Initializable {
         return imageViewRoom;
     }
 
+    public Image getImageHash(String type){
+        return imageHash.get(type);
+    }
+    
     public void addKeyEventScene() {
         App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.S) {
@@ -229,25 +247,50 @@ public class GameController implements Initializable {
         });
     }
 
-    public void loadImage() {
+//    public void loadImage() {
+//        try {         
+//            sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+//            sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
+//            diver = new Image(getClass().getResource("diver.png").toExternalForm());
+////            foodWrapper = new Image(getClass().getResource("food_wrapper.png").toExternalForm());
+//            straw = new Image(getClass().getResource("plastic_straw.png").toExternalForm());
+////            spoon = new Image(getClass().getResource("plastic_spoon.png").toExternalForm());
+////            bottle = new Image(getClass().getResource("plastic_bottle.png").toExternalForm());
+//            bottleCap = new Image(getClass().getResource("bottle_cap.png").toExternalForm());
+////            bag = new Image(getClass().getResource("plastic_bag.png").toExternalForm());
+////            lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
+//            cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
+//            emptyWater = new Image(getClass().getResource("empty_water.png").toExternalForm());
+//            boat1 = new Image(getClass().getResource("boat_1.png").toExternalForm());
+//            boat2 = new Image(getClass().getResource("boat_2.png").toExternalForm());
+//            boat3 = new Image(getClass().getResource("boat_3.png").toExternalForm());
+//        } catch (Exception e) {
+//            System.out.println("Naming is wrong" + e.toString());
+//        }
+//    }
+    
+    public void loadImage2() {
         try {
-            sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-            sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-            diver = new Image(getClass().getResource("diver.png").toExternalForm());
-            foodWrapper = new Image(getClass().getResource("food_wrapper.png").toExternalForm());
-            straw = new Image(getClass().getResource("plastic_straw.png").toExternalForm());
-            spoon = new Image(getClass().getResource("plastic_spoon.png").toExternalForm());
-            bottle = new Image(getClass().getResource("plastic_bottle.png").toExternalForm());
-            bottleCap = new Image(getClass().getResource("bottle_cap.png").toExternalForm());
-            bag = new Image(getClass().getResource("plastic_bag.png").toExternalForm());
-            lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
-            cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
-            emptyWater = new Image(getClass().getResource("empty_water.png").toExternalForm());
-            boat1 = new Image(getClass().getResource("boat_1.png").toExternalForm());
-            boat2 = new Image(getClass().getResource("boat_2.png").toExternalForm());
-            boat3 = new Image(getClass().getResource("boat_3.png").toExternalForm());
-        } catch (Exception e) {
-            System.out.println("Naming is wrong" + e.toString());
-        }
+            imageHash.put("sharkRight", new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm()));
+            imageHash.put("sharkLeft", new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm()));
+            imageHash.put("diver", new Image(getClass().getResource("diver.png").toExternalForm()));
+            imageHash.put("Food Wrapper", new Image(getClass().getResource("food_wrapper.png").toExternalForm()));
+            imageHash.put("Plastic Straw", new Image(getClass().getResource("plastic_straw.png").toExternalForm()));
+            imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.png").toExternalForm()));
+            imageHash.put("Plastic Knife", new Image(getClass().getResource("plastic_knife.png").toExternalForm()));
+            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.png").toExternalForm())); //<-- got to here safely
+            imageHash.put("Plastic Bottle", new Image(getClass().getResource("plastic_bottle.png").toExternalForm()));
+            imageHash.put("Plastic Bottle Cap", new Image(getClass().getResource("bottle_cap.png").toExternalForm()));
+            imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.png").toExternalForm()));
+            imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.png").toExternalForm()));
+            imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.png").toExternalForm()));
+            imageHash.put("Plastic Plate", new Image(getClass().getResource("plastic_plate.png").toExternalForm()));
+            imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.png").toExternalForm()));
+            imageHash.put("boat1", new Image(getClass().getResource("boat_1.png").toExternalForm()));
+            imageHash.put("boat2", new Image(getClass().getResource("boat_2.png").toExternalForm()));
+            imageHash.put("boat3", new Image(getClass().getResource("boat_3.png").toExternalForm()));
+    } catch (Exception e){
+            System.out.println("loadImage2 returned following error" + e.getMessage());
+    }
     }
 }
