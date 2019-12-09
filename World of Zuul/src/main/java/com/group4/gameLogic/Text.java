@@ -107,6 +107,7 @@ public class Text {
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
+    
 
     public static String uppercaseName(String name) {
         name = name.trim();        //Trim to get rid of white space (both in before and after the string)
