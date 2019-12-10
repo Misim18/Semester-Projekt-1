@@ -1,37 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group4.gui;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
+import com.group4.gameLogic.Text;
 
-/**
- *
- * @author mikai
- */
 public class DeathController {
- 
-    @FXML
-    private Button bBackToStart;
 
     @FXML
     private Text levelReachedText;
-    
-    public void initialize() {
-        levelReachedText.setText("Hej dette er intro teksten"); //PrintWelcome method should be here
+
+    @FXML
+    private Text textCourseOfDead;
+
+    @FXML
+    void bBacktoStart(ActionEvent event) {
+		App.toggleIntroUI();
+
+
     }
 
     @FXML
-    void handleBackToStartButtonAction(ActionEvent event) {
-        App.toggleUI();
+    public void initialize() throws Exception {
+		levelReachedText.setText(""+App.game.player1.getLevelReached());
+		textCourseOfDead.setText(Text.causeOfDeath());
+
     }
-
 }
-
-    
-
