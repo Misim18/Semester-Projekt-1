@@ -59,9 +59,9 @@ public class GameController implements Initializable {
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
         labelBreath.setText("" + App.game.player1.getBreath());
-       
+
             addKeyEventScene();
-       
+
         printInitialUI();
     }
     // GO commands implement
@@ -159,7 +159,7 @@ public class GameController implements Initializable {
                 }
             }
         }
-        
+
         //Sets player picture
         if (App.game.player1.getCoordinateY() == 0) {  //if the player IS on the upper grid
             if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
@@ -189,8 +189,8 @@ public class GameController implements Initializable {
             //if (App.game.getOldRoom()!=null){
             setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
             //}
-        } 
-        
+        }
+
     }
 
     public void printInitialUI() {
@@ -313,7 +313,6 @@ public class GameController implements Initializable {
             imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm()));
             imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.jpg").toExternalForm()));
             imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.jpg").toExternalForm()));
-            imageHash.put("Plastic Plate", new Image(getClass().getResource("Plastic_plate.jpg").toExternalForm()));
             imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.jpg").toExternalForm()));
             imageHash.put("boat1", new Image(getClass().getResource("boat_1.jpg").toExternalForm()));
             imageHash.put("boat2", new Image(getClass().getResource("boat_2.jpg").toExternalForm()));
@@ -324,6 +323,7 @@ public class GameController implements Initializable {
             imageHash.put("oceanTop", new Image(getClass().getResource("ocean_top.jpg").toExternalForm()));
             imageHash.put("aboveWater", new Image(getClass().getResource("ocean_top_with_diver.jpg").toExternalForm()));
             imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.jpg").toExternalForm()));
+            imageHash.put("Plastic Plate", new Image(getClass().getResource("plastic_plate.jpg").toExternalForm()));
         } catch (Exception e) {
             System.out.println("loadImage2 returned following error: " + e.getMessage());
         }
