@@ -109,12 +109,12 @@ public class GameController implements Initializable {
 		labelBreath.setText("" + App.game.player1.getBreath());
 
         //Places diver on new position);
-        
+
         //Toggles death screen if player death
         if (App.game.player1.getLife() <= 0) {
             App.toggleDeathUI();
         }
-        
+
 
         //setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
 
@@ -308,7 +308,7 @@ public class GameController implements Initializable {
             imageHash.put("Food Wrapper", new Image(getClass().getResource("food_wrapper.jpg").toExternalForm()));
             imageHash.put("Plastic Straw", new Image(getClass().getResource("plastic_straw.jpg").toExternalForm()));
             imageHash.put("Plastic Knife", new Image(getClass().getResource("plastic_knife.jpg").toExternalForm()));
-            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.jpg").toExternalForm())); 
+            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.jpg").toExternalForm()));
             imageHash.put("Plastic Bottle", new Image(getClass().getResource("plastic_bottle.jpg").toExternalForm()));
             imageHash.put("Plastic Bottle Cap", new Image(getClass().getResource("bottle_cap.jpg").toExternalForm()));
             imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm()));
