@@ -109,7 +109,12 @@ public class GameController implements Initializable {
 		labelBreath.setText("" + App.game.player1.getBreath());
 
         //Places diver on new position);
-
+        
+        //Toggles death screen if player death
+        if (App.game.player1.getLife() == 0) {
+            App.toggleDeathUI();
+        }
+        
 
         //setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
 

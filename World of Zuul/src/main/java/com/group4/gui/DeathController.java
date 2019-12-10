@@ -26,7 +26,7 @@ public class DeathController {
 
     @FXML
     public void initialize() {
-        levelReachedText.setText("level reached here"); 
+        //levelReachedText.setText("level reached here" + player1.getLevelReached()); 
     }
     
     @FXML
