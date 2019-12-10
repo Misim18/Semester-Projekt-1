@@ -111,7 +111,7 @@ public class GameController implements Initializable {
         //Places diver on new position);
         
         //Toggles death screen if player death
-        if (App.game.player1.getLife() == 0) {
+        if (App.game.player1.getLife() <= 0) {
             App.toggleDeathUI();
         }
         
