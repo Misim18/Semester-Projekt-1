@@ -10,6 +10,7 @@ import com.group4.gameLogic.Game;
 import com.group4.gameLogic.Room;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -59,9 +60,7 @@ public class GameController implements Initializable {
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
         labelBreath.setText("" + App.game.player1.getBreath());
-
-            addKeyEventScene();
-
+        addKeyEventScene();
         printInitialUI();
     }
     // GO commands implement
@@ -195,6 +194,7 @@ public class GameController implements Initializable {
 
     public void printInitialUI() {
 
+        //Clear the old game grid, and center the hbox
         hboxRoom.getChildren().clear();
         hboxRoom.setAlignment(Pos.CENTER);
 
