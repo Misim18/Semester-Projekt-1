@@ -141,7 +141,7 @@ public class GameController implements Initializable {
             } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat3"));
             } else { //water line
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("Plastic Straw")); //<-- replace with water line
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("oceanTop")); //<-- replace with water line
             }
         } else { //if none of the above, just put emptyWater
             //if (App.game.getOldRoom()!=null){
@@ -153,7 +153,7 @@ public class GameController implements Initializable {
         for (int i = 0; i < 2; i++) {  //To check index[0] & index[gameLimitX-1]
             for (int y = 2; y < App.game.getLimitY(); y++) { // Given that the first two rows are shark free, no need to check
                 if (i == 0) { //at left grid boundry
-                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkLeft") || ((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkRight")) { //and there's a shark going left
+                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkLeft")) { //and there's a shark going left
                         if (App.game.getGrid()[0][y].getCollectable() != null) { //code to check for item
                             setImageViewImage(0, y, imageHash.get(App.game.getGrid()[0][y].getCollectable().getName())); //<-- correct item
                         } else {
@@ -209,7 +209,7 @@ public class GameController implements Initializable {
                     } else if (x == Game.getLimitX() / 2 + 1) {
                         test.getChildren().add(createImageView(imageHash.get("boat3"), x, y));
                     } else {
-                        test.getChildren().add(createImageView(imageHash.get("Plastic Straw"), x, y)); // above water
+                        test.getChildren().add(createImageView(imageHash.get("oceanTop"), x, y)); // above water
                     }
                 } else if (App.game.getGrid()[x][y].getCollectable() != null) { //is collectable
                     //test.getChildren().add(createImageView(cup, x, y));
