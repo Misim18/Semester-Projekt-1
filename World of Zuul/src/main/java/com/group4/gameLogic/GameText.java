@@ -32,9 +32,9 @@ public class GameText {
     }
 
     public static String causeOfDeath(Character player) {
-        if (player.getLife() == 0 && player.getBreath() == 0) {
+        if (player.getLife() <= 0 && player.getBreath() <= 0) {
             return "You ran out of breath and drowned! \n   Game Over!";
-        } else if (player.getLife() == 0 && player.getBreath() != 0) {
+        } else if (player.getLife() <= 0 && player.getBreath() != 0) {
             return "You ran head first into a shark and died! \n   Game Over!";
         } else {
             return "";
