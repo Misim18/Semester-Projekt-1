@@ -269,7 +269,6 @@ public class GameController implements Initializable {
             }
             if (key.getCode() == KeyCode.T) {
                 App.toggleUI();
-            	updateUI();
             }
             if (key.getCode() == KeyCode.C) {
                 App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
