@@ -56,10 +56,12 @@ public class GameController implements Initializable {
         //loadImage();
         loadImage2();
         listViewInventory.setItems(App.game.player1.getInventory());
-        //updateUI();
-        if (App.firstTimeInit()) {
+        labelLevel.setText("" + App.game.player1.getLevelReached());
+        labelHealth.setText("" + App.game.player1.getLife());
+        labelBreath.setText("" + App.game.player1.getBreath());
+       
             addKeyEventScene();
-        }
+       
         printInitialUI();
     }
     // GO commands implement
@@ -104,49 +106,14 @@ public class GameController implements Initializable {
     }
 
     public void updateUI() {
+        //Updates levelReached, Life and Breath
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
-		labelBreath.setText("" + App.game.player1.getBreath());
-
-        //Places diver on new position);
+        labelBreath.setText("" + App.game.player1.getBreath());
 
         //Toggles death screen if player death
         if (App.game.player1.getLife() <= 0) {
             App.toggleDeathUI();
-        }
-
-
-        //setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
-
-
-        if (App.game.player1.getCoordinateY() == 0) {  //if the player IS on the upper grid
-            if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat1diver")); //<-- boat_1
-            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat2diver")); //<-- boat_2
-            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
-                setImageViewImage(App.game.player1.getCoordinateX(),App.game.player1.getCoordinateY(), imageHash.get("boat3diver")); //<-- boat_3
-            } else { //water line
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("aboveWater")); //<-- replace with water line
-            }
-        } else { //if none of the above, just put emptyWater
-            setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
-        }
-
-        if (/*App.game.getOldRoom()!=null &&*/ App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid
-            if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat1"));
-            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat2"));
-            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat3"));
-            } else { //water line
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("oceanTop")); //<-- replace with water line
-            }
-        } else { //if none of the above, just put emptyWater
-            //if (App.game.getOldRoom()!=null){
-                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
-            //}
         }
 
         //remove expired sharks
@@ -171,7 +138,7 @@ public class GameController implements Initializable {
                 }
             }
         }
-
+            //Updates sharks
         for (int i = 0; i < Room.getHostilesActive().size(); i++) { //go through all the Hostiles
             if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) { //if the shark is INSIDE the grid
                 if (Room.getHostilesActive().get(i).getDirectionX() == 1) {  //and it's facing right
@@ -192,10 +159,43 @@ public class GameController implements Initializable {
                 }
             }
         }
+        
+        //Sets player picture
+        if (App.game.player1.getCoordinateY() == 0) {  //if the player IS on the upper grid
+            if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat1diver")); //<-- boat_1
+            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat2diver")); //<-- boat_2
+            } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat3diver")); //<-- boat_3
+            } else { //water line
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("aboveWater")); //<-- replace with water line
+            }
+        } else { //if none of the above, just put emptyWater
+            setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
+        }
+
+        if (/*App.game.getOldRoom()!=null &&*/App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid
+            if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat1"));
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat2"));
+            } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat3"));
+            } else { //water line
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("oceanTop")); //<-- replace with water line
+            }
+        } else { //if none of the above, just put emptyWater
+            //if (App.game.getOldRoom()!=null){
+            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
+            //}
+        } 
+        
     }
 
     public void printInitialUI() {
 
+        hboxRoom.getChildren().clear();
         hboxRoom.setAlignment(Pos.CENTER);
 
         for (int x = 0; x < Game.getLimitX(); x++) {
@@ -241,7 +241,7 @@ public class GameController implements Initializable {
         return imageViewRoom;
     }
 
-    public Image getImageHash(String type){
+    public Image getImageHash(String type) {
         return imageHash.get(type);
     }
 
@@ -249,31 +249,32 @@ public class GameController implements Initializable {
         App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.S) {
                 App.game.goRoom(new Command(CommandWord.GO, "down"));
-            	updateUI();
+                //updateUI();
             }
             if (key.getCode() == KeyCode.W) {
                 App.game.goRoom(new Command(CommandWord.GO, "up"));
-            	updateUI();
+                //updateUI();
             }
             if (key.getCode() == KeyCode.A) {
                 App.game.goRoom(new Command(CommandWord.GO, "left"));
-            	updateUI();
+                //updateUI();
             }
             if (key.getCode() == KeyCode.D) {
                 App.game.goRoom(new Command(CommandWord.GO, "right"));
-            	updateUI();
+                //updateUI();
             }
             if (key.getCode() == KeyCode.Q) {
                 App.closeGame();
-            	updateUI();
+                //updateUI();
             }
             if (key.getCode() == KeyCode.T) {
                 App.toggleUI();
             }
             if (key.getCode() == KeyCode.C) {
                 App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
-            	updateUI();
+                //updateUI();
             }
+            updateUI();
         });
     }
 
@@ -298,7 +299,6 @@ public class GameController implements Initializable {
 //            System.out.println("Naming is wrong" + e.toString());
 //        }
 //    }
-
     public void loadImage2() {
         try {
             imageHash.put("sharkRight", new Image(getClass().getResource("shark_right.jpg").toExternalForm()));
@@ -307,12 +307,12 @@ public class GameController implements Initializable {
             imageHash.put("Food Wrapper", new Image(getClass().getResource("food_wrapper.jpg").toExternalForm()));
             imageHash.put("Plastic Straw", new Image(getClass().getResource("plastic_straw.jpg").toExternalForm()));
             imageHash.put("Plastic Knife", new Image(getClass().getResource("plastic_knife.jpg").toExternalForm()));
-            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.jpg").toExternalForm()));  
+            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.jpg").toExternalForm()));
             imageHash.put("Plastic Bottle", new Image(getClass().getResource("plastic_bottle.jpg").toExternalForm())); //<-- got to here safely
             imageHash.put("Plastic Bottle Cap", new Image(getClass().getResource("bottle_cap.jpg").toExternalForm()));
-            imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm())); 
+            imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm()));
             imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.jpg").toExternalForm()));
-            imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.jpg").toExternalForm())); 
+            imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.jpg").toExternalForm()));
             imageHash.put("Plastic Plate", new Image(getClass().getResource("Plastic_plate.jpg").toExternalForm()));
             imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.jpg").toExternalForm()));
             imageHash.put("boat1", new Image(getClass().getResource("boat_1.jpg").toExternalForm()));
@@ -324,8 +324,8 @@ public class GameController implements Initializable {
             imageHash.put("oceanTop", new Image(getClass().getResource("ocean_top.jpg").toExternalForm()));
             imageHash.put("aboveWater", new Image(getClass().getResource("ocean_top_with_diver.jpg").toExternalForm()));
             imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.jpg").toExternalForm()));
-    } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("loadImage2 returned following error: " + e.getMessage());
-    }
+        }
     }
 }
