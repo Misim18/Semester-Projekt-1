@@ -2,7 +2,8 @@ package com.group4.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import com.group4.gameLogic.Text;
+import com.group4.gameLogic.GameText;
+import javafx.scene.text.Text;;
 
 public class DeathController {
 
@@ -22,7 +23,7 @@ public class DeathController {
     @FXML
     public void initialize() throws Exception {
 		levelReachedText.setText(""+App.game.player1.getLevelReached());
-		textCourseOfDead.setText(Text.causeOfDeath());
+		textCourseOfDead.setText(Text.causeOfDeath(App.game.getPlayer()));
 
     }
 }

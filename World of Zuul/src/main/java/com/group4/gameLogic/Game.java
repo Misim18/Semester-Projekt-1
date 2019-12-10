@@ -353,4 +353,8 @@ public class Game //attributes
             }
         }
     }
+
+	public Character getPlayer(){
+		return player1;
+	}
 }
