@@ -3,7 +3,7 @@ package com.group4.gameLogic;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Text {
+public class GameText {
 
     private static String[] randLineArray;
 

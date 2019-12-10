@@ -5,7 +5,7 @@
  */
 package com.group4.gui;
 
-import com.group4.gameLogic.Text;
+import com.group4.gameLogic.GameText;
 import com.group4.gameLogic.Character;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
