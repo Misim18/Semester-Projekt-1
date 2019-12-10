@@ -290,24 +290,29 @@ public class GameController implements Initializable {
     
     public void loadImage2() {
         try {
-            imageHash.put("sharkRight", new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm()));
-            imageHash.put("sharkLeft", new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm()));
-            imageHash.put("diver", new Image(getClass().getResource("diver.png").toExternalForm()));
-            imageHash.put("Food Wrapper", new Image(getClass().getResource("food_wrapper.png").toExternalForm()));
-            imageHash.put("Plastic Straw", new Image(getClass().getResource("plastic_straw.png").toExternalForm()));
-            imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.png").toExternalForm()));
-            imageHash.put("Plastic Knife", new Image(getClass().getResource("plastic_knife.png").toExternalForm()));
-            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.png").toExternalForm())); //<-- got to here safely
-            imageHash.put("Plastic Bottle", new Image(getClass().getResource("plastic_bottle.png").toExternalForm()));
-            imageHash.put("Plastic Bottle Cap", new Image(getClass().getResource("bottle_cap.png").toExternalForm()));
-            imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.png").toExternalForm()));
-            imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.png").toExternalForm()));
-            imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.png").toExternalForm()));
-            imageHash.put("Plastic Plate", new Image(getClass().getResource("plastic_plate.png").toExternalForm()));
-            imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.png").toExternalForm()));
-            imageHash.put("boat1", new Image(getClass().getResource("boat_1.png").toExternalForm()));
-            imageHash.put("boat2", new Image(getClass().getResource("boat_2.png").toExternalForm()));
-            imageHash.put("boat3", new Image(getClass().getResource("boat_3.png").toExternalForm()));
+            imageHash.put("sharkRight", new Image(getClass().getResource("shark_right.jpg").toExternalForm()));
+            imageHash.put("sharkLeft", new Image(getClass().getResource("shark_left.jpg").toExternalForm()));
+            imageHash.put("diver", new Image(getClass().getResource("diver.jpg").toExternalForm()));
+            imageHash.put("Food Wrapper", new Image(getClass().getResource("food_wrapper.jpg").toExternalForm()));
+            imageHash.put("Plastic Straw", new Image(getClass().getResource("plastic_straw.jpg").toExternalForm()));
+            imageHash.put("Plastic Knife", new Image(getClass().getResource("plastic_knife.jpg").toExternalForm()));
+            imageHash.put("Plastic Spoon", new Image(getClass().getResource("plastic_spoon.jpg").toExternalForm())); 
+            imageHash.put("Plastic Bottle", new Image(getClass().getResource("plastic_bottle.jpg").toExternalForm()));
+            imageHash.put("Plastic Bottle Cap", new Image(getClass().getResource("bottle_cap.jpg").toExternalForm()));
+            imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm()));
+            imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.jpg").toExternalForm()));
+            imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.jpg").toExternalForm())); //<-- got to here safely
+            imageHash.put("Plastic Plate", new Image(getClass().getResource("plastic_plate.jpg").toExternalForm()));
+            imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.jpg").toExternalForm()));
+            imageHash.put("boat1", new Image(getClass().getResource("boat_1.jpg").toExternalForm()));
+            imageHash.put("boat2", new Image(getClass().getResource("boat_2.jpg").toExternalForm()));
+            imageHash.put("boat3", new Image(getClass().getResource("boat_3.jpg").toExternalForm()));
+            imageHash.put("boat1diver", new Image(getClass().getResource("boat_1_diver.jpg").toExternalForm()));
+            imageHash.put("boat2diver", new Image(getClass().getResource("boat_2_diver.jpg").toExternalForm()));
+            imageHash.put("boat3diver", new Image(getClass().getResource("boat_3_diver.jpg").toExternalForm()));
+            imageHash.put("aboveWater", new Image(getClass().getResource("ocean_top.jpg").toExternalForm()));
+            imageHash.put("oceanTop", new Image(getClass().getResource("ocean_top_with_diver.jpg").toExternalForm()));
+            imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.jpg").toExternalForm()));
     } catch (Exception e){
             System.out.println("loadImage2 returned following error" + e.getMessage());
     }
