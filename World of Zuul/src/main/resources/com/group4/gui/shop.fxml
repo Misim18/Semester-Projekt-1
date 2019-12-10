@@ -38,7 +38,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane blendMode="SRC_ATOP" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Label layoutX="354.0" layoutY="43.0" text="Inventory upgrade" />
                   <Label layoutX="542.0" layoutY="43.0" text="Breath upgrade" />
@@ -49,7 +49,6 @@
                   <Button fx:id="bBuyInventoryUpgrade" layoutX="383.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleInventoryUpgradeButtonAction" text="Buy" />
                   <Button fx:id="bBuyBreathUpgrade" layoutX="561.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleBuyBreathUpgradeButtonAction" text="Buy" />
                   <Button fx:id="bNextLevel" layoutX="462.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleNextLevelButtonAction" text="Nextlevel" />
-                  <TextArea fx:id="textbubble" layoutX="60.0" layoutY="272.0" prefHeight="107.0" prefWidth="162.0" wrapText="true" />
                </children>
             </AnchorPane>
          </children>
@@ -68,11 +67,7 @@
                   <Image url="@cap.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="bubble" fitHeight="192.0" fitWidth="296.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@bubble.png" />
-               </image>
-            </ImageView>
+            <TextArea fx:id="textbubble" prefHeight="107.0" prefWidth="162.0" wrapText="true" />
          </children>
       </GridPane>
    </children>

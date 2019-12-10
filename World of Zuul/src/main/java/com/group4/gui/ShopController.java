@@ -3,19 +3,12 @@ package com.group4.gui;
 import com.group4.gameLogic.CommandShop;
 import com.group4.gameLogic.CommandWordShop;
 import com.group4.gameLogic.Text;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javax.imageio.ImageIO;
 
 public class ShopController {
 
@@ -30,8 +23,8 @@ public class ShopController {
 
     @FXML
     private ImageView bubble;
-    
-    
+
+
     @FXML
     private TextArea textbubble;
 
