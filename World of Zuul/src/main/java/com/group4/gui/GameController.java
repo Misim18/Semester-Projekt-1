@@ -119,15 +119,15 @@ public class GameController implements Initializable {
         //setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
 
 
-        if (App.game.player1.getCoordinateY() == 0) {  //if the player WAS on the upper grid
+        if (App.game.player1.getCoordinateY() == 0) {  //if the player IS on the upper grid
             if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat1diver")); //<-- boat_1
             } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("boat2diver")); //<-- boat_2
             } else if (App.game.player1.getCoordinateX() == Game.getLimitX() / 2 + 1) { //where boat3 is
-                setImageViewImage(App.game.player1.getCoordinateX(),App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle")); //<-- boat_1
+                setImageViewImage(App.game.player1.getCoordinateX(),App.game.player1.getCoordinateY(), imageHash.get("boat3diver")); //<-- boat_3
             } else { //water line
-                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("Plastic Bottle Cap")); //<-- replace with water line
+                setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("aboveWater")); //<-- replace with water line
             }
         } else { //if none of the above, just put emptyWater
             setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
@@ -153,7 +153,7 @@ public class GameController implements Initializable {
         for (int i = 0; i < 2; i++) {  //To check index[0] & index[gameLimitX-1]
             for (int y = 2; y < App.game.getLimitY(); y++) { // Given that the first two rows are shark free, no need to check
                 if (i == 0) { //at left grid boundry
-                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkLeft")) { //and there's a shark going left
+                    if (((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkLeft") || ((ImageView) hboxRoom.lookup("#x" + 0 + "y" + y)).getImage() == imageHash.get("sharkRight")) { //and there's a shark going left
                         if (App.game.getGrid()[0][y].getCollectable() != null) { //code to check for item
                             setImageViewImage(0, y, imageHash.get(App.game.getGrid()[0][y].getCollectable().getName())); //<-- correct item
                         } else {
@@ -314,7 +314,7 @@ public class GameController implements Initializable {
             imageHash.put("Plastic Bag", new Image(getClass().getResource("plastic_bag.jpg").toExternalForm()));
             imageHash.put("Plastic Lid", new Image(getClass().getResource("plastic_lid.jpg").toExternalForm()));
             imageHash.put("Plastic Cup", new Image(getClass().getResource("plastic_cup.jpg").toExternalForm())); //<-- got to here safely
-            imageHash.put("Plastic Plate", new Image(getClass().getResource("plastic_plate.jpg").toExternalForm()));
+            imageHash.put("Plastic Plate", new Image(getClass().getResource("Plastic_plate.jpg").toExternalForm()));
             imageHash.put("emptyWater", new Image(getClass().getResource("empty_water.jpg").toExternalForm()));
             imageHash.put("boat1", new Image(getClass().getResource("boat_1.jpg").toExternalForm()));
             imageHash.put("boat2", new Image(getClass().getResource("boat_2.jpg").toExternalForm()));
@@ -322,9 +322,9 @@ public class GameController implements Initializable {
             imageHash.put("boat1diver", new Image(getClass().getResource("boat_1_diver.jpg").toExternalForm()));
             imageHash.put("boat2diver", new Image(getClass().getResource("boat_2_diver.jpg").toExternalForm()));
             imageHash.put("boat3diver", new Image(getClass().getResource("boat_3_diver.jpg").toExternalForm()));
-            imageHash.put("aboveWater", new Image(getClass().getResource("ocean_top.jpg").toExternalForm()));
-            imageHash.put("oceanTop", new Image(getClass().getResource("ocean_top_with_diver.jpg").toExternalForm()));
-            imageHash.put("Plastic Fork", new Image(getClass().getResource("plastic_fork.jpg").toExternalForm()));
+            imageHash.put("oceanTop", new Image(getClass().getResource("ocean_top.jpg").toExternalForm()));
+            imageHash.put("aboveWater", new Image(getClass().getResource("ocean_top_with_diver.jpg").toExternalForm()));
+            imageHash.put("Plastic Fork", new Image(getClass().getResource("fork.jpg").toExternalForm()));
     } catch (Exception e){
             System.out.println("loadImage2 returned following error" + e.getMessage());
     }
