@@ -185,8 +185,10 @@ public class GameController implements Initializable {
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("oceanTop")); //<-- replace with water line
             }
         } else { //if none of the above, just put emptyWater
-            if (App.game.getOldRoom()!=null){
-            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
+            if (App.game.getOldRoom() != null && App.game.getOldRoom().getCollectable() != null){
+            setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get(App.game.getGrid()[App.game.getOldRoom().getCoordinateX()][App.game.getOldRoom().getCoordinateY()].getCollectable().getName()));
+            } else if (App.game.getOldRoom() != null){
+                setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
             }
         }
 
