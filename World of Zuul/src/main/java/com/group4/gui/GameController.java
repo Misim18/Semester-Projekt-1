@@ -174,7 +174,7 @@ public class GameController implements Initializable {
             setImageViewImage(App.game.player1.getCoordinateX(), App.game.player1.getCoordinateY(), imageHash.get("diver"));
         }
 
-        if (/*App.game.getOldRoom()!=null &&*/App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid
+        if (App.game.getOldRoom()!=null && App.game.getOldRoom().getCoordinateY() == 0) {  //if the player WAS on the upper grid
             if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2 - 1) {  //where boat1 is
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("boat1"));
             } else if (App.game.getOldRoom().getCoordinateX() == Game.getLimitX() / 2) { //where boat2 is
@@ -185,9 +185,9 @@ public class GameController implements Initializable {
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("oceanTop")); //<-- replace with water line
             }
         } else { //if none of the above, just put emptyWater
-            //if (App.game.getOldRoom()!=null){
+            if (App.game.getOldRoom()!=null){
             setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
-            //}
+            }
         }
 
     }
