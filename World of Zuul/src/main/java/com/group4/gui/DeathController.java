@@ -5,33 +5,33 @@
  */
 package com.group4.gui;
 
-import com.group4.gameLogic.Text;
-import com.group4.gameLogic.Character;
-import javafx.event.ActionEvent;
+import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 
 /**
  *
  * @author mikai
  */
 public class DeathController {
-    
-    @FXML // fx:id="levelReachedText"
-    private TextArea levelReachedText;
-    
+ 
     @FXML
     private Button bBackToStart;
 
     @FXML
+    private Text levelReachedText;
+    
     public void initialize() {
-        //levelReachedText.setText("level reached here" + player1.getLevelReached()); 
+        levelReachedText.setText("Hej dette er intro teksten"); //PrintWelcome method should be here
     }
-    
+
     @FXML
-    void handlehandleBackToStartButtonAction(ActionEvent event) {
-		App.toggleUI();
+    void handleBackToStartButtonAction(ActionEvent event) {
+        App.toggleUI();
     }
-    
+
 }
+
+    
+
