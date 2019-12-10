@@ -71,6 +71,25 @@ public class App extends Application {
 		}
 	}
 
+        public static void toggleDeathUI() {
+                try {
+			scene.setRoot(loadFXML("death"));
+			window.setTitle("death");
+		} catch (Exception e) {
+			System.out.println("Can't change root scene");
+			closeGame();
+		}
+        }
+        
+        public static void toggleIntroUI() {
+                try {
+			scene.setRoot(loadFXML("intro"));
+			window.setTitle("intro");
+		} catch (Exception e) {
+			System.out.println("Can't change root scene");
+			closeGame();
+		}
+        }
 
 	// Used for GameController to check if it have been
 	// init on time before.
