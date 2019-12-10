@@ -23,7 +23,7 @@ public class DeathController {
     @FXML
     public void initialize() throws Exception {
 		levelReachedText.setText(""+App.game.player1.getLevelReached());
-		textCourseOfDead.setText(Text.causeOfDeath(App.game.getPlayer()));
+		textCourseOfDead.setText(GameText.causeOfDeath(App.game.getPlayer()));
 
     }
 }
