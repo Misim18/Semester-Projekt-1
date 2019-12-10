@@ -28,9 +28,9 @@ public class Game //attributes
 		this.option = option;
 		if(option == 1){
         Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
-        Text.introLine();                                                          //calls the introLine method in Text
+        GameText.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
-        name = Text.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
+        name = GameText.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
         player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
 		} else if(option == 2){
 			player1 = new Character((getLimitX() / 2), 1);
@@ -41,7 +41,7 @@ public class Game //attributes
         boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
         shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
-        Text.fillArray();
+        GameText.fillArray();
         nextLevel();                                                                //Calls the nextLevel method
     }
 
@@ -170,8 +170,8 @@ public class Game //attributes
     }
 
     public void play() {
-        Text.printWelcome(player1);
-        Text.printInfo(player1, grid, currentRoom);
+        GameText.printWelcome(player1);
+        GameText.printInfo(player1, grid, currentRoom);
 
         boolean finished = false;
         while (!finished) {
@@ -179,16 +179,16 @@ public class Game //attributes
             finished = processCommand(command);
         }
 
-        Text.printInfo(player1, grid, currentRoom);
+        GameText.printInfo(player1, grid, currentRoom);
         System.out.println("");
-        System.out.println(Text.causeOfDeath(player1));
+        System.out.println(GameText.causeOfDeath(player1));
         System.out.println("");
         System.out.println("Thank you for playing.  Good bye.");
     }
 
     public boolean processCommand(Command command) {
         boolean wantToQuit = false;
-        Text.clearScreen();
+        GameText.clearScreen();
 
         CommandWord commandWord = command.getCommandWord();
         System.out.println();
@@ -269,7 +269,7 @@ public class Game //attributes
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-            Text.printInfo(player1, grid, currentRoom);
+            GameText.printInfo(player1, grid, currentRoom);
         } else {
             oldRoom = currentRoom;
             currentRoom = nextRoom;
@@ -326,7 +326,7 @@ public class Game //attributes
         }
 
         // print where player, collectables, and hostiles
-        Text.printInfo(player1, grid, currentRoom);
+        GameText.printInfo(player1, grid, currentRoom);
 
         return false;
     }

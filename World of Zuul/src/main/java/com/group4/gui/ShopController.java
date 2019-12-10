@@ -2,7 +2,7 @@ package com.group4.gui;
 
 import com.group4.gameLogic.CommandShop;
 import com.group4.gameLogic.CommandWordShop;
-import com.group4.gameLogic.Text;
+import com.group4.gameLogic.GameText;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,7 +48,7 @@ public class ShopController {
 
     @FXML
     public void initialize() throws Exception {
-        textbubble.setText(Text.getRandLine());
+        textbubble.setText(GameText.getRandLine());
 
         uiUpdate();
 
