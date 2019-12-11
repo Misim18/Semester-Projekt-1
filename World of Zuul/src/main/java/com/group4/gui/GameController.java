@@ -7,7 +7,6 @@ import com.group4.gameLogic.Collectables;
 import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.Game;
-import com.group4.gameLogic.Hostiles;
 import com.group4.gameLogic.Room;
 import java.util.HashMap;
 import javafx.event.ActionEvent;

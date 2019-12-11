@@ -53,6 +53,7 @@ public class Game //attributes
         createInitialCollectables((5 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3 + 1 * player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
         player1.setLevelReached(player1.getLevelReached() + 1);           //Increments levelReached
+		player1.setRewards(player1.getRewards()+2);
         //Creates the playable grid System.out.println(boat);
     }
 

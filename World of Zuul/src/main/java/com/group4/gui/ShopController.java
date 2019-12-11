@@ -8,23 +8,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class ShopController {
 
-    @FXML
-    private Button bBuyInventoryUpgrade;
 
+    @FXML
+    private Text tUpgradesLeft;
+    @FXML
+    private HBox hboxShop;
+    @FXML
+    private TextArea tBuyBreathUpgrade;
     @FXML
     private Button bBuyBreathUpgrade;
-
+    @FXML
+    private TextArea yBuyInventoryUpgrade;
+    @FXML
+    private Button bBuyInventoryUpgrade;
     @FXML
     private Button bNextLevel;
-
-    @FXML
-    private ImageView bubble;
-
-
     @FXML
     private TextArea textbubble;
 
@@ -55,6 +58,7 @@ public class ShopController {
     }
 
     public void uiUpdate() {
+		tUpgradesLeft.setText(""+App.game.player1.getRewards());
 
     }
 }
