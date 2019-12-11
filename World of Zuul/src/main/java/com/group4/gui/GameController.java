@@ -19,7 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -60,10 +59,46 @@ public class GameController implements Initializable {
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
         labelBreath.setText("" + App.game.player1.getBreath());
-        addKeyEventScene();
         printInitialUI();
     }
-    // GO commands implement
+
+    @FXML
+    void handleKeyPress(KeyEvent key) {
+			switch (key.getCode()) {
+            case LEFT:
+            case KP_LEFT:
+			case A:
+                App.game.goRoom(new Command(CommandWord.GO, "left"));
+                break;
+            case RIGHT:
+            case KP_RIGHT:
+			case D:
+                App.game.goRoom(new Command(CommandWord.GO, "right"));
+                break;
+            case UP:
+            case KP_UP:
+			case W:
+                App.game.goRoom(new Command(CommandWord.GO, "up"));
+                break;
+            case DOWN:
+            case KP_DOWN:
+			case S:
+                App.game.goRoom(new Command(CommandWord.GO, "down"));
+                break;
+			case Q:
+				App.closeGame();
+				break;
+			case T:
+				App.toggleUI();
+				break;
+			case C:
+                App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
+				break;
+            default:
+                break;
+            }
+            updateUI();
+    }
 
     @FXML
     void handleUpButtonAction(ActionEvent event) {
@@ -247,66 +282,7 @@ public class GameController implements Initializable {
         return imageHash.get(type);
     }
 
-    public void addKeyEventScene() {
-        App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			switch (key.getCode()) {
-            case LEFT:
-            case KP_LEFT:
-			case A:
-                App.game.goRoom(new Command(CommandWord.GO, "left"));
-                break;
-            case RIGHT:
-            case KP_RIGHT:
-			case D:
-                App.game.goRoom(new Command(CommandWord.GO, "right"));
-                break;
-            case UP:
-            case KP_UP:
-			case W:
-                App.game.goRoom(new Command(CommandWord.GO, "up"));
-                break;
-            case DOWN:
-            case KP_DOWN:
-			case S:
-                App.game.goRoom(new Command(CommandWord.GO, "down"));
-                break;
-			case Q:
-				App.closeGame();
-				break;
-			case T:
-				App.toggleUI();
-				break;
-			case C:
-                App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
-				break;
-            default:
-                break;
-            }
-            updateUI();
-        });
-    }
 
-//    public void loadImage() {
-//        try {
-//            sharkRight = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-//            sharkLeft = new Image(getClass().getResource("shark_resize_100_100.png").toExternalForm());
-//            diver = new Image(getClass().getResource("diver.png").toExternalForm());
-////            foodWrapper = new Image(getClass().getResource("food_wrapper.png").toExternalForm());
-//            straw = new Image(getClass().getResource("plastic_straw.png").toExternalForm());
-////            spoon = new Image(getClass().getResource("plastic_spoon.png").toExternalForm());
-////            bottle = new Image(getClass().getResource("plastic_bottle.png").toExternalForm());
-//            bottleCap = new Image(getClass().getResource("bottle_cap.png").toExternalForm());
-////            bag = new Image(getClass().getResource("plastic_bag.png").toExternalForm());
-////            lid = new Image(getClass().getResource("plastic_lid.png").toExternalForm());
-//            cup = new Image(getClass().getResource("plastic_cup.png").toExternalForm());
-//            emptyWater = new Image(getClass().getResource("empty_water.png").toExternalForm());
-//            boat1 = new Image(getClass().getResource("boat_1.png").toExternalForm());
-//            boat2 = new Image(getClass().getResource("boat_2.png").toExternalForm());
-//            boat3 = new Image(getClass().getResource("boat_3.png").toExternalForm());
-//        } catch (Exception e) {
-//            System.out.println("Naming is wrong" + e.toString());
-//        }
-//    }
     public void loadImage2() {
         try {
             imageHash.put("sharkRight", new Image(getClass().getResource("shark_right.jpg").toExternalForm()));
