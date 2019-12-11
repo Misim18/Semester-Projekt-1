@@ -16,7 +16,7 @@ public class Character extends Coordinate {
 
     public Character(String name, int xPos, int yPos) {
         super(xPos, yPos);
-        this.breath = 14;
+        this.breath = 16;
         this.name = name;
         this.amountOfBreathLeft = breath;
         this.life = 100;
