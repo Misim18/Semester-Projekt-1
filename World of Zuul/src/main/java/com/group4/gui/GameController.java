@@ -145,7 +145,10 @@ public class GameController implements Initializable {
 
         //Toggles death screen if player death
         if (App.game.player1.getLife() <= 0) {
+			imageHash.clear();
+			hboxRoom.getChildren().clear();
             App.toggleDeathUI();
+			return;
         }
 		// Checks if it should GoToShop;
 		if(App.getGoToShop()){
@@ -155,6 +158,7 @@ public class GameController implements Initializable {
 			imageHash.clear();
 			hboxRoom.getChildren().clear();
 			App.toggleUI();
+			return;
 		}
 
         //remove expired sharks
