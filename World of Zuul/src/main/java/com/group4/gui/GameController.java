@@ -10,7 +10,6 @@ import com.group4.gameLogic.Game;
 import com.group4.gameLogic.Room;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -53,8 +52,7 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //loadImage();
-        loadImage2();
+        loadImage();
         listViewInventory.setItems(App.game.player1.getInventory());
         labelLevel.setText("" + App.game.player1.getLevelReached());
         labelHealth.setText("" + App.game.player1.getLife());
@@ -149,6 +147,15 @@ public class GameController implements Initializable {
         if (App.game.player1.getLife() <= 0) {
             App.toggleDeathUI();
         }
+		// Checks if it should GoToShop;
+		if(App.getGoToShop()){
+			//Clear hashmap and hboxRoom
+			//even doe javas garbage collecter should get it
+			//it is not fast enough that why we clear it
+			imageHash.clear();
+			hboxRoom.getChildren().clear();
+			App.toggleUI();
+		}
 
         //remove expired sharks
         for (int i = 0; i < 2; i++) {  //To check index[0] & index[gameLimitX-1]
@@ -226,13 +233,11 @@ public class GameController implements Initializable {
                 setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
             }
         }
-
     }
 
     public void printInitialUI() {
 
         //Clear the old game grid, and center the hbox
-        hboxRoom.getChildren().clear();
         hboxRoom.setAlignment(Pos.CENTER);
 
         for (int x = 0; x < Game.getLimitX(); x++) {
@@ -283,7 +288,7 @@ public class GameController implements Initializable {
     }
 
 
-    public void loadImage2() {
+    public void loadImage() {
         try {
             imageHash.put("sharkRight", new Image(getClass().getResource("shark_right.jpg").toExternalForm()));
             imageHash.put("sharkLeft", new Image(getClass().getResource("shark_left.jpg").toExternalForm()));

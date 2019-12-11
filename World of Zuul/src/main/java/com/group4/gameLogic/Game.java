@@ -305,8 +305,7 @@ public class Game //attributes
             	shop.goToShop(player1);
 			} else if(option == 2){
 				//shop.injectPlayer(player1);
-				App.toggleUI();
-
+				App.setGoToShop(true);
 			}
             nextLevel();
         }

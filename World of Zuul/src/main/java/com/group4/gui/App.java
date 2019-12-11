@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 	private static Stage window;
-	private static boolean firstTime = false;
+	private static boolean toShop = false;
     static Scene scene;
     static Game game;
 
@@ -56,13 +56,14 @@ public class App extends Application {
 
 	public static void toggleUI(){
 		try {
-			System.out.println("Window title" + window.getTitle());
+			System.out.println("Window title: " + window.getTitle());
 			if(window.getTitle() == "game"){
 				scene.setRoot(loadFXML("shop"));
 				window.setTitle("shop");
 			} else {
 				scene.setRoot(loadFXML("game"));
 				window.setTitle("game");
+				toShop = false;
 			}
 
 		} catch (Exception e) {
@@ -80,7 +81,7 @@ public class App extends Application {
 			closeGame();
 		}
         }
-        
+
         public static void toggleIntroUI() {
                 try {
 			scene.setRoot(loadFXML("intro"));
@@ -91,15 +92,11 @@ public class App extends Application {
 		}
         }
 
-	// Used for GameController to check if it have been
-	// init on time before.
-	public static boolean firstTimeInit(){
-		if(!firstTime){
-			firstTime = true;
-			return true;
-		} else {
-			return false;
-
-		}
+	// Used for GameController to check if it should go to shop
+	public static void setGoToShop(boolean goToShop){
+		toShop = goToShop;
+	}
+	public static boolean getGoToShop(){
+		return toShop;
 	}
 }
