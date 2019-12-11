@@ -40,6 +40,7 @@ public class Room extends Coordinate {
         return "You are " + description + ".\n" + getExitString();
     }
 
+    //this is to return false in all other rooms than boat, and thus is overwritten in boat
     public boolean playerOnBoat(Character player, int collectablesleft) {
 		return false;
 	}

@@ -142,7 +142,7 @@ public class GameController implements Initializable {
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
 		labelBreath.setText("" + App.game.player1.getBreath());
-
+                
 		//Toggles death screen if player death
 		if (App.game.player1.getLife() <= 0) {
 			imageHash.clear();

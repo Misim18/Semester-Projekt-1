@@ -31,7 +31,7 @@ public class Game //attributes
         GameText.introLine();                                                          //calls the introLine method in Text
         String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
         name = GameText.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
-        player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X, Y & Breath to the contructor
+        player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X & Y coordinates
 		} else if(option == 2){
 			player1 = new Character((getLimitX() / 2), 1);
 		}
@@ -53,7 +53,7 @@ public class Game //attributes
         createInitialCollectables((5 + 2 * player1.getLevelReached()) - player1.getRecyclingUpgrade());//-*-*-*-RecyclingUpgrade         //Creates the amount of Collectables fed into the method
         createInitialHostiles(3 + 1 * player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
         player1.setLevelReached(player1.getLevelReached() + 1);           //Increments levelReached
-		player1.setRewards(player1.getRewards()+2);
+	player1.setRewards(player1.getRewards()+2);
         //Creates the playable grid System.out.println(boat);
     }
 

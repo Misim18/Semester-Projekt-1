@@ -19,11 +19,11 @@ public class Shopping {
 		this.player = player;
 	}
 
-	public void injectPlayer(Character player){
+	public void injectPlayer(Character player){ //<-- What does this do?
 		//
 	}
     public void goToShop(Character player1) {
-        player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
+        //player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");
         System.out.println("You have " + player1.getRewards() + " rewards to spent");
         parser.showShopCommands();
@@ -75,7 +75,7 @@ public class Shopping {
     }
 
     private void printShopHelp() {
-        System.out.println("Your command words are:");
+        System.out.println("Your command words are: ");
         parser.showShopCommands();
     }
 

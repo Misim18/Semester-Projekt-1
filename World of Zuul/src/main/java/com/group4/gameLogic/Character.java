@@ -23,7 +23,8 @@ public class Character extends Coordinate {
         this.levelReached = 0;   //Note all numbers are
         this.recyclingUpgrade = 0;
         this.carryCapacity = 3;
-		this.inventory = FXCollections.observableArrayList();
+	this.inventory = FXCollections.observableArrayList();
+        this.rewards = 0;
     }
 
 	public Character(int xPos, int yPos){
