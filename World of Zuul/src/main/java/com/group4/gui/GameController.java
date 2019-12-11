@@ -249,32 +249,38 @@ public class GameController implements Initializable {
 
     public void addKeyEventScene() {
         App.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode() == KeyCode.S) {
-                App.game.goRoom(new Command(CommandWord.GO, "down"));
-                //updateUI();
-            }
-            if (key.getCode() == KeyCode.W) {
-                App.game.goRoom(new Command(CommandWord.GO, "up"));
-                //updateUI();
-            }
-            if (key.getCode() == KeyCode.A) {
+			switch (key.getCode()) {
+            case LEFT:
+            case KP_LEFT:
+			case A:
                 App.game.goRoom(new Command(CommandWord.GO, "left"));
-                //updateUI();
-            }
-            if (key.getCode() == KeyCode.D) {
+                break;
+            case RIGHT:
+            case KP_RIGHT:
+			case D:
                 App.game.goRoom(new Command(CommandWord.GO, "right"));
-                //updateUI();
-            }
-            if (key.getCode() == KeyCode.Q) {
-                App.closeGame();
-                //updateUI();
-            }
-            if (key.getCode() == KeyCode.T) {
-                App.toggleUI();
-            }
-            if (key.getCode() == KeyCode.C) {
+                break;
+            case UP:
+            case KP_UP:
+			case W:
+                App.game.goRoom(new Command(CommandWord.GO, "up"));
+                break;
+            case DOWN:
+            case KP_DOWN:
+			case S:
+                App.game.goRoom(new Command(CommandWord.GO, "down"));
+                break;
+			case Q:
+				App.closeGame();
+				break;
+			case T:
+				App.toggleUI();
+				break;
+			case C:
                 App.game.processCommand(new Command(CommandWord.CHEAT, "getAllItem"));
-                //updateUI();
+				break;
+            default:
+                break;
             }
             updateUI();
         });
