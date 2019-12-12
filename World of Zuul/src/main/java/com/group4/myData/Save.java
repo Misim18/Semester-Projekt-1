@@ -26,7 +26,7 @@ public class Save {
             //Remember the save order has to be the same as the load order
             pw.println(player1.getLevelReached()); //stores level reached into the data file
             pw.println(player1.getRewards()); //stores rewards left into the data file
-			pw.println(player1.getBreath());
+			pw.println(player1.getMaxBreath());
 			pw.println(player1.getCarryCapacity());
             pw.println(player1.getName()); //stores name into the data file
             pw.close();

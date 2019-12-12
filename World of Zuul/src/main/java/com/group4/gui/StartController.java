@@ -44,7 +44,7 @@ public class StartController {
 		textFieldPlayerName.setText(App.game.player1.getName());
 		textLevel.setText(""+App.game.player1.getLevelReached());
 		textRewards.setText(""+App.game.player1.getRewards());
-		textBreath.setText(""+App.game.player1.getBreath());
+		textBreath.setText(""+App.game.player1.getMaxBreath());
 		textInventory.setText(""+App.game.player1.getCarryCapacity());
     }
 

@@ -106,6 +106,10 @@ public class Character extends Coordinate {
         return this.amountOfBreathLeft;
     }
 
+	public int getMaxBreath(){
+		return this.breath;
+	}
+
     public void upgradeBreath() {
         breath = breath + 6;
         amountOfBreathLeft = breath;
@@ -190,6 +194,7 @@ public class Character extends Coordinate {
 
     public void setBreath(int value){
         this.breath = value;
+		this.amountOfBreathLeft = breath;
     }
 
 }
