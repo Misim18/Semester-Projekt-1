@@ -189,4 +189,8 @@ public class Character extends Coordinate {
         return "Error toString on character object";
     }
 
+    public void setBreath(int value){
+        this.breath = value;
+    }
+    
 }
