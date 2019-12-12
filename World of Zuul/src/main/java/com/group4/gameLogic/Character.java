@@ -78,17 +78,19 @@ public class Character extends Coordinate {
     // return true if dead else return false.
     public boolean hitHostile(ArrayList<Hostiles> hostiles, Room oldRoom) {
         for (Hostiles hostile : hostiles) {
-            if ((hostile.getCoordinateY() == getCoordinateY()) && (hostile.getCoordinateX() == getCoordinateX())
-                    || (oldRoom.getCoordinateX() == hostile.getCoordinateX() && getCoordinateX()==(hostile.getCoordinateX()-hostile.getDirectionX()))) {
-               
-                // Damage the player
+            if (hostile.getCoordinateY() == getCoordinateY()){
+                if (hostile.getCoordinateX() == getCoordinateX()){
                 life -= hostile.getDamage();
+                //fix warp through sharks
+                }  else if ((oldRoom.getCoordinateX() == hostile.getCoordinateX() && getCoordinateX()==(hostile.getCoordinateX()-hostile.getDirectionX()))) {
+                life -= hostile.getDamage();
+                }
                 // Checks if the player is dead
                 if (getLife() <= 0) {
                     return true;
                 }
-            }
-        }
+            }}
+        
         return false;
 
     }
