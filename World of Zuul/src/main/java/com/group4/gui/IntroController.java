@@ -17,21 +17,21 @@ import javafx.scene.control.TextArea;
  * @author mikai
  */
 public class IntroController {
-    
+
     @FXML // fx:id="textFieldIntro"
     private TextArea textFieldIntro;
-    
+
     @FXML
     private Button bIUnderstandIntro;
 
     @FXML
     public void initialize() {
-        textFieldIntro.setText("Hej dette er intro teksten"); //PrintWelcome method should be here
+        textFieldIntro.setText(GameText.introLine()); //PrintWelcome method should be here
     }
-    
+
     @FXML
     void handleIUnderstandIntroButtonAction(ActionEvent event) {
 		App.toggleUI();
     }
-    
+
 }
