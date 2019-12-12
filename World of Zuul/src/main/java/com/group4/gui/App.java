@@ -28,8 +28,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 		window = stage;
-        scene = new Scene(loadFXML("start"));
-		window.setTitle("start");
+        scene = new Scene(loadFXML("intro"));
+		window.setTitle("intro");
 		window.setOnCloseRequest(e -> closeGame());
 		//window.setTitle("Hello World");
         window.setScene(scene);
@@ -72,7 +72,7 @@ public class App extends Application {
 		}
 	}
 
-        public static void toggleDeathUI() {
+        public static void swiftToDeathUI() {
                 try {
 			scene.setRoot(loadFXML("death"));
 			window.setTitle("death");
@@ -82,7 +82,7 @@ public class App extends Application {
 		}
         }
 
-        public static void toggleIntroUI() {
+        public static void swithToIntroUI() {
                 try {
 			scene.setRoot(loadFXML("intro"));
 			window.setTitle("intro");
@@ -90,6 +90,16 @@ public class App extends Application {
 			System.out.println("Can't change root scene");
 			closeGame();
 		}
+        }
+
+        public static void swithToStart() {
+        	try {
+				scene.setRoot(loadFXML("start"));
+				window.setTitle("Start");
+			} catch (Exception e) {
+				System.out.println("Can't change root scene");
+				closeGame();
+			}
         }
 
 	// Used for GameController to check if it should go to shop

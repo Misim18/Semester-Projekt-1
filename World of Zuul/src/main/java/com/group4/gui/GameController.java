@@ -150,7 +150,7 @@ public class GameController implements Initializable {
 		if (App.game.player1.getLife() <= 0) {
 			imageHash.clear();
 			hboxRoom.getChildren().clear();
-			App.toggleDeathUI();
+			App.swiftToDeathUI();
 			return;
 		}
 		// Checks if it should GoToShop;

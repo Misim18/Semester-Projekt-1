@@ -30,7 +30,7 @@ public class IntroController {
 
     @FXML
     void handleIUnderstandIntroButtonAction(ActionEvent event) {
-		App.toggleUI();
+		App.swithToStart();
     }
 
 }

@@ -15,7 +15,9 @@ public class DeathController {
 
     @FXML
     void bBacktoStart(ActionEvent event) {
-		App.toggleIntroUI();
+		App.game.resetGame();
+		App.swithToStart();
+
 
 
     }
