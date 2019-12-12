@@ -48,11 +48,13 @@ public class GameText {
     
     public static String introLineUI() {
         return "Welcome to OceanClear \n"+
-                "OceanClear is a game about cleaning the ocean \n"+
-                "Use the keys 'W' 'A' 'S' 'D' or the buttons to control the character \n"+
-                "Your mission is to ollect all the plastic, and bring it to the boat \n"+
-                "Once you've collected all the plastic from the ocean, you'll discover bigger oceans\n"+
-                "Go safe our oceans!";
+                "This game is about cleaning the ocean \n"+
+                "Use the keys 'W' 'A' 'S' 'D' or the buttons on screen to control your character \n"+
+                "Your mission is to collect all the plastic, and bring it to the boat \n"+
+                "Once you've collected all the plastic from the screen, you've completed the level\n"+
+                "and will have the option to move on to the next level."+
+                ""+
+                "Go save our oceans!";
     }
 
     public static void printWelcome(Character player1) {
