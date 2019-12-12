@@ -142,7 +142,7 @@ public class GameController implements Initializable {
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
 		labelBreath.setText("" + App.game.player1.getBreath());
-                
+
 		//Toggles death screen if player death
 		if (App.game.player1.getLife() <= 0) {
 			imageHash.clear();
@@ -261,7 +261,14 @@ public class GameController implements Initializable {
 			if (App.game.getOldRoom() != null && App.game.getOldRoom().getCollectable() != null){
 				setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get(App.game.getGrid()[App.game.getOldRoom().getCoordinateX()][App.game.getOldRoom().getCoordinateY()].getCollectable().getName()));
 			} else if (App.game.getOldRoom() != null){
-				setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
+				//Check whats above the player
+				if ( (hboxRoom.lookup("#x"+(App.game.player1.getCoordinateX()+1)+"y"+App.game.player1.getCoordinateY()).getId().equals(""))){
+
+				}
+					else{
+						setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
+
+					}
 			}
 		}
 	}

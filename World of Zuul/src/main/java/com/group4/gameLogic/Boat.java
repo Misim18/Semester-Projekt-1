@@ -103,7 +103,7 @@ public class Boat extends Room {
     // return true: you have collected all items.
     @Override
     public boolean playerOnBoat(Character player, int collectablesleft) {
-        
+
             for (Collectables item : player.getInventory()) {
                 addToBoatInventory(item);
             }
@@ -134,8 +134,8 @@ public class Boat extends Room {
         System.out.println(i + ": " + player.getCollectablesData().get(i));
     }
     }
-    
-   
+
+
     @Override
     public String toString() {
         return "Boat - x:" + getCoordinateX() + " y:" + getCoordinateY();
