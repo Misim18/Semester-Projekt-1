@@ -1,9 +1,5 @@
 package com.group4.gameLogic;
 
-/**
- *
- * @author mikai
- */
 public class Shopping {
 	private Character player;
     private ParserShop parser = new ParserShop();
@@ -11,10 +7,7 @@ public class Shopping {
 	public Shopping(Character player){
 		this.player = player;
 	}
-
-	public void injectPlayer(Character player){ //<-- What does this do?
-		//
-	}
+        
     public void goToShop(Character player1) {
         //player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");

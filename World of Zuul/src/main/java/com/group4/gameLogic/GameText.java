@@ -27,7 +27,6 @@ public class GameText {
         int temp = (int) Math.round(Math.random() * randLineArray.length - 1);
         System.out.println(temp);
         return randLineArray[temp];
-
     }
 
     public static String causeOfDeath(Character player) {

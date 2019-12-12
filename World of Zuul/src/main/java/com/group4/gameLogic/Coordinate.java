@@ -1,9 +1,5 @@
 package com.group4.gameLogic;
 
-/**
- *
- * @author sofie
- */
 public abstract class Coordinate {
 
     private int coordinateX;
@@ -37,7 +33,6 @@ public abstract class Coordinate {
     public void setCoordinate_X_Y(int xPos, int yPos) {
         this.coordinateX = xPos;
         this.coordinateY = yPos;
-
     }
 
     @Override

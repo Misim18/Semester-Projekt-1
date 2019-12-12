@@ -6,9 +6,7 @@ import com.group4.myData.Save;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game //attributes
-{
-
+public class Game {//attributes
     private Parser parser;
     private Room currentRoom;
     private Room oldRoom;
@@ -22,8 +20,7 @@ public class Game //attributes
     public Character player1;
     public Shopping shop;
 
-    public Game(int option) //Constructor
-    {
+    public Game(int option){ //Constructor
         // option: 1=text 2=gui
         this.option = option;
         if (option == 1) {
@@ -158,15 +155,6 @@ public class Game //attributes
             }
         }
 
-        ////Can be used for printing info about rooms (Troubleshooting)
-        //
-        //        for (int y = 0; y < getLimitY(); y++) {
-        //            for (int x = 0; x < getLimitX(); x++) {
-        //                System.out.println(grid[y][x].getShortDescription());
-        //                System.out.println(grid[y][x].getCoordinateX());
-        //                System.out.println(grid[y][x].getCoordinateY());
-        //            }
-        //        }
         currentRoom = grid[getLimitX() / 2][1];
     }
 
@@ -307,7 +295,6 @@ public class Game //attributes
             if (option == 1) {
                 shop.goToShop(player1);
             } else if (option == 2) {
-                //shop.injectPlayer(player1);
                 App.setGoToShop(true);
             }
             nextLevel();

@@ -72,9 +72,7 @@ public class Character extends Coordinate {
 		}
     }
 
-
-
-    // check if character has the same coorddinnate as hostile and then take damage.
+    // check if character has the same coordinate as hostile and then take damage.
     // return true if dead else return false.
     public boolean hitHostile(ArrayList<Hostiles> hostiles, Room oldRoom) {
         for (Hostiles hostile : hostiles) {

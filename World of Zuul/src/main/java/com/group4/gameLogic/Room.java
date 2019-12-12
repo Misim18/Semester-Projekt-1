@@ -11,8 +11,7 @@ public class Room extends Coordinate {
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
 	Collectables item;
 
-    public Room(int x, int y, String description) //Sets up the room, and assigns the description to be equal to the string given to the contructor
-    {
+    public Room(int x, int y, String description){ //Sets up the room, and assigns the description to be equal to the string given to the contructor
         super(x, y);
         this.description = description;
         exits = new HashMap<String, Room>();
@@ -26,8 +25,7 @@ public class Room extends Coordinate {
         exits.put(direction, neighbor);
     }
 
-    public String getShortDescription() //Returns the desciption, which is already a string so an accessor method, although at the same time also a .toString method
-    {
+    public String getShortDescription() {//Returns the desciption, which is already a string so an accessor method, although at the same time also a .toString method
         return description;
     }
 
@@ -91,7 +89,6 @@ public class Room extends Coordinate {
         }
     }
 
-
 	public void addCollectable(Collectables item){
 		this.item = item;
 	}
@@ -103,7 +100,6 @@ public class Room extends Coordinate {
 	public void clearCollectable(){
 		this.item = null;
 	}
-
 
     @Override
     public String toString() {

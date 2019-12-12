@@ -7,25 +7,14 @@ public class Boat extends Room {
     private ArrayList<Collectables> boatInventory = new ArrayList<>();
     private int levelTrashCollected;
     private int totalTrashCollected;
-    private int money;
     private int carryCapacityUpgrades;
-    private int breathUpgrades;
-    private int plasticReductionUpgrades;
 
     public Boat(int x, int y, String description) {
         super(x, y, description); //Middle x value, and top y value on the grid.
         levelTrashCollected = 0;
         totalTrashCollected = 0;
-        money = 0;
         carryCapacityUpgrades = 0;
-        breathUpgrades = 0;
-        plasticReductionUpgrades = 0;
     }
-
-    public Boat() {
-        this(0, 0, "Boat that does not know where it is");
-    }
-
 
     // BoatInventory
     public void addToBoatInventory(Collectables temp) {
@@ -40,7 +29,6 @@ public class Boat extends Room {
     public int getLevelTrashCollected() {
         return this.levelTrashCollected;
     }
-
 
     // TotalTrashCollected
     public int getTotalTrashCollected() {
@@ -97,7 +85,6 @@ public class Boat extends Room {
         System.out.println(i + ": " + player.getCollectablesData().get(i));
     }
     }
-
 
     @Override
     public String toString() {

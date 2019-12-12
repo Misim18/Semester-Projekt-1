@@ -26,11 +26,6 @@ public class Collectables extends Coordinate {
         itemNames[6] = "Plastic Lid";
         itemNames[7] = "Plastic Cup / Plate";
 
-//        //used for verifying content of itemNames
-//        for (int x = 0; x < getItemNames().length; x++)
-//    {
-//        System.out.println(getItemNames()[x]);
-//    }
     }
 
     public static String[] getItemNames() { //Returns the entire array
@@ -61,11 +56,6 @@ public class Collectables extends Coordinate {
         return startPositionY;
     }
 
-//    public String setRandomName() {
-//        int temp = (int) Math.round(Math.random() * (getItemNames().length - 1)); //minus one, because arrays are 0 indexed (see next line)
-//
-//        return getItemNamesElement(temp);
-//    }
     public String setRandomName() {
         int foodWrap = 3728712;
         int strawStir = 3668871;
