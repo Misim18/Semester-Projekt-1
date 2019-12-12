@@ -62,7 +62,7 @@ public class ShopController {
 
 		// Breath
 		tBuyBreathUpgrade.setText("Breath \n\n" +
-				"You can hold your breath for " + App.game.player1.getBreath() + " timmes.\n" +
+				"You can hold your breath for " + App.game.player1.getBreath() + " times.\n" +
 				"Breath Description: \n" +
 				"This is the amount you can hold your breath.\n" +
 				"Every time you walk 1 block you lose on breath.\n"+
