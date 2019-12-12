@@ -187,32 +187,6 @@ public class GameController implements Initializable {
 			}
 		}
 
-	// sample for the for each loop
-	//	for (Hostiles hostile: Room.getHostilesActive()) {
-	//		// Checks if the Shark is INSIDE the grid
-	//		if (hostile.getCoordinateX() < App.game.getLimitX() && hostile.getMoveSpeedX() >= 0 && hostile.getDirectionY() < App.game.getLimitY()){
-	//			// Check it's facing right
-	//			if (hostile.getDirectionX() == 1) {
-	//				setImageViewImage(hostile.getCoordinateX(), hostile.getCoordinateY(), imageHash.get("sharkRight"));
-	//				// Check it's faceing left
-	//			} else if (hostile.getDirectionX() == -1){
-	//				setImageViewImage(hostile.getCoordinateX(), hostile.getCoordinateY(), imageHash.get("sharkLeft"));
-	//			}
-	//		// if the shark is "legal" aka not on it's starting pos
-	//		if (hostile.getCoordinateX() - hostile.getDirectionX() >= 0 && hostile.getCoordinateX() - hostile.getDirectionX() > Game.getLimitX()) {
-	//			//if the sharks old locations DOES NOT have a collectable
-	//			if (App.game.getGrid()[hostile.getCoordinateX() - hostile.getDirectionX()][hostile.getCoordinateY()].getCollectable() == null) {
-	//				setImageViewImage((hostile.getCoordinateX() - hostile.getDirectionX()), hostile.getCoordinateY(), imageHash.get("emptyWater"));
-	//				//if the sharks old locations DOES  have a collectable
-	//			} else if (App.game.getGrid()[(hostile.getCoordinateX() - hostile.getDirectionX())][hostile.getCoordinateY()].getCollectable() != null) {
-	//				// set the correct Collectable In imageViewer
-	//				setImageViewImage((hostile.getCoordinateX() - hostile.getDirectionX()), hostile.getCoordinateY(),
-	//						imageHash.get(App.game.getGrid()[hostile.getCoordinateX() - hostile.getDirectionX()][hostile.getCoordinateY()].getCollectable().getName()));
-	//			}
-	//		}
-	//		}
-	//	}
-
 		//Updates sharks
 		for (int i = 0; i < Room.getHostilesActive().size(); i++) { //go through all the Hostiles
 			if (Room.getHostilesActive().get(i).getCoordinateX() < App.game.getLimitX() && Room.getHostilesActive().get(i).getCoordinateX() >= 0 && Room.getHostilesActive().get(i).getCoordinateY() < App.game.getLimitY()) { //if the shark is INSIDE the grid
@@ -264,7 +238,7 @@ public class GameController implements Initializable {
 			if (App.game.getOldRoom() != null && App.game.getOldRoom().getCollectable() != null){
 				setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get(App.game.getGrid()[App.game.getOldRoom().getCoordinateX()][App.game.getOldRoom().getCoordinateY()].getCollectable().getName()));
 			} else if (App.game.getOldRoom() != null){
-				//Check if shark is above or below the player, then it should do nothing.
+				//Check if shark is on oldRoom
 				if(((ImageView) hboxRoom.lookup("#x" + App.game.getOldRoom().getCoordinateX() + "y" + App.game.getOldRoom().getCoordinateY())).getImage().equals(imageHash.get("sharkRight")) ||
 					((ImageView) hboxRoom.lookup("#x" + App.game.getOldRoom().getCoordinateX() + "y" + App.game.getOldRoom().getCoordinateY())).getImage().equals(imageHash.get("sharkLeft")) ){
 					// Do nothing
