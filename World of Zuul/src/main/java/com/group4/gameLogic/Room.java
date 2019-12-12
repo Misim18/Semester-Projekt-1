@@ -3,7 +3,6 @@ package com.group4.gameLogic;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator; //unused import?
 
 public class Room extends Coordinate {
 
@@ -22,7 +21,7 @@ public class Room extends Coordinate {
     public void setDescription(String description){
         this.description = description;
     }
-    
+
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
@@ -35,11 +34,11 @@ public class Room extends Coordinate {
     public void countCollectableTypes(Character player){
     System.out.println("You have called countCollectableTypes on a non-boat room");
     }
-    
+
     public void printCollectablesData(Character player){
     System.out.println("You have called printCollectableData on a non-boat room");
     }
-    
+
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }

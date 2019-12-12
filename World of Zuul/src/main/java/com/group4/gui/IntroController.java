@@ -6,7 +6,6 @@
 package com.group4.gui;
 
 import com.group4.gameLogic.GameText;
-import com.group4.gameLogic.Character;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

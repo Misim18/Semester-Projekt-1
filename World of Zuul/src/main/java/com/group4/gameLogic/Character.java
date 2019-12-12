@@ -3,7 +3,6 @@ package com.group4.gameLogic;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -192,5 +191,5 @@ public class Character extends Coordinate {
     public void setBreath(int value){
         this.breath = value;
     }
-    
+
 }

@@ -1,7 +1,6 @@
 package com.group4.gameLogic;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Boat extends Room {
 
@@ -140,7 +139,7 @@ public class Boat extends Room {
     public String toString() {
         return "Boat - x:" + getCoordinateX() + " y:" + getCoordinateY();
     }
-    
+
     public void setBoatDescription(String description){
         this.setDescription(description);
     }

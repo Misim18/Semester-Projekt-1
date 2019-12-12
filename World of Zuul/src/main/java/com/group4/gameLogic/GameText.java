@@ -1,7 +1,6 @@
 package com.group4.gameLogic;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GameText {
 
