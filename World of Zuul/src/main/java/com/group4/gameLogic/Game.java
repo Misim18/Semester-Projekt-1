@@ -361,7 +361,7 @@ public class Game //attributes
     }
 
     public void updateBoatDescription() {
-        boat.setDescription("Now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
+        boat.setDescription("Now in the boat room, with the coordinates: x:" + boat.getCoordinateX() + " y:" + boat.getCoordinateY());
     }
     
     public void resetGame(){
