@@ -23,7 +23,7 @@ public class ShopController {
     @FXML
     private Button bBuyBreathUpgrade;
     @FXML
-    private TextArea yBuyInventoryUpgrade;
+    private TextArea tBuyInventoryUpgrade;
     @FXML
     private Button bBuyInventoryUpgrade;
     @FXML
@@ -60,5 +60,21 @@ public class ShopController {
     public void uiUpdate() {
 		tUpgradesLeft.setText(""+App.game.player1.getRewards());
 
-    }
+		// Breath
+		tBuyBreathUpgrade.setText("Breath \n\n" +
+				"You can hold your breath for:" + App.game.player1.getBreath() + " timmes.\n" +
+				"Breath Description: \n" +
+				"This is the amount you can hold your breath.\n" +
+				"Every time you walk 1 block you lose on breath.\n"+
+				"Breath gets refilled then you are at the surface.\n"+
+				"If you don't upgrade breath, you can't get the next items."+
+				"Then you press buy your breath goes up by 6");
+		// Inventory
+		tBuyInventoryUpgrade.setText("Inventory \n\n" +
+				"You can carry " + App.game.player1.getCarryCapacity() + " items at once \n" +
+				"Inventory Description: \n" +
+				"With a bigger inventory you can carry more items.\n" +
+				"If you have a Bigger inventory, then you don't need to up and down so many times\n"+
+				"Then you press buy your inventory space goes up by one.\n");
+	}
 }
