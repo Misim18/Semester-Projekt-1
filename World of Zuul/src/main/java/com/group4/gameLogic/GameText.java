@@ -41,10 +41,10 @@ public class GameText {
         }
     }
 
-    public static void introLine() {
-        System.out.println("Hello, you are about to begin the game.");
-        System.out.println("Please begin by entering your name, followed by hitting Enter. ");
-        System.out.print("> ");
+    public static String introLine() {
+        return "Hello, you are about to begin the game.\n"+
+        		"Please begin by entering your name, followed by hitting Enter.\n"+
+				"> ";
     }
 
     public static void printWelcome(Character player1) {
