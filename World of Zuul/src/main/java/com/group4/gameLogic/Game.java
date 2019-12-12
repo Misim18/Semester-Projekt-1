@@ -28,7 +28,7 @@ public class Game //attributes
         this.option = option;
         if (option == 1) {
             Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
-            System.out.println(GameText.introLine());                                                          //calls the introLine method in Text
+            System.out.print(GameText.introLine());                                                          //calls the introLine method in Text
             String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
             name = GameText.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
             player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X & Y coordinates
