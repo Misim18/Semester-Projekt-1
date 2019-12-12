@@ -52,7 +52,7 @@ public class GameText {
                 "Use the keys 'W' 'A' 'S' 'D' or the buttons on screen to control your character \n"+
                 "Your mission is to collect all the plastic, and bring it to the boat \n"+
                 "Once you've collected all the plastic from the screen, you've completed the level\n"+
-                "and will have the option to move on to the next level."+
+                "and will have the option to upgrade your attributes or move on to the next level."+
                 ""+
                 "Go save our oceans!";
     }
