@@ -1,6 +1,8 @@
 package com.group4.gui;
 
+import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandShop;
+import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.CommandWordShop;
 import com.group4.gameLogic.GameText;
 
@@ -13,8 +15,7 @@ import javafx.scene.text.Text;
 
 public class ShopController {
 
-
-    @FXML
+   @FXML
     private Text tUpgradesLeft;
     @FXML
     private HBox hboxShop;
@@ -29,7 +30,21 @@ public class ShopController {
     @FXML
     private Button bNextLevel;
     @FXML
+    private Button bSave;
+    @FXML
+    private Button bQuit;
+    @FXML
     private TextArea textbubble;
+
+	@FXML
+	void handleQuitButtonAction(ActionEvent event) {
+		App.closeGame();
+	}
+
+	@FXML
+	void handleSaveButtonAction(ActionEvent event) {
+		App.game.processCommand(new Command(CommandWord.SAVE, null));
+	}
 
     @FXML
     void handleBuyBreathUpgradeButtonAction(ActionEvent event) {
@@ -51,7 +66,7 @@ public class ShopController {
 
     @FXML
     public void initialize() throws Exception {
-        textbubble.setText("Prirates says: \n" + GameText.getRandLine());
+        textbubble.setText("Pirates says: \n" + GameText.getRandLine());
 
         uiUpdate();
 
@@ -62,7 +77,7 @@ public class ShopController {
 
 		// Breath
 		tBuyBreathUpgrade.setText("Breath \n\n" +
-				"You can hold your breath for " + App.game.player1.getBreath() + " timmes.\n" +
+				"You can hold your breath for " + App.game.player1.getBreath() + " times.\n" +
 				"Breath Description: \n" +
 				"This is the amount you can hold your breath.\n" +
 				"Every time you walk 1 block you lose on breath.\n"+

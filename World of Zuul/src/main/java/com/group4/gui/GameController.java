@@ -37,8 +37,6 @@ public class GameController implements Initializable {
 	@FXML
 	private Button bRight;
 	@FXML
-	private Button bSave;
-	@FXML
 	private Button bQuit;
 	@FXML
 	private Label labelHealth;
@@ -130,10 +128,6 @@ public class GameController implements Initializable {
 		App.game.processCommand(new Command(CommandWord.LOAD, null));
 	}
 
-	@FXML
-	void handleSaveButtonAction(ActionEvent event) {
-		App.game.processCommand(new Command(CommandWord.SAVE, null));
-	}
 
 	@FXML
 	void handleQuitButtonAction(ActionEvent event) {
@@ -147,9 +141,8 @@ public class GameController implements Initializable {
 		labelBreath.setText("" + App.game.player1.getBreath());
     	if (App.game.player1.getInventory().size() >= 0) {
                 labelInventoryFull.setText(App.game.player1.getInventory().size() + " / " + App.game.player1.getCarryCapacity());
-                 while (App.game.player1.getInventory().size() == App.game.player1.getCarryCapacity()) {
+                 if (App.game.player1.getInventory().size() == App.game.player1.getCarryCapacity()) {
                     labelInventoryFull.setText("Inventory is full");
-                    break;
                 }
 		}
 
@@ -271,14 +264,14 @@ public class GameController implements Initializable {
 			if (App.game.getOldRoom() != null && App.game.getOldRoom().getCollectable() != null){
 				setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get(App.game.getGrid()[App.game.getOldRoom().getCoordinateX()][App.game.getOldRoom().getCoordinateY()].getCollectable().getName()));
 			} else if (App.game.getOldRoom() != null){
-				//Check whats above the player
-				if ( (hboxRoom.lookup("#x"+(App.game.player1.getCoordinateX()+1)+"y"+App.game.player1.getCoordinateY()).getId().equals(""))){
-
+				//Check if shark is above or below the player, then it should do nothing.
+				if(((ImageView) hboxRoom.lookup("#x" + App.game.getOldRoom().getCoordinateX() + "y" + App.game.getOldRoom().getCoordinateY())).getImage().equals(imageHash.get("sharkRight")) ||
+					((ImageView) hboxRoom.lookup("#x" + App.game.getOldRoom().getCoordinateX() + "y" + App.game.getOldRoom().getCoordinateY())).getImage().equals(imageHash.get("sharkLeft")) ){
+					// Do nothing
+				} else {
+					setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
 				}
-					else{
-						setImageViewImage(App.game.getOldRoom().getCoordinateX(), App.game.getOldRoom().getCoordinateY(), imageHash.get("emptyWater"));
 
-					}
 			}
 		}
 	}
