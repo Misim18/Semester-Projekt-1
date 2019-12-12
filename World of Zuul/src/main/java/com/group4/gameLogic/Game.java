@@ -218,6 +218,7 @@ public class Game //attributes
 			System.out.println("Player Name: "+player1.getName());
 			System.out.println("Player Rewards: "+player1.getRewards());
 			System.out.println("Player LevelReached: "+player1.getLevelReached());
+			nextLevel();
         }
         return wantToQuit;
     }

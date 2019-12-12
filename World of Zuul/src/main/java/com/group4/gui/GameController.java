@@ -37,8 +37,6 @@ public class GameController implements Initializable {
 	@FXML
 	private Button bRight;
 	@FXML
-	private Button bSave;
-	@FXML
 	private Button bQuit;
 	@FXML
 	private Label labelHealth;
@@ -130,10 +128,6 @@ public class GameController implements Initializable {
 		App.game.processCommand(new Command(CommandWord.LOAD, null));
 	}
 
-	@FXML
-	void handleSaveButtonAction(ActionEvent event) {
-		App.game.processCommand(new Command(CommandWord.SAVE, null));
-	}
 
 	@FXML
 	void handleQuitButtonAction(ActionEvent event) {

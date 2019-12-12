@@ -108,6 +108,8 @@
                         <Font size="34.0" />
                      </font>
                   </Button>
+                  <Button fx:id="bSave" layoutX="874.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save" />
+                  <Button fx:id="bQuit" layoutX="874.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" />
                </children>
             </AnchorPane>
          </children>
@@ -126,7 +128,7 @@
                   <Image url="@pirate.jpg" />
                </image>
             </ImageView>
-            <TextArea fx:id="textbubble" prefHeight="107.0" prefWidth="162.0" wrapText="true">
+            <TextArea fx:id="textbubble" prefHeight="107.0" prefWidth="162.0" text=" &#10;" wrapText="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></TextArea>

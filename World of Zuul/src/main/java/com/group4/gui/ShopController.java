@@ -1,6 +1,8 @@
 package com.group4.gui;
 
+import com.group4.gameLogic.Command;
 import com.group4.gameLogic.CommandShop;
+import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.CommandWordShop;
 import com.group4.gameLogic.GameText;
 
@@ -13,8 +15,7 @@ import javafx.scene.text.Text;
 
 public class ShopController {
 
-
-    @FXML
+   @FXML
     private Text tUpgradesLeft;
     @FXML
     private HBox hboxShop;
@@ -29,7 +30,21 @@ public class ShopController {
     @FXML
     private Button bNextLevel;
     @FXML
+    private Button bSave;
+    @FXML
+    private Button bQuit;
+    @FXML
     private TextArea textbubble;
+
+	@FXML
+	void handleQuitButtonAction(ActionEvent event) {
+		App.closeGame();
+	}
+
+	@FXML
+	void handleSaveButtonAction(ActionEvent event) {
+		App.game.processCommand(new Command(CommandWord.SAVE, null));
+	}
 
     @FXML
     void handleBuyBreathUpgradeButtonAction(ActionEvent event) {
