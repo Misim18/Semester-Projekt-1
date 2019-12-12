@@ -59,7 +59,7 @@ public class GameController implements Initializable {
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
 		labelBreath.setText("" + App.game.player1.getBreath());
-                labelInventoryFull.setText("" + App.game.player1.getInventory());
+                labelInventoryFull.setText(App.game.player1.getInventory().size() + " / " + App.game.player1.getCarryCapacity());
 		printInitialUI();
 	}
 
