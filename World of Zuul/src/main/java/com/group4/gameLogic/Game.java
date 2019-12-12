@@ -38,7 +38,7 @@ public class Game //attributes
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         load = new Load();
         save = new Save();
-        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
+        boat = new Boat(2, 0, "Now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
         shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         GameText.fillArray();
@@ -120,9 +120,9 @@ public class Game //attributes
                     grid[x][y] = boat;
                     boat.setCoordinate_X_Y(getLimitX() / 2, 0);
                 } else if (y == 0) {
-                    grid[x][y] = new Room(x, y, "now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
+                    grid[x][y] = new Room(x, y, "Now above the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 } else {
-                    grid[x][y] = new Room(x, y, "now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
+                    grid[x][y] = new Room(x, y, "Now beneath the surface, in the room with the coordinates: x:" + x + " y:" + y);
                 }
             }
         }
@@ -237,7 +237,7 @@ public class Game //attributes
                 System.out.println("cheat nextlevel");
                 break;
             case "motherload":
-                System.out.println("Here are 999,999 thousend of dollars to sims xD ");
+                System.out.println("Here are 999,999 thousand dollars to sims xD ");
                 update();
                 break;
             case "getAllItem":
@@ -361,7 +361,7 @@ public class Game //attributes
     }
 
     public void updateBoatDescription() {
-        boat.setDescription("now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
+        boat.setDescription("Now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
     }
     
     public void resetGame(){
