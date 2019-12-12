@@ -9,15 +9,15 @@ public class Room extends Coordinate {
     private String description;
     private HashMap<String, Room> exits;
     private static ArrayList<Hostiles> hostilesActive = new ArrayList<>();
-	Collectables item;
+    Collectables item;
 
-    public Room(int x, int y, String description){ //Sets up the room, and assigns the description to be equal to the string given to the contructor
+    public Room(int x, int y, String description) { //Sets up the room, and assigns the description to be equal to the string given to the contructor
         super(x, y);
         this.description = description;
         exits = new HashMap<String, Room>();
     }
 
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -29,12 +29,12 @@ public class Room extends Coordinate {
         return description;
     }
 
-    public void countCollectableTypes(Character player){
-    System.out.println("You have called countCollectableTypes on a non-boat room");
+    public void countCollectableTypes(Character player) {
+        System.out.println("You have called countCollectableTypes on a non-boat room");
     }
 
-    public void printCollectablesData(Character player){
-    System.out.println("You have called printCollectableData on a non-boat room");
+    public void printCollectablesData(Character player) {
+        System.out.println("You have called printCollectableData on a non-boat room");
     }
 
     public String getLongDescription() {
@@ -43,8 +43,8 @@ public class Room extends Coordinate {
 
     //this is to return false in all other rooms than boat, and thus is overwritten in boat
     public boolean playerOnBoat(Character player, int collectablesleft) {
-		return false;
-	}
+        return false;
+    }
 
     private String getExitString() {
         String returnString = "Exits:";     //First word of the 'returnString'
@@ -89,17 +89,17 @@ public class Room extends Coordinate {
         }
     }
 
-	public void addCollectable(Collectables item){
-		this.item = item;
-	}
+    public void addCollectable(Collectables item) {
+        this.item = item;
+    }
 
-	public Collectables getCollectable(){
-		return item;
-	}
+    public Collectables getCollectable() {
+        return item;
+    }
 
-	public void clearCollectable(){
-		this.item = null;
-	}
+    public void clearCollectable() {
+        this.item = null;
+    }
 
     @Override
     public String toString() {

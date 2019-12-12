@@ -1,7 +1,6 @@
 package com.group4.gameLogic;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Parser {
 

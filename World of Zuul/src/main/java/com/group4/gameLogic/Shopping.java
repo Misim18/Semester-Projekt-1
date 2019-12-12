@@ -1,13 +1,14 @@
 package com.group4.gameLogic;
 
 public class Shopping {
-	private Character player;
+
+    private Character player;
     private ParserShop parser = new ParserShop();
 
-	public Shopping(Character player){
-		this.player = player;
-	}
-        
+    public Shopping(Character player) {
+        this.player = player;
+    }
+
     public void goToShop(Character player1) {
         //player1.setRewards(player1.getRewards() + 2);                 //gives rewards to character for upgrades
         System.out.println("Welcome to the Shop. We are happy you are here. Let's get you upgraded.");

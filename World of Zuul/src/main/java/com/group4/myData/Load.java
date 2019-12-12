@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.group4.myData;
-import com.group4.gameLogic.Character;
 
+import com.group4.gameLogic.Character;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- *
- * @author mikai
- */
 public class Load {
 
     File myFile = new File("data.txt"); //Data file placement
-
     Scanner reader;
 
     public void LoadGame(Character player1) {

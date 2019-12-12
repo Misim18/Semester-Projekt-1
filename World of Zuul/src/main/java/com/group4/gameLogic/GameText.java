@@ -23,7 +23,7 @@ public class GameText {
         randLineArray[12] = "A total of 97,457,984 plastic items were\ncollected in the 2019 worldwide coastal cleanup. ";
     }
 
-    public static String getRandLine() { //currently un-used. Is to be used for printing out facts about plastic polution in the oceans.
+    public static String getRandLine() { 
         int temp = (int) Math.round(Math.random() * randLineArray.length - 1);
         System.out.println(temp);
         return randLineArray[temp];
@@ -40,22 +40,22 @@ public class GameText {
     }
 
     public static String introLine() {
-        return "Hello, you are about to begin the game.\n"+
-        		"Please begin by entering your name, followed by hitting Enter.\n"+
-				"> ";
+        return "Hello, you are about to begin the game.\n"
+                + "Please begin by entering your name, followed by hitting Enter.\n"
+                + "> ";
     }
-    
+
     public static String introLineUI() {
-        return "Welcome to OceanClear \n"+
-                "This game is about cleaning the ocean \n"+
-                "\n"+
-                "Use the keys 'W' 'A' 'S' 'D' or the buttons on screen to control your character \n"+
-                "\n"+
-                "Your mission is to collect all the plastic, and bring it back to the boat \n"+
-                "\n"+
-                "Once you've collected all the plastic from the screen, you've completed the level and will have the option to upgrade your attributes and move on to the next level."+
-                "\n\n"+
-                "Go save our oceans!";
+        return "Welcome to OceanClear \n"
+                + "This game is about cleaning the ocean \n"
+                + "\n"
+                + "Use the keys 'W' 'A' 'S' 'D' or the buttons on screen to control your character \n"
+                + "\n"
+                + "Your mission is to collect all the plastic, and bring it back to the boat \n"
+                + "\n"
+                + "Once you've collected all the plastic from the screen, you've completed the level and will have the option to upgrade your attributes and move on to the next level."
+                + "\n\n"
+                + "Go save our oceans!";
     }
 
     public static void printWelcome(Character player1) {

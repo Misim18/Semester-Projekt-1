@@ -5,7 +5,6 @@ import com.group4.gameLogic.CommandShop;
 import com.group4.gameLogic.CommandWord;
 import com.group4.gameLogic.CommandWordShop;
 import com.group4.gameLogic.GameText;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ import javafx.scene.text.Text;
 
 public class ShopController {
 
-   @FXML
+    @FXML
     private Text tUpgradesLeft;
     @FXML
     private HBox hboxShop;
@@ -36,15 +35,15 @@ public class ShopController {
     @FXML
     private TextArea textbubble;
 
-	@FXML
-	void handleQuitButtonAction(ActionEvent event) {
-		App.closeGame();
-	}
+    @FXML
+    void handleQuitButtonAction(ActionEvent event) {
+        App.closeGame();
+    }
 
-	@FXML
-	void handleSaveButtonAction(ActionEvent event) {
-		App.game.processCommand(new Command(CommandWord.SAVE, null));
-	}
+    @FXML
+    void handleSaveButtonAction(ActionEvent event) {
+        App.game.processCommand(new Command(CommandWord.SAVE, null));
+    }
 
     @FXML
     void handleBuyBreathUpgradeButtonAction(ActionEvent event) {
@@ -73,23 +72,23 @@ public class ShopController {
     }
 
     public void uiUpdate() {
-		tUpgradesLeft.setText(""+App.game.player1.getRewards());
+        tUpgradesLeft.setText("" + App.game.player1.getRewards());
 
-		// Breath
-		tBuyBreathUpgrade.setText("Breath \n\n" +
-				"You can hold your breath for " + App.game.player1.getBreath() + " times.\n" +
-				"Breath Description: \n" +
-				"This is the amount you can hold your breath.\n" +
-				"Every time you walk 1 block you lose on breath.\n"+
-				"Breath gets refilled then you are at the surface.\n"+
-				"If you don't upgrade breath, you can't get the next items."+
-				"Then you press buy your breath goes up by 6");
-		// Inventory
-		tBuyInventoryUpgrade.setText("Inventory \n\n" +
-				"You can carry " + App.game.player1.getCarryCapacity() + " items at once \n" +
-				"Inventory Description: \n" +
-				"With a bigger inventory you can carry more items.\n" +
-				"If you have a Bigger inventory, then you don't need to up and down so many times\n"+
-				"Then you press buy your inventory space goes up by one.\n");
-	}
+        // Breath
+        tBuyBreathUpgrade.setText("Breath \n\n"
+                + "You can hold your breath for " + App.game.player1.getBreath() + " times.\n"
+                + "Breath Description: \n"
+                + "This is the amount you can hold your breath.\n"
+                + "Every time you walk 1 block you lose on breath.\n"
+                + "Breath gets refilled then you are at the surface.\n"
+                + "If you don't upgrade breath, you can't get the next items."
+                + "Then you press buy your breath goes up by 6");
+        // Inventory
+        tBuyInventoryUpgrade.setText("Inventory \n\n"
+                + "You can carry " + App.game.player1.getCarryCapacity() + " items at once \n"
+                + "Inventory Description: \n"
+                + "With a bigger inventory you can carry more items.\n"
+                + "If you have a Bigger inventory, then you don't need to up and down so many times\n"
+                + "Then you press buy your inventory space goes up by one.\n");
+    }
 }

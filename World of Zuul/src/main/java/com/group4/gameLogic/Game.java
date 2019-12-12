@@ -3,10 +3,10 @@ package com.group4.gameLogic;
 import com.group4.gui.App;
 import com.group4.myData.Load;
 import com.group4.myData.Save;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {//attributes
+
     private Parser parser;
     private Room currentRoom;
     private Room oldRoom;
@@ -20,7 +20,7 @@ public class Game {//attributes
     public Character player1;
     public Shopping shop;
 
-    public Game(int option){ //Constructor
+    public Game(int option) { //Constructor
         // option: 1=text 2=gui
         this.option = option;
         if (option == 1) {
@@ -313,7 +313,7 @@ public class Game {//attributes
             // return true if player is dead
             return true;
         }
-        
+
         // print where player, collectables, and hostiles
         GameText.printInfo(player1, grid, currentRoom);
 
@@ -350,12 +350,12 @@ public class Game {//attributes
     public void updateBoatDescription() {
         boat.setDescription("Now in the boat room, with the coordinates: x:" + boat.getCoordinateX() + " y:" + boat.getCoordinateY());
     }
-    
-    public void resetGame(){
+
+    public void resetGame() {
         player1 = new Character(player1.getName(), (getLimitX() / 2), 1);
         boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
         shop = new Shopping(player1);
         nextLevel();
     }
-    
+
 }

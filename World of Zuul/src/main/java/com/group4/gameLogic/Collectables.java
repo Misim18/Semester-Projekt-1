@@ -5,10 +5,9 @@ public class Collectables extends Coordinate {
     private final String name;
     private final int weight;
     private static String[] itemNames;
-    
-    
+
     public Collectables() {
-        super(); // it is the possion to x0, y0
+        super(); // it is the position to x0, y0
         this.setCoordinateX(setRandomPositionX()); //sets the coordinates to the returned value of setRandomPositionX (method)
         this.setCoordinateY(setRandomPositionY()); //sets the coordinates to the returned value of setRandomPositionY (method)
         this.name = setRandomName();  //How it should be

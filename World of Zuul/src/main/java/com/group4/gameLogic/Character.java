@@ -10,7 +10,7 @@ public class Character extends Coordinate {
 
     private String name; //consider revising this to work with scanner input
     private int breath, amountOfBreathLeft, life, levelReached, carryCapacity, recyclingUpgrade, rewards;
-	private ObservableList<Collectables> inventory;
+    private ObservableList<Collectables> inventory;
     private HashMap<String, Integer> collectablesData = new HashMap<String, Integer>();
 
     public Character(String name, int xPos, int yPos) {
@@ -22,23 +22,24 @@ public class Character extends Coordinate {
         this.levelReached = 0;   //Note all numbers are
         this.recyclingUpgrade = 0;
         this.carryCapacity = 3;
-	this.inventory = FXCollections.observableArrayList();
+        this.inventory = FXCollections.observableArrayList();
         this.rewards = 0;
     }
 
-	public Character(int xPos, int yPos){
-		this("ThisIsAPlaceHolderForUI", xPos, yPos);
-	}
+    public Character(int xPos, int yPos) {
+        this("ThisIsAPlaceHolderForUI", xPos, yPos);
+    }
+
     public void incrementCollectablesData(String type) {
         if (this.collectablesData.get(type) == null) {
             this.collectablesData.put(type, 1);
-        }else {
+        } else {
             this.collectablesData.put(type, (this.collectablesData.get(type) + 1));
         }
     }
 
-    public HashMap getCollectablesData(){
-		return this.collectablesData;
+    public HashMap getCollectablesData() {
+        return this.collectablesData;
     }
 
     // Checks if the player is on the surface to get air
@@ -62,33 +63,34 @@ public class Character extends Coordinate {
 
     // check if character has the same coordinate as collectables and then pick it up.
     public void OnItem(Room[][] itemInRoom) {
-		if(itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable() != null ){
-			if(addToInventory(itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable())){
-				itemInRoom[getCoordinateX()][getCoordinateY()].clearCollectable();
-			} else {
-				System.out.println("You dont have any more room.");
-				System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
-			}
-		}
+        if (itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable() != null) {
+            if (addToInventory(itemInRoom[getCoordinateX()][getCoordinateY()].getCollectable())) {
+                itemInRoom[getCoordinateX()][getCoordinateY()].clearCollectable();
+            } else {
+                System.out.println("You dont have any more room.");
+                System.out.println("Your inventory size: " + getCarryCapacity() + "/" + getCarryCapacity());
+            }
+        }
     }
 
     // check if character has the same coordinate as hostile and then take damage.
     // return true if dead else return false.
     public boolean hitHostile(ArrayList<Hostiles> hostiles, Room oldRoom) {
         for (Hostiles hostile : hostiles) {
-            if (hostile.getCoordinateY() == getCoordinateY()){
-                if (hostile.getCoordinateX() == getCoordinateX()){
-                life -= hostile.getDamage();
-                //fix warp through sharks
-                }  else if ((oldRoom.getCoordinateX() == hostile.getCoordinateX() && getCoordinateX()==(hostile.getCoordinateX()-hostile.getDirectionX()))) {
-                life -= hostile.getDamage();
+            if (hostile.getCoordinateY() == getCoordinateY()) {
+                if (hostile.getCoordinateX() == getCoordinateX()) {
+                    life -= hostile.getDamage();
+                    //fix warp through sharks
+                } else if ((oldRoom.getCoordinateX() == hostile.getCoordinateX() && getCoordinateX() == (hostile.getCoordinateX() - hostile.getDirectionX()))) {
+                    life -= hostile.getDamage();
                 }
                 // Checks if the player is dead
                 if (getLife() <= 0) {
                     return true;
                 }
-            }}
-        
+            }
+        }
+
         return false;
 
     }
@@ -107,9 +109,9 @@ public class Character extends Coordinate {
         return this.amountOfBreathLeft;
     }
 
-	public int getMaxBreath(){
-		return this.breath;
-	}
+    public int getMaxBreath() {
+        return this.breath;
+    }
 
     public void upgradeBreath() {
         breath = breath + 6;
@@ -193,9 +195,9 @@ public class Character extends Coordinate {
         return "Error toString on character object";
     }
 
-    public void setBreath(int value){
+    public void setBreath(int value) {
         this.breath = value;
-		this.amountOfBreathLeft = breath;
+        this.amountOfBreathLeft = breath;
     }
 
 }
