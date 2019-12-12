@@ -147,9 +147,8 @@ public class GameController implements Initializable {
 		labelBreath.setText("" + App.game.player1.getBreath());
     	if (App.game.player1.getInventory().size() >= 0) {
                 labelInventoryFull.setText(App.game.player1.getInventory().size() + " / " + App.game.player1.getCarryCapacity());
-                 while (App.game.player1.getInventory().size() == App.game.player1.getCarryCapacity()) {
+                 if (App.game.player1.getInventory().size() == App.game.player1.getCarryCapacity()) {
                     labelInventoryFull.setText("Inventory is full");
-                    break;
                 }
 		}
 
