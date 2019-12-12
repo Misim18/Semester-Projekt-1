@@ -76,10 +76,11 @@ public class Character extends Coordinate {
 
     // check if character has the same coorddinnate as hostile and then take damage.
     // return true if dead else return false.
-    public boolean hitHostile(ArrayList<Hostiles> hostiles) {
+    public boolean hitHostile(ArrayList<Hostiles> hostiles, Room oldRoom) {
         for (Hostiles hostile : hostiles) {
-            if (hostile.getCoordinateX() == getCoordinateX()
-                    && hostile.getCoordinateY() == getCoordinateY()) {
+            if ((hostile.getCoordinateY() == getCoordinateY()) && (hostile.getCoordinateX() == getCoordinateX())
+                    || (oldRoom.getCoordinateX() == hostile.getCoordinateX() && getCoordinateX()==(hostile.getCoordinateX()-hostile.getDirectionX()))) {
+               
                 // Damage the player
                 life -= hostile.getDamage();
                 // Checks if the player is dead
