@@ -46,6 +46,8 @@ public class GameController implements Initializable {
 	private Label labelBreath;
 	@FXML
 	private Label labelLevel;
+        @FXML
+        private Label labelInventoryFull;
 	//Image sharkRight, sharkLeft, diver, foodWrapper, straw, fork, knife, spoon, bottle, bottleCap, bag, lid, cup, emptyWater, boat1, boat2, boat3;
 
 	private HashMap<String, Image> imageHash = new HashMap<String, Image>();
@@ -57,6 +59,7 @@ public class GameController implements Initializable {
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
 		labelBreath.setText("" + App.game.player1.getBreath());
+                labelInventoryFull.setText(App.game.player1.getInventory().size() + " / " + App.game.player1.getCarryCapacity());
 		printInitialUI();
 	}
 
@@ -142,6 +145,13 @@ public class GameController implements Initializable {
 		labelLevel.setText("" + App.game.player1.getLevelReached());
 		labelHealth.setText("" + App.game.player1.getLife());
 		labelBreath.setText("" + App.game.player1.getBreath());
+    	if (App.game.player1.getInventory().size() >= 0) {
+                labelInventoryFull.setText(App.game.player1.getInventory().size() + " / " + App.game.player1.getCarryCapacity());
+                 while (App.game.player1.getInventory().size() == App.game.player1.getCarryCapacity()) {
+                    labelInventoryFull.setText("Inventory is full");
+                    break;
+                }
+		}
 
 		//Toggles death screen if player death
 		if (App.game.player1.getLife() <= 0) {
