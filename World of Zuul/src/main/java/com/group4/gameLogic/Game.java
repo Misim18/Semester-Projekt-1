@@ -366,6 +366,7 @@ public class Game //attributes
     
     public void resetGame(){
         player1 = new Character(player1.getName(), (getLimitX() / 2), 1);
+        nextLevel();
     }
     
 }
