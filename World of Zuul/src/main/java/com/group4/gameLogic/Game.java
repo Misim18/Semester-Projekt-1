@@ -322,11 +322,11 @@ public class Game //attributes
         }
 
         // Check if the hostiles hits the player.
-        if (player1.hitHostile(Room.getHostilesActive())) {
+        if (player1.hitHostile(Room.getHostilesActive(), oldRoom)) {
             // return true if player is dead
             return true;
         }
-
+        
         // print where player, collectables, and hostiles
         GameText.printInfo(player1, grid, currentRoom);
 
