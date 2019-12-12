@@ -14,7 +14,7 @@ public class Game //attributes
     private Room oldRoom;
     private static int limitY;
     private static int limitX;
-	private int option;
+    private int option;
     private Room boat;
     private Room[][] grid;
     private Save save;
@@ -24,21 +24,21 @@ public class Game //attributes
 
     public Game(int option) //Constructor
     {
-		// option: 1=text 2=gui
-		this.option = option;
-		if(option == 1){
-        Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
-        GameText.introLine();                                                          //calls the introLine method in Text
-        String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
-        name = GameText.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
-        player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X & Y coordinates
-		} else if(option == 2){
-			player1 = new Character((getLimitX() / 2), 1);
-		}
+        // option: 1=text 2=gui
+        this.option = option;
+        if (option == 1) {
+            Scanner s = new Scanner(System.in);                                         //Initializes new scanner object
+            System.out.println(GameText.introLine());                                                          //calls the introLine method in Text
+            String name = s.nextLine();                                                 //Takes the first input line and saves it as name (String)
+            name = GameText.uppercaseName(name);                                                 //Makes the first letter uppercase and the rest lowercase, and accounts for several names
+            player1 = new Character(name, (getLimitX() / 2), 1);                      //Makes a new character, feeding the name, X & Y coordinates
+        } else if (option == 2) {
+            player1 = new Character((getLimitX() / 2), 1);
+        }
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         load = new Load();
         save = new Save();
-        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX()/2 + " y:" + 0);
+        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
         shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         GameText.fillArray();
@@ -57,11 +57,11 @@ public class Game //attributes
         updateBoatDescription();
     }
 
-    public Room[][] getGrid(){
+    public Room[][] getGrid() {
         return grid;
     }
 
-    public Room getOldRoom(){
+    public Room getOldRoom() {
         return oldRoom;
     }
 
@@ -130,7 +130,7 @@ public class Game //attributes
         //Sets right exits
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 0; x < getLimitX() - 1; x++) {
-                grid[x][y].setExit("right", grid[x+1][y]);
+                grid[x][y].setExit("right", grid[x + 1][y]);
             }
         }
 
@@ -138,7 +138,7 @@ public class Game //attributes
         for (int y = 0; y < getLimitY(); y++) {
             for (int x = 1; x < getLimitX(); x++) //x starts at 1, as to not
             {
-                grid[x][y].setExit("left", grid[x-1][y]);
+                grid[x][y].setExit("left", grid[x - 1][y]);
             }
         }
 
@@ -146,7 +146,7 @@ public class Game //attributes
         for (int y = 0; y < getLimitY() - 1; y++) //y goes to max limit - 1, as to not give bottom row down exit
         {
             for (int x = 0; x < getLimitX(); x++) {
-                grid[x][y].setExit("down", grid[x][y+1]);
+                grid[x][y].setExit("down", grid[x][y + 1]);
             }
         }
 
@@ -154,7 +154,7 @@ public class Game //attributes
         for (int y = 1; y < getLimitY(); y++) // y starts at one, as to not give up exit on top row
         {
             for (int x = 0; x < getLimitX(); x++) {
-                grid[x][y].setExit("up", grid[x][y-1]);
+                grid[x][y].setExit("up", grid[x][y - 1]);
             }
         }
 
@@ -210,16 +210,16 @@ public class Game //attributes
         } else if (commandWord == CommandWord.SAVE) {
             save.SaveGame(player1);
             System.out.println("Saved game");
-			System.out.println("Player Name: "+player1.getName());
-			System.out.println("Player Rewards: "+player1.getRewards());
-			System.out.println("Player LevelReached: "+player1.getLevelReached());
+            System.out.println("Player Name: " + player1.getName());
+            System.out.println("Player Rewards: " + player1.getRewards());
+            System.out.println("Player LevelReached: " + player1.getLevelReached());
         } else if (commandWord == CommandWord.LOAD) {
             load.LoadGame(player1);
             System.out.println("Loaded game");
-			System.out.println("Player Name: "+player1.getName());
-			System.out.println("Player Rewards: "+player1.getRewards());
-			System.out.println("Player LevelReached: "+player1.getLevelReached());
-			nextLevel();
+            System.out.println("Player Name: " + player1.getName());
+            System.out.println("Player Rewards: " + player1.getRewards());
+            System.out.println("Player LevelReached: " + player1.getLevelReached());
+            nextLevel();
         }
         return wantToQuit;
     }
@@ -303,13 +303,13 @@ public class Game //attributes
         if (currentRoom.playerOnBoat(player1, itemsLeft)) {
             currentRoom.countCollectableTypes(player1);
             currentRoom.printCollectablesData(player1);
-			player1.setRewards(player1.getRewards()+2);
-			if(option == 1){
-            	shop.goToShop(player1);
-			} else if(option == 2){
-				//shop.injectPlayer(player1);
-				App.setGoToShop(true);
-			}
+            player1.setRewards(player1.getRewards() + 2);
+            if (option == 1) {
+                shop.goToShop(player1);
+            } else if (option == 2) {
+                //shop.injectPlayer(player1);
+                App.setGoToShop(true);
+            }
             nextLevel();
         }
 
@@ -356,11 +356,11 @@ public class Game //attributes
         }
     }
 
-	public Character getPlayer(){
-		return player1;
-	}
-        
-        public void updateBoatDescription(){
-            boat.setDescription("now in the boat room, with the coordinates: x:" + getLimitX()/2 + " y:" + 0);
-        }
+    public Character getPlayer() {
+        return player1;
+    }
+
+    public void updateBoatDescription() {
+        boat.setDescription("now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
+    }
 }

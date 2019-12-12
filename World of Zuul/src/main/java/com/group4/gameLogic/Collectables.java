@@ -11,7 +11,6 @@ public class Collectables extends Coordinate {
         super(); // it is the possion to x0, y0
         this.setCoordinateX(setRandomPositionX()); //sets the coordinates to the returned value of setRandomPositionX (method)
         this.setCoordinateY(setRandomPositionY()); //sets the coordinates to the returned value of setRandomPositionY (method)
-        //this.checkDoublePlaceing();         //checks if there's already a collectable on this position, if so - rolls some new ones untill there isn't
         this.name = setRandomName();  //How it should be
         this.weight = 1; //this CAN be made interactive based on the name of the collectable
     }
@@ -138,33 +137,4 @@ public class Collectables extends Coordinate {
         return name + " - x:" + getCoordinateX() + " y:" + getCoordinateY();
     }
 
-//    public void checkDoublePlaceing() {
-//        int xPosition = this.getCoordinateX();
-//        int yPosition = this.getCoordinateY();
-//
-//        boolean run = true;
-//        int counter;
-//        //Makes sure Hostiles are never spawned on the same y position
-//        //(Note: Endless loop if number of hostiles > limitY-2)
-//        do {
-//            counter = 0;
-//            for (int i = 0; i < Room.getCollectablesLeft().size(); i++) {
-//                if (Room.getCollectablesLeft().get(i).getCoordinateX() == xPosition
-//                        && Room.getCollectablesLeft().get(i).getCoordinateY() == yPosition) {
-//                    xPosition = (int) Math.round(Math.random() * (Game.getLimitX() - 1));
-//                    yPosition = (int) Math.round(Math.random() * (Game.getLimitY() - 2)) + 1;
-//                    break;
-//                } else {
-//                    counter++;
-//                }
-//            }
-//            if (counter == Room.getNumberOfCollectablesLeft()) {
-//                run = false;
-//            }
-//
-//        } while (run);
-//
-//        this.setCoordinateX(xPosition);
-//        this.setCoordinateY(yPosition);
-//    }
 }
