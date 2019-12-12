@@ -26,9 +26,9 @@ public class Load {
             //Remember the load order has to be the same as the save order
             player1.setLevelReached(reader.nextInt()); //loads level reached from the data file
             player1.setRewards(reader.nextInt()); //loads rewards left from the data file
-			player1.setBreath(reader.nextInt());
-			player1.setCarryCapacity(reader.nextInt());
-			reader.nextLine(); //Fix so it jumps to the nextline
+            player1.setBreath(reader.nextInt());
+            player1.setCarryCapacity(reader.nextInt());
+            reader.nextLine(); //Fix so it jumps to the nextline
             player1.setName(reader.nextLine()); //loads name from the data file
             reader.close();
         } catch (FileNotFoundException ex) {

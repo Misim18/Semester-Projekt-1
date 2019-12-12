@@ -366,6 +366,8 @@ public class Game //attributes
     
     public void resetGame(){
         player1 = new Character(player1.getName(), (getLimitX() / 2), 1);
+        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX() / 2 + " y:" + 0);
+        shop = new Shopping(player1);
         nextLevel();
     }
     
