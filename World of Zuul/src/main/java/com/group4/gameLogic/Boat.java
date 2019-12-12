@@ -26,10 +26,6 @@ public class Boat extends Room {
         this(0, 0, "Boat that does not know where it is");
     }
 
-    public void placeBoat(int x, int y) {
-        this.setCoordinateX(x);
-        this.setCoordinateY(y);
-    }
 
     // BoatInventory
     public void addToBoatInventory(Collectables temp) {
@@ -40,17 +36,11 @@ public class Boat extends Room {
         return boatInventory;
     }
 
-//	public String listBoatInventory(){
-//		// to do, done for today
-//	}
     // LevelTrashCollected
     public int getLevelTrashCollected() {
         return this.levelTrashCollected;
     }
 
-    public void setLevelTrashCollected(int levelTrashCollected) {
-        this.levelTrashCollected = levelTrashCollected;
-    }
 
     // TotalTrashCollected
     public int getTotalTrashCollected() {
@@ -59,15 +49,6 @@ public class Boat extends Room {
 
     public void setTotalTrashCollected(int totalTrashCollectedNew) {
         totalTrashCollected = totalTrashCollectedNew;
-    }
-
-    // Money
-    public int getMoney() {
-        return money;
-    }
-
-    public void set(int money) {
-        this.money = money;
     }
 
     // CarryCapacityUpgrades
@@ -79,23 +60,6 @@ public class Boat extends Room {
         this.carryCapacityUpgrades = carryCapacityUpgrades;
     }
 
-    // breathUpgrades
-    public int getBreathUpgrades() {
-        return this.breathUpgrades;
-    }
-
-    public void setBreathUpgrades(int breathUpgrades) {
-        this.breathUpgrades = breathUpgrades;
-    }
-
-    // PlasticReductionUpgrades
-    public int getPlasticReductionUpgrades() {
-        return this.plasticReductionUpgrades;
-    }
-
-    public void setPlasticReductionUpgrades(int plasticReductionUpgrades) {
-        this.plasticReductionUpgrades = plasticReductionUpgrades;
-    }
 
     // Checks if the player is on boat and then emptys player inventory to boat.
     // return false: you are still missing some items.
