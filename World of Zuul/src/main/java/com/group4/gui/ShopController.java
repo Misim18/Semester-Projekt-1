@@ -51,7 +51,7 @@ public class ShopController {
 
     @FXML
     public void initialize() throws Exception {
-        textbubble.setText(GameText.getRandLine());
+        textbubble.setText("Prirates says: \n" + GameText.getRandLine());
 
         uiUpdate();
 
