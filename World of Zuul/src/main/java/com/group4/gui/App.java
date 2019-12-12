@@ -31,7 +31,6 @@ public class App extends Application {
         scene = new Scene(loadFXML("intro"));
 		window.setTitle("intro");
 		window.setOnCloseRequest(e -> closeGame());
-		//window.setTitle("Hello World");
         window.setScene(scene);
         window.show();
     }
@@ -68,7 +67,7 @@ public class App extends Application {
 
 		} catch (Exception e) {
 			System.out.println("Can't change root scene");
-			closeGame();
+			//closeGame();
 		}
 	}
 
