@@ -108,7 +108,7 @@ public class Character extends Coordinate {
     }
 
     public void upgradeBreath() {
-        breath++;
+        breath = breath + 6;
         amountOfBreathLeft = breath;
     }
 
