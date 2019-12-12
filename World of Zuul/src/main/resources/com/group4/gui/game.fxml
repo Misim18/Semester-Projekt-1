@@ -49,7 +49,8 @@
                   <Button fx:id="bQuit" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                   <Label layoutX="185.0" layoutY="23.0" text="Level" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="25.0" />
                   <Label fx:id="labelLevel" layoutX="196.0" layoutY="35.0" text="1" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="35.0" />
-                  <Label fx:id="labelInventoryFull" layoutX="243.0" layoutY="43.0" text="1" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="35.0" />
+                  <Label layoutX="232.0" layoutY="23.0" text="Inventory" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="25.0" />
+                  <Label fx:id="labelInventoryFull" layoutX="243.0" layoutY="43.0" text="1" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="35.0"/>
                </children>
             </AnchorPane>
          </children>
