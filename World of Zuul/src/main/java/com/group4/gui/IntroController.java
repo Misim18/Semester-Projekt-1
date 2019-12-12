@@ -26,7 +26,7 @@ public class IntroController {
 
     @FXML
     public void initialize() {
-        textFieldIntro.setText(GameText.introLine()); //PrintWelcome method should be here
+        textFieldIntro.setText(GameText.introLineUI()); //PrintWelcome method should be here
     }
 
     @FXML
