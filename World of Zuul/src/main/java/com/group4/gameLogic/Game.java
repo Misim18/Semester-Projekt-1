@@ -38,7 +38,7 @@ public class Game //attributes
         parser = new Parser();                                                      //Part of original world of zuul, but creates a new Parser
         load = new Load();
         save = new Save();
-        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + 2 + " y:" + 0);
+        boat = new Boat(2, 0, "now in the boat room, with the coordinates: x:" + getLimitX()/2 + " y:" + 0);
         shop = new Shopping(player1);
         Collectables.initializeItemNames();                                                      //Calls the initializeItemNames method
         GameText.fillArray();
@@ -54,6 +54,7 @@ public class Game //attributes
         createInitialHostiles(3 + 1 * player1.getLevelReached());             //Creates the amount of Hostiles fed into the method
         player1.setLevelReached(player1.getLevelReached() + 1);           //Increments levelReached
         //Creates the playable grid System.out.println(boat);
+        updateBoatDescription();
     }
 
     public Room[][] getGrid(){
@@ -358,4 +359,8 @@ public class Game //attributes
 	public Character getPlayer(){
 		return player1;
 	}
+        
+        public void updateBoatDescription(){
+            boat.setDescription("now in the boat room, with the coordinates: x:" + getLimitX()/2 + " y:" + 0);
+        }
 }
