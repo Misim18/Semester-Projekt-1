@@ -126,7 +126,10 @@
                   <Image url="@pirate.jpg" />
                </image>
             </ImageView>
-            <TextArea fx:id="textbubble" prefHeight="107.0" prefWidth="162.0" wrapText="true" />
+            <TextArea fx:id="textbubble" prefHeight="107.0" prefWidth="162.0" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></TextArea>
          </children>
       </GridPane>
    </children>
